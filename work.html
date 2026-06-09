@@ -98,38 +98,25 @@
       width: 100%;
     }
 
-    /* Mouse input: iframe embed */
+    /* /embed/ 경로 — 에디터 UI 없음, 스크롤바 없음 */
     .iframe-wrap {
       width: 100%;
       position: relative;
-      padding-top: 56.25%; /* 16:9 */
+      padding-top: 56.25%; /* 16:9 기본값 — data.js의 ratio 필드로 재정의 가능 */
       border: 1px solid #e8e8e8;
       border-radius: 4px;
       overflow: hidden;
-      background: #f5f5f5;
+      background: #000;
     }
 
     .iframe-wrap iframe {
       position: absolute;
-      top: -60px; /* push up to hide p5 editor header (~60px tall) */
-      left: 0;
-      width: 100%;
-      height: calc(100% + 60px); /* restore lost height */
-      border: none;
-      display: block;
-      overflow: hidden;
-    }
-
-    /* covers any leftover seam at top edge after clipping */
-    .iframe-wrap .header-mask {
-      position: absolute;
       top: 0;
       left: 0;
       width: 100%;
-      height: 2px;
-      background: #f5f5f5;
-      z-index: 2;
-      pointer-events: none;
+      height: 100%;
+      border: none;
+      display: block;
     }
 
     /* Webcam / Arduino: notice + button */
@@ -298,19 +285,21 @@
     const canvas = document.getElementById('canvas-area');
 
     if (work.input === 'mouse') {
-      canvas.innerHTML = `
-        <div class="iframe-wrap">
-          <iframe
-            src="${work.link}"
-            allow="fullscreen"
-            allowfullscreen
-            loading="lazy"
-            scrolling="no"
-            title="${work.title}"
-          ></iframe>
-          <div class="header-mask"></div>
-        </div>
+      // ratio 필드 있으면 사용, 없으면 16:9 기본값
+      const ratio = work.ratio || '56.25%';
+      const wrap = document.createElement('div');
+      wrap.className = 'iframe-wrap';
+      wrap.style.paddingTop = ratio;
+      wrap.innerHTML = `
+        <iframe
+          src="${work.link}"
+          allow="autoplay; fullscreen"
+          allowfullscreen
+          loading="lazy"
+          title="${work.title}"
+        ></iframe>
       `;
+      canvas.appendChild(wrap);
     } else if (work.input === 'webcam') {
       canvas.innerHTML = `
         <div class="notice-box">
