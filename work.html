@@ -288,17 +288,20 @@
         </div>
       `;
 
-      // 컨테이너 너비에 맞게 iframe을 scale 다운, 헤더(40px) 잘라내기
+      // p5 에디터 헤더 높이(embed 기준 ~40px)
       const HEADER_H = 40;
       function scaleIframe() {
         const wrap = document.getElementById('iframe-wrap');
         const iframe = document.getElementById('work-iframe');
         const containerW = wrap.clientWidth;
         const scale = containerW / CANVAS_W;
-        // 헤더를 위로 밀어서 overflow:hidden으로 잘라냄
-        iframe.style.transform = `scale(${scale}) translateY(${-HEADER_H / scale}px)`;
-        // wrap 높이 = 캔버스 높이 * scale (헤더 제외)
-        wrap.style.height = ((CANVAS_H - HEADER_H) * scale) + 'px';
+        // 1) scale
+        iframe.style.transform = `scale(${scale})`;
+        iframe.style.transformOrigin = 'top left';
+        // 2) 헤더만큼 위로 올려서 overflow:hidden으로 잘라냄
+        iframe.style.marginTop = (-HEADER_H * scale) + 'px';
+        // 3) wrap 높이 = (캔버스 + 헤더) * scale - 헤더*scale = 캔버스*scale
+        wrap.style.height = (CANVAS_H * scale) + 'px';
       }
 
       scaleIframe();
