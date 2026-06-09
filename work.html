@@ -99,10 +99,11 @@
     }
 
     /* Mouse input: iframe embed */
+    /* p5.js editor header is ~60px tall — clip it by offsetting iframe upward */
     .iframe-wrap {
       width: 100%;
       position: relative;
-      padding-top: 56.25%;
+      padding-top: calc(56.25% + 60px); /* compensate for clipped header */
       border: 1px solid #e8e8e8;
       border-radius: 4px;
       overflow: hidden;
@@ -111,10 +112,10 @@
 
     .iframe-wrap iframe {
       position: absolute;
-      top: 0;
+      top: -60px; /* hide p5 editor header bar */
       left: 0;
       width: 100%;
-      height: 100%;
+      height: calc(100% + 60px);
       border: none;
       display: block;
     }
