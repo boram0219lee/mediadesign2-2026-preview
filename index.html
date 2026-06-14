@@ -13,41 +13,237 @@
       --muted: #73736E;
       --line: #DAD9D3;
       --accent: #007A53;
+      --overlay: rgba(0, 0, 0, 0.58);
       --page-width: 1280px;
       --page-padding: 48px;
     }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif; background: var(--bg); color: var(--text); }
-    header { max-width: var(--page-width); margin: 0 auto; padding: 72px var(--page-padding) 56px; border-bottom: 1px solid var(--line); }
-    .course-label { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 22px; font-weight: 500; }
-    h1 { font-size: clamp(40px,5vw,72px); font-weight: 500; letter-spacing: -.045em; line-height: .98; margin-bottom: 16px; }
-    .subtitle { font-size: 18px; color: var(--muted); margin-bottom: 32px; }
-    .description { font-size: 15px; line-height: 1.85; color: var(--muted); max-width: 760px; margin-bottom: 22px; word-break: keep-all; }
-    .credit { font-size: 13px; color: var(--muted); }
-    main { max-width: var(--page-width); margin: 0 auto; padding: 56px var(--page-padding) 96px; }
-    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 18px; }
-    .section-title { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
-    .work-count { font-size: 13px; color: var(--muted); }
-    .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 2px; }
-    .work-item { position: relative; aspect-ratio: 16/9; overflow: hidden; cursor: pointer; background: var(--surface); border: 1px solid rgba(218,217,211,.45); }
-    .work-item img { width: 100%; height: 100%; object-fit: cover; display:block; transition: transform .45s ease, filter .45s ease; }
-    .work-item:hover img { transform: scale(1.035); filter: saturate(1.04); }
-    .work-overlay { position:absolute; inset:0; background:rgba(0,0,0,0); display:flex; flex-direction:column; justify-content:flex-end; padding:18px; transition:background .3s ease; }
-    .work-item:hover .work-overlay { background: rgba(0,0,0,.58); }
-    .work-info { transform: translateY(8px); opacity:0; transition: all .3s ease; }
-    .work-item:hover .work-info { transform: translateY(0); opacity:1; }
-    .work-title { font-size:15px; font-weight:500; color:#fff; margin-bottom:4px; line-height:1.35; }
-    .work-name { font-size:12px; color:rgba(255,255,255,.78); }
-    .work-badges { position:absolute; top:12px; right:12px; display:flex; gap:4px; opacity:0; transition:opacity .3s ease; flex-wrap:wrap; justify-content:flex-end; max-width:calc(100% - 24px); }
-    .work-item:hover .work-badges { opacity:1; }
-    .badge { font-size:10px; padding:3px 7px; border-radius:20px; font-weight:500; letter-spacing:.03em; background:rgba(255,255,255,.94); color:var(--accent); white-space:nowrap; }
-    .work-placeholder { width:100%; height:100%; display:flex; align-items:center; justify-content:center; background:linear-gradient(135deg,rgba(0,122,83,.08),rgba(255,255,255,.35)), var(--surface); padding:18px; }
-    .work-placeholder span { font-size:12px; color:var(--muted); text-align:center; line-height:1.45; }
-    footer { border-top:1px solid var(--line); padding:34px var(--page-padding); text-align:center; font-size:12px; color:var(--muted); }
-    @media (max-width:1200px) { :root { --page-padding:40px; } .grid { grid-template-columns: repeat(4, 1fr); } }
-    @media (max-width:900px) { .grid { grid-template-columns: repeat(3, 1fr); } h1 { font-size:42px; } }
-    @media (max-width:640px) { :root { --page-padding:24px; } header { padding-top:48px; padding-bottom:38px; } main { padding-top:38px; padding-bottom:72px; } .subtitle { font-size:16px; } .grid { grid-template-columns: repeat(2, 1fr); } .section-head { align-items:flex-start; flex-direction:column; gap:8px; } .work-overlay { padding:14px; } }
-    @media (max-width:420px) { .grid { grid-template-columns:1fr; } }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    header {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 72px var(--page-padding) 56px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .course-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 22px;
+      font-weight: 500;
+    }
+
+    h1 {
+      font-size: clamp(40px, 5vw, 72px);
+      font-weight: 500;
+      letter-spacing: -0.045em;
+      line-height: 0.98;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: var(--muted);
+      font-weight: 400;
+      margin-bottom: 32px;
+    }
+
+    .description {
+      font-size: 15px;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 760px;
+      margin-bottom: 22px;
+      word-break: keep-all;
+    }
+
+    .credit {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    main {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 56px var(--page-padding) 96px;
+    }
+
+    .section-head {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .work-count {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 2px;
+    }
+
+    .work-item {
+      position: relative;
+      aspect-ratio: 16/9;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--surface);
+      border: 1px solid rgba(218, 217, 211, 0.45);
+    }
+
+    .work-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.45s ease, filter 0.45s ease;
+    }
+
+    .work-item:hover img {
+      transform: scale(1.035);
+      filter: saturate(1.04);
+    }
+
+    .work-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 18px;
+      transition: background 0.3s ease;
+    }
+
+    .work-item:hover .work-overlay {
+      background: var(--overlay);
+    }
+
+    .work-info {
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .work-item:hover .work-info {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .work-title {
+      font-size: 15px;
+      font-weight: 500;
+      color: #fff;
+      margin-bottom: 4px;
+      line-height: 1.35;
+    }
+
+    .work-name {
+      font-size: 12px;
+      color: rgba(255,255,255,0.78);
+    }
+
+    .work-badges {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      display: flex;
+      gap: 4px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: calc(100% - 24px);
+    }
+
+    .work-item:hover .work-badges {
+      opacity: 1;
+    }
+
+    .badge {
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 20px;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      background: rgba(255,255,255,0.94);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .work-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background:
+        linear-gradient(135deg, rgba(0,122,83,0.06), rgba(255,255,255,0.4)),
+        var(--surface);
+      padding: 18px;
+    }
+
+    .work-placeholder span {
+      font-size: 12px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.45;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      padding: 34px var(--page-padding);
+      text-align: center;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1200px) {
+      :root { --page-padding: 40px; }
+      .grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(3, 1fr); }
+      h1 { font-size: 42px; }
+    }
+
+    @media (max-width: 640px) {
+      :root { --page-padding: 24px; }
+      header { padding-top: 48px; padding-bottom: 38px; }
+      main { padding-top: 38px; padding-bottom: 72px; }
+      .subtitle { font-size: 16px; }
+      .grid { grid-template-columns: repeat(2, 1fr); }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 8px; }
+      .work-overlay { padding: 14px; }
+    }
+
+    @media (max-width: 420px) {
+      .grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -58,17 +254,53 @@
     <p class="description">《Creatures of Sense》는 미디어디자인 II 수업의 최종 웹 전시이다. 학생들은 각자가 좋아하는 감각에서 출발해 움직이고 반응하는 디지털 존재를 만들었다. p5.js와 AI를 창작 도구로 활용한 이 작품들은 관람자의 움직임, 클릭, 소리, 센서 입력과 만날 때 비로소 완성된다.</p>
     <p class="credit">A student archive from the course Media Design II, 2026. Kookmin University.</p>
   </header>
+
   <main>
-    <div class="section-head"><p class="section-title">Works</p><p class="work-count" id="work-count"></p></div>
+    <div class="section-head">
+      <p class="section-title">Works</p>
+      <p class="work-count" id="work-count"></p>
+    </div>
     <div class="grid" id="grid"></div>
   </main>
-  <footer>© 2026 미디어디자인 II · 국민대학교 시각디자인학과</footer>
+
+  <footer>
+    © 2026 미디어디자인 II · 국민대학교 시각디자인학과
+  </footer>
+
   <script src="data.js"></script>
   <script>
-    const grid=document.getElementById('grid'); const workCount=document.getElementById('work-count');
-    function getInputBadge(work){ if(work.inputLabel) return work.inputLabel; const labels={mouse:'마우스',keyboard:'키보드',webcam:'웹캠',arduino:'센서',touch:'터치'}; return labels[work.input]||work.input||''; }
-    workCount.textContent=`${works.length} works`;
-    works.forEach((work,index)=>{ const item=document.createElement('div'); item.className='work-item'; item.onclick=()=>{window.location.href=`work.html?id=${index}`;}; const badges=[]; const inputBadge=getInputBadge(work); if(inputBadge) badges.push(`<span class="badge">${inputBadge}</span>`); if(work.sound) badges.push('<span class="badge">♪</span>'); item.innerHTML=`${work.thumbnail ? `<img src="${work.thumbnail}" alt="${work.title}" onerror="this.parentElement.querySelector('.work-placeholder').style.display='flex'; this.style.display='none';">` : ''}<div class="work-placeholder" style="${work.thumbnail ? 'display:none' : 'display:flex'}"><span>${work.title}</span></div><div class="work-overlay"><div class="work-badges">${badges.join('')}</div><div class="work-info"><p class="work-title">${work.title}</p><p class="work-name">${work.name}</p></div></div>`; grid.appendChild(item); });
+    const grid = document.getElementById('grid');
+    const workCount = document.getElementById('work-count');
+
+    workCount.textContent = `${works.length} works`;
+
+    works.forEach((work, index) => {
+      const item = document.createElement('div');
+      item.className = 'work-item';
+      item.onclick = () => {
+        window.location.href = `work.html?id=${index}`;
+      };
+
+      const tags = Array.isArray(work.tags) ? work.tags : [];
+
+      item.innerHTML = `
+        ${work.thumbnail
+          ? `<img src="${work.thumbnail}" alt="${work.title}" onerror="this.parentElement.querySelector('.work-placeholder').style.display='flex'; this.style.display='none';">`
+          : ''}
+        <div class="work-placeholder" style="${work.thumbnail ? 'display:none' : 'display:flex'}">
+          <span>${work.title}</span>
+        </div>
+        <div class="work-overlay">
+          <div class="work-badges">${tags.map(tag => `<span class="badge">${tag}</span>`).join('')}</div>
+          <div class="work-info">
+            <p class="work-title">${work.title}</p>
+            <p class="work-name">${work.name}</p>
+          </div>
+        </div>
+      `;
+
+      grid.appendChild(item);
+    });
   </script>
 </body>
 </html>

@@ -6,12 +6,23 @@
   <title>작품 — Creatures of Sense</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <style>
+    :root {
+      --bg: #F6F5F0;
+      --surface: #FFFFFF;
+      --text: #111111;
+      --muted: #73736E;
+      --line: #DAD9D3;
+      --accent: #007A53;
+      --page-width: 1280px;
+      --page-padding: 48px;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-      background: #fff;
-      color: #111;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
@@ -20,13 +31,14 @@
     nav {
       display: flex;
       align-items: center;
-      padding: 20px 32px;
-      border-bottom: 1px solid #e8e8e8;
+      padding: 20px var(--page-padding);
+      border-bottom: 1px solid var(--line);
+      background: rgba(246, 245, 240, 0.92);
     }
 
     .back-btn {
       font-size: 13px;
-      color: #666;
+      color: var(--muted);
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -34,27 +46,29 @@
       transition: color 0.2s;
     }
 
-    .back-btn:hover { color: #111; }
+    .back-btn:hover { color: var(--accent); }
     .back-btn::before { content: '←'; font-size: 15px; }
 
     .nav-counter {
       margin-left: auto;
       font-size: 13px;
-      color: #aaa;
+      color: var(--muted);
     }
 
     .work-header {
-      max-width: 960px;
+      max-width: var(--page-width);
       margin: 0 auto;
-      padding: 40px 32px 24px;
+      padding: 48px var(--page-padding) 28px;
       width: 100%;
     }
 
     .work-title {
-      font-size: 28px;
+      font-size: clamp(30px, 3.5vw, 50px);
       font-weight: 500;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      letter-spacing: -0.04em;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      color: var(--text);
     }
 
     .work-meta {
@@ -62,48 +76,86 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 8px;
+      margin-bottom: 26px;
     }
 
     .work-name {
       font-size: 14px;
-      color: #666;
+      color: var(--muted);
       margin-right: 4px;
     }
 
     .badge {
       font-size: 11px;
-      padding: 3px 8px;
+      padding: 4px 9px;
       border-radius: 20px;
-      border: 1px solid #e0e0e0;
-      color: #666;
+      border: 1px solid var(--line);
+      color: var(--accent);
       font-weight: 400;
-      background: #fff;
+      background: var(--surface);
     }
 
-    .work-description {
+    .info-block {
+      display: grid;
+      grid-template-columns: 128px minmax(0, 760px);
+      column-gap: 28px;
+      row-gap: 16px;
       max-width: 960px;
-      margin: 0 auto;
-      padding: 0 32px 24px;
-      width: 100%;
+    }
+
+    .info-label {
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.75;
+      white-space: nowrap;
+    }
+
+    .info-text {
       font-size: 14px;
-      color: #888;
-      line-height: 1.7;
+      color: #555550;
+      line-height: 1.78;
+      word-break: keep-all;
+      white-space: pre-line;
     }
 
     .canvas-area {
-      max-width: 960px;
+      max-width: var(--page-width);
       margin: 0 auto;
-      padding: 0 32px;
+      padding: 0 var(--page-padding);
       width: 100%;
     }
 
-    /* p5 Editor embed처럼 외부 iframe을 그대로 보여줄 때 사용 */
+    .canvas-head {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      min-height: 28px;
+      margin-bottom: 8px;
+    }
+
+    .viewer-tags {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .viewer-tags .badge {
+      color: var(--muted);
+      background: rgba(255,255,255,0.72);
+    }
+
+    .viewer-tags .badge.sound {
+      color: var(--accent);
+    }
+
     .embed-wrap {
       width: 100%;
       aspect-ratio: 16 / 9;
       overflow: hidden;
-      border: 1px solid #e8e8e8;
-      border-radius: 4px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
       background: #000;
     }
 
@@ -114,52 +166,55 @@
       border: none;
     }
 
-    /* 자체 HTML 작품: 1280×720 고정 캔버스를 iframe viewport 안에 넣고 바깥에서 축소 */
     .local-wrap {
       width: 100%;
+      aspect-ratio: 16 / 9;
       position: relative;
       overflow: hidden;
-      border: 1px solid #e8e8e8;
-      border-radius: 4px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
       background: #000;
     }
 
     .local-wrap iframe {
       display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
       width: 1280px;
       height: 720px;
       border: none;
-      transform-origin: top left;
+      transform-origin: center center;
       background: #000;
     }
 
     .notice-box {
       width: 100%;
       aspect-ratio: 16/9;
-      border: 1px solid #e8e8e8;
-      border-radius: 4px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 20px;
-      background: #fafafa;
+      background: var(--surface);
     }
 
     .notice-icon { font-size: 40px; line-height: 1; }
     .notice-text { text-align: center; padding: 0 24px; }
-    .notice-text p { font-size: 15px; color: #333; margin-bottom: 6px; font-weight: 500; }
-    .notice-text span { font-size: 13px; color: #999; line-height: 1.6; }
+    .notice-text p { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 500; }
+    .notice-text span { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     .open-btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
       padding: 12px 24px;
-      background: #111;
+      background: var(--text);
       color: #fff;
       border: none;
-      border-radius: 6px;
+      border-radius: 999px;
       font-size: 14px;
       font-family: inherit;
       cursor: pointer;
@@ -167,44 +222,48 @@
       transition: background 0.2s;
     }
 
-    .open-btn:hover { background: #333; }
+    .open-btn:hover { background: var(--accent); }
     .open-btn::after { content: '↗'; }
 
     .guide-box {
-      max-width: 960px;
+      max-width: var(--page-width);
       margin: 0 auto;
-      padding: 18px 32px 0;
+      padding: 20px var(--page-padding) 0;
       width: 100%;
     }
 
     .guide-inner {
-      border-top: 1px solid #f0f0f0;
+      border-top: 1px solid var(--line);
       padding-top: 18px;
       display: grid;
-      grid-template-columns: 96px 1fr;
-      column-gap: 18px;
-      row-gap: 8px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: 32px;
+      row-gap: 18px;
       font-size: 13px;
-      line-height: 1.65;
+      line-height: 1.68;
+    }
+
+    .guide-item {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      column-gap: 18px;
+      align-items: start;
     }
 
     .guide-label {
-      color: #aaa;
+      color: var(--muted);
       white-space: nowrap;
     }
 
     .guide-text {
-      color: #666;
-    }
-
-    .sound-guide {
-      color: #888;
+      color: #555550;
+      word-break: keep-all;
     }
 
     .work-nav {
-      max-width: 960px;
-      margin: 40px auto 60px;
-      padding: 32px 32px 0;
+      max-width: var(--page-width);
+      margin: 44px auto 64px;
+      padding: 32px var(--page-padding) 0;
       width: 100%;
       display: flex;
       align-items: center;
@@ -217,9 +276,9 @@
       content: '';
       position: absolute;
       top: 0;
-      left: 32px;
-      right: 32px;
-      border-top: 1px solid #e8e8e8;
+      left: var(--page-padding);
+      right: var(--page-padding);
+      border-top: 1px solid var(--line);
     }
 
     .nav-btn {
@@ -228,25 +287,34 @@
       gap: 4px;
       cursor: pointer;
       text-decoration: none;
-      max-width: 240px;
+      max-width: 280px;
     }
 
     .nav-btn.prev { align-items: flex-start; }
     .nav-btn.next { align-items: flex-end; text-align: right; }
-    .nav-btn .nav-direction { font-size: 11px; color: #bbb; letter-spacing: 0.06em; text-transform: uppercase; }
-    .nav-btn .nav-work-title { font-size: 14px; color: #333; font-weight: 500; }
-    .nav-btn .nav-work-name { font-size: 12px; color: #aaa; }
-    .nav-btn:hover .nav-work-title { color: #111; }
+    .nav-btn .nav-direction { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-btn .nav-work-title { font-size: 14px; color: var(--text); font-weight: 500; }
+    .nav-btn .nav-work-name { font-size: 12px; color: var(--muted); }
+    .nav-btn:hover .nav-work-title { color: var(--accent); }
     .nav-placeholder { width: 200px; }
 
-    @media (max-width: 560px) {
-      nav { padding: 18px 24px; }
-      .work-header { padding: 32px 24px 20px; }
-      .work-title { font-size: 24px; }
-      .work-description, .canvas-area, .guide-box, .work-nav { padding-left: 24px; padding-right: 24px; }
-      .guide-inner { grid-template-columns: 1fr; row-gap: 4px; }
-      .guide-label { margin-top: 8px; }
-      .work-nav::before { left: 24px; right: 24px; }
+    @media (max-width: 1200px) {
+      :root { --page-padding: 40px; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --page-padding: 24px; }
+      nav { padding-top: 18px; padding-bottom: 18px; }
+      .work-header { padding-top: 34px; padding-bottom: 22px; }
+      .work-title { font-size: 28px; }
+      .info-block { grid-template-columns: 1fr; row-gap: 6px; }
+      .info-label { margin-top: 10px; }
+      .guide-inner { grid-template-columns: 1fr; }
+      .guide-item { grid-template-columns: 1fr; row-gap: 4px; }
+      .guide-label { margin-top: 4px; }
+      .canvas-head { justify-content: flex-start; }
+      .viewer-tags { justify-content: flex-start; }
+      .work-nav { margin-top: 38px; }
     }
   </style>
 </head>
@@ -259,9 +327,8 @@
   <div class="work-header">
     <h1 class="work-title" id="work-title"></h1>
     <div class="work-meta" id="work-meta"></div>
+    <div class="info-block" id="info-block"></div>
   </div>
-
-  <p class="work-description" id="work-description"></p>
 
   <div class="canvas-area" id="canvas-area"></div>
   <div class="guide-box" id="guide-box"></div>
@@ -280,33 +347,30 @@
 
     document.title = `${work.title} — Creatures of Sense`;
     document.getElementById('work-title').textContent = work.title;
-    document.getElementById('work-description').textContent = work.description || '';
     document.getElementById('nav-counter').textContent = `${id + 1} / ${works.length}`;
 
-    function getInputLabel(work) {
-      if (work.inputLabel) return work.inputLabel;
-      const labels = {
-        mouse: '마우스',
-        keyboard: '키보드',
-        webcam: '웹캠',
-        arduino: '터치 센서',
-        touch: '터치'
-      };
-      return labels[work.input] || work.input || '';
-    }
-
+    const tags = Array.isArray(work.tags) ? work.tags : [];
     const meta = document.getElementById('work-meta');
-    const inputLabel = getInputLabel(work);
-    let metaHTML = `<span class="work-name">${work.name}</span>`;
-    if (inputLabel) metaHTML += `<span class="badge">${inputLabel}</span>`;
-    if (work.sound) metaHTML += `<span class="badge">♪ 사운드</span>`;
-    meta.innerHTML = metaHTML;
+    meta.innerHTML = `<span class="work-name">${work.name}</span>`;
+
+    const infoRows = [];
+    if (work.sense) infoRows.push(['감각 출발점', work.sense]);
+    if (work.description) infoRows.push(['작품 설명', work.description]);
+
+    document.getElementById('info-block').innerHTML = infoRows.map(([label, text]) => `
+      <div class="info-label">${label}</div>
+      <div class="info-text">${text}</div>
+    `).join('');
 
     const canvas = document.getElementById('canvas-area');
-    const mode = work.displayMode || (work.input === 'webcam' || work.input === 'arduino' ? 'external' : 'embed');
+    const mode = work.displayMode || 'local';
+    const tagHTML = tags.length
+      ? `<div class="canvas-head"><div class="viewer-tags">${tags.map(tag => `<span class="badge ${tag.includes('사운드') ? 'sound' : ''}">${tag}</span>`).join('')}</div></div>`
+      : '';
 
     if (mode === 'local') {
       canvas.innerHTML = `
+        ${tagHTML}
         <div class="local-wrap" id="local-wrap">
           <iframe
             id="work-iframe"
@@ -322,9 +386,13 @@
       function fitLocalIframe() {
         const wrap = document.getElementById('local-wrap');
         const iframe = document.getElementById('work-iframe');
-        const scale = wrap.clientWidth / CANVAS_W;
-        iframe.style.transform = `scale(${scale})`;
-        wrap.style.height = `${CANVAS_H * scale}px`;
+
+        const scale = Math.min(
+          wrap.clientWidth / CANVAS_W,
+          wrap.clientHeight / CANVAS_H
+        );
+
+        iframe.style.transform = `translate(-50%, -50%) scale(${scale})`;
       }
 
       window.addEventListener('resize', fitLocalIframe);
@@ -332,10 +400,11 @@
       setTimeout(fitLocalIframe, 100);
     } else if (mode === 'embed') {
       canvas.innerHTML = `
+        ${tagHTML}
         <div class="embed-wrap">
           <iframe
             id="work-iframe"
-            src="${work.link}"
+            src="${work.fallbackLink || work.link}"
             allow="autoplay; fullscreen; camera; microphone"
             allowfullscreen
             loading="lazy"
@@ -344,18 +413,19 @@
         </div>
       `;
     } else {
-      const icon = work.input === 'webcam' ? '📷' : work.input === 'arduino' ? '⚡' : '↗';
-      const title = work.input === 'webcam'
+      const icon = (work.input || '').includes('웹캠') ? '📷' : (work.input || '').includes('기타') ? '🎸' : '↗';
+      const title = (work.input || '').includes('웹캠')
         ? '웹캠을 사용하는 작품입니다'
-        : work.input === 'arduino'
-          ? '센서 또는 외부 장치로 체험하는 작품입니다'
+        : (work.input || '').includes('기타')
+          ? '외부 입력 장치를 사용하는 작품입니다'
           : '새 탭에서 여는 작품입니다';
-      const desc = work.input === 'webcam'
+      const desc = (work.input || '').includes('웹캠')
         ? '새 탭에서 열면 카메라 권한을 허용할 수 있습니다.'
-        : work.input === 'arduino'
-          ? '전시 공간의 장치를 사용하거나 새 탭에서 작품을 확인해 주세요.'
+        : (work.input || '').includes('기타')
+          ? '전시 공간의 입력 장치와 오디오 장치를 확인한 뒤 체험해 주세요.'
           : '작품 특성상 새 탭에서 여는 방식을 권장합니다.';
       canvas.innerHTML = `
+        ${tagHTML}
         <div class="notice-box">
           <div class="notice-icon">${icon}</div>
           <div class="notice-text">
@@ -368,14 +438,16 @@
     }
 
     const guideRows = [];
-    if (inputLabel) guideRows.push(['입력 방식', inputLabel]);
-    if (work.interaction) guideRows.push(['관람 방법', work.interaction]);
-    if (work.reaction) guideRows.push(['작품 반응', work.reaction]);
-    if (work.sound && work.soundGuide) guideRows.push(['사운드', `<span class="sound-guide">♪ ${work.soundGuide}</span>`]);
-    else if (work.sound) guideRows.push(['사운드', '<span class="sound-guide">♪ 사운드가 포함된 작품입니다. 볼륨을 확인해주세요.</span>']);
+    if (work.interactionGuide) guideRows.push(['Interaction', work.interactionGuide]);
+    if (work.outputGuide) guideRows.push(['Output', work.outputGuide]);
 
     document.getElementById('guide-box').innerHTML = guideRows.length
-      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `<div class="guide-label">${label}</div><div class="guide-text">${text}</div>`).join('')}</div>`
+      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `
+        <div class="guide-item">
+          <div class="guide-label">${label}</div>
+          <div class="guide-text">${text}</div>
+        </div>
+      `).join('')}</div>`
       : '';
 
     const nav = document.getElementById('work-nav');
