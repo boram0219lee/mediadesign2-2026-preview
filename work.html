@@ -6,66 +6,408 @@
   <title>작품 — Creatures of Sense</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
   <style>
-    :root {
-      --bg: #F6F5F0;
-      --surface: #FFFFFF;
-      --text: #111111;
-      --muted: #73736E;
-      --line: #DAD9D3;
-      --accent: #007A53;
-      --page-width: 1280px;
-      --page-padding: 48px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: #fff;
+      color: #111;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family:"Pretendard",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif; background:var(--bg); color:var(--text); min-height:100vh; display:flex; flex-direction:column; }
-    nav { display:flex; align-items:center; padding:20px var(--page-padding); border-bottom:1px solid var(--line); background:rgba(246,245,240,.92); }
-    .back-btn { font-size:13px; color:var(--muted); text-decoration:none; display:flex; align-items:center; gap:6px; transition:color .2s; }
-    .back-btn:hover { color:var(--accent); } .back-btn::before { content:'←'; font-size:15px; }
-    .nav-counter { margin-left:auto; font-size:13px; color:var(--muted); }
-    .work-header { max-width:var(--page-width); margin:0 auto; padding:48px var(--page-padding) 24px; width:100%; }
-    .work-title { font-size:clamp(28px,3.5vw,48px); font-weight:500; letter-spacing:-.035em; line-height:1.12; margin-bottom:12px; }
-    .work-meta { display:flex; align-items:center; flex-wrap:wrap; gap:8px; }
-    .work-name { font-size:14px; color:var(--muted); margin-right:4px; }
-    .badge { font-size:11px; padding:4px 9px; border-radius:20px; border:1px solid var(--line); color:var(--accent); font-weight:400; background:var(--surface); }
-    .work-description { max-width:var(--page-width); margin:0 auto; padding:0 var(--page-padding) 26px; width:100%; font-size:14px; color:var(--muted); line-height:1.75; word-break:keep-all; }
-    .canvas-area { max-width:var(--page-width); margin:0 auto; padding:0 var(--page-padding); width:100%; }
-    .embed-wrap,.local-wrap { width:100%; aspect-ratio:16/9; overflow:hidden; border:1px solid var(--line); border-radius:6px; background:#000; }
-    .embed-wrap iframe { display:block; width:100%; height:100%; border:none; }
-    .local-wrap { position:relative; }
-    .local-wrap iframe { display:block; position:absolute; left:50%; top:50%; width:1280px; height:720px; border:none; transform-origin:center center; background:#000; }
-    .notice-box { width:100%; aspect-ratio:16/9; border:1px solid var(--line); border-radius:6px; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:20px; background:var(--surface); }
-    .notice-icon { font-size:40px; line-height:1; } .notice-text { text-align:center; padding:0 24px; } .notice-text p { font-size:15px; color:var(--text); margin-bottom:6px; font-weight:500; } .notice-text span { font-size:13px; color:var(--muted); line-height:1.6; }
-    .open-btn { display:inline-flex; align-items:center; gap:8px; padding:12px 24px; background:var(--text); color:#fff; border:none; border-radius:999px; font-size:14px; font-family:inherit; cursor:pointer; text-decoration:none; transition:background .2s; }
-    .open-btn:hover { background:var(--accent); } .open-btn::after { content:'↗'; }
-    .guide-box { max-width:var(--page-width); margin:0 auto; padding:20px var(--page-padding) 0; width:100%; }
-    .guide-inner { border-top:1px solid var(--line); padding-top:20px; display:grid; grid-template-columns:104px 1fr; column-gap:20px; row-gap:9px; font-size:13px; line-height:1.68; }
-    .guide-label { color:var(--muted); white-space:nowrap; } .guide-text,.sound-guide { color:#555550; word-break:keep-all; }
-    .work-nav { max-width:var(--page-width); margin:44px auto 64px; padding:32px var(--page-padding) 0; width:100%; display:flex; align-items:center; justify-content:space-between; border-top:1px solid var(--line); }
-    .nav-btn { display:flex; flex-direction:column; gap:4px; cursor:pointer; text-decoration:none; max-width:280px; }
-    .nav-btn.prev { align-items:flex-start; } .nav-btn.next { align-items:flex-end; text-align:right; } .nav-btn .nav-direction { font-size:11px; color:var(--muted); letter-spacing:.06em; text-transform:uppercase; } .nav-btn .nav-work-title { font-size:14px; color:var(--text); font-weight:500; } .nav-btn .nav-work-name { font-size:12px; color:var(--muted); } .nav-btn:hover .nav-work-title { color:var(--accent); } .nav-placeholder { width:200px; }
-    @media (max-width:1200px) { :root { --page-padding:40px; } }
-    @media (max-width:640px) { :root { --page-padding:24px; } nav { padding-top:18px; padding-bottom:18px; } .work-header { padding-top:34px; padding-bottom:20px; } .work-title { font-size:26px; } .guide-inner { grid-template-columns:1fr; row-gap:4px; } .guide-label { margin-top:8px; } .work-nav { margin-top:38px; } }
+
+    nav {
+      display: flex;
+      align-items: center;
+      padding: 20px 32px;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .back-btn {
+      font-size: 13px;
+      color: #666;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+
+    .back-btn:hover { color: #111; }
+    .back-btn::before { content: '←'; font-size: 15px; }
+
+    .nav-counter {
+      margin-left: auto;
+      font-size: 13px;
+      color: #aaa;
+    }
+
+    .work-header {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 32px 24px;
+      width: 100%;
+    }
+
+    .work-title {
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+    }
+
+    .work-meta {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .work-name {
+      font-size: 14px;
+      color: #666;
+      margin-right: 4px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 3px 8px;
+      border-radius: 20px;
+      border: 1px solid #e0e0e0;
+      color: #666;
+      font-weight: 400;
+      background: #fff;
+    }
+
+    .work-description {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px 24px;
+      width: 100%;
+      font-size: 14px;
+      color: #888;
+      line-height: 1.7;
+    }
+
+    .canvas-area {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 32px;
+      width: 100%;
+    }
+
+    /* p5 Editor embed처럼 외부 iframe을 그대로 보여줄 때 사용 */
+    .embed-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      background: #000;
+    }
+
+    .embed-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* 자체 HTML 작품: 1280×720 고정 캔버스를 iframe viewport 안에 넣고 바깥에서 축소 */
+    .local-wrap {
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      background: #000;
+    }
+
+    .local-wrap iframe {
+      display: block;
+      width: 1280px;
+      height: 720px;
+      border: none;
+      transform-origin: top left;
+      background: #000;
+    }
+
+    .notice-box {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 1px solid #e8e8e8;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: #fafafa;
+    }
+
+    .notice-icon { font-size: 40px; line-height: 1; }
+    .notice-text { text-align: center; padding: 0 24px; }
+    .notice-text p { font-size: 15px; color: #333; margin-bottom: 6px; font-weight: 500; }
+    .notice-text span { font-size: 13px; color: #999; line-height: 1.6; }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .open-btn:hover { background: #333; }
+    .open-btn::after { content: '↗'; }
+
+    .guide-box {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 18px 32px 0;
+      width: 100%;
+    }
+
+    .guide-inner {
+      border-top: 1px solid #f0f0f0;
+      padding-top: 18px;
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      column-gap: 18px;
+      row-gap: 8px;
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .guide-label {
+      color: #aaa;
+      white-space: nowrap;
+    }
+
+    .guide-text {
+      color: #666;
+    }
+
+    .sound-guide {
+      color: #888;
+    }
+
+    .work-nav {
+      max-width: 960px;
+      margin: 40px auto 60px;
+      padding: 32px 32px 0;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      border-top: none;
+    }
+
+    .work-nav::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 32px;
+      right: 32px;
+      border-top: 1px solid #e8e8e8;
+    }
+
+    .nav-btn {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      max-width: 240px;
+    }
+
+    .nav-btn.prev { align-items: flex-start; }
+    .nav-btn.next { align-items: flex-end; text-align: right; }
+    .nav-btn .nav-direction { font-size: 11px; color: #bbb; letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-btn .nav-work-title { font-size: 14px; color: #333; font-weight: 500; }
+    .nav-btn .nav-work-name { font-size: 12px; color: #aaa; }
+    .nav-btn:hover .nav-work-title { color: #111; }
+    .nav-placeholder { width: 200px; }
+
+    @media (max-width: 560px) {
+      nav { padding: 18px 24px; }
+      .work-header { padding: 32px 24px 20px; }
+      .work-title { font-size: 24px; }
+      .work-description, .canvas-area, .guide-box, .work-nav { padding-left: 24px; padding-right: 24px; }
+      .guide-inner { grid-template-columns: 1fr; row-gap: 4px; }
+      .guide-label { margin-top: 8px; }
+      .work-nav::before { left: 24px; right: 24px; }
+    }
   </style>
 </head>
 <body>
-  <nav><a href="index.html" class="back-btn">목록으로</a><span class="nav-counter" id="nav-counter"></span></nav>
-  <div class="work-header"><h1 class="work-title" id="work-title"></h1><div class="work-meta" id="work-meta"></div></div>
+  <nav>
+    <a href="index.html" class="back-btn">목록으로</a>
+    <span class="nav-counter" id="nav-counter"></span>
+  </nav>
+
+  <div class="work-header">
+    <h1 class="work-title" id="work-title"></h1>
+    <div class="work-meta" id="work-meta"></div>
+  </div>
+
   <p class="work-description" id="work-description"></p>
+
   <div class="canvas-area" id="canvas-area"></div>
   <div class="guide-box" id="guide-box"></div>
   <div class="work-nav" id="work-nav"></div>
+
   <script src="data.js"></script>
   <script>
-    const CANVAS_W=1280, CANVAS_H=720; const params=new URLSearchParams(window.location.search); const id=parseInt(params.get('id'),10)||0; const work=works[id]; if(!work) window.location.href='index.html';
-    document.title=`${work.title} — Creatures of Sense`; document.getElementById('work-title').textContent=work.title; document.getElementById('work-description').textContent=work.description||''; document.getElementById('nav-counter').textContent=`${id+1} / ${works.length}`;
-    function getInputLabel(work){ if(work.inputLabel) return work.inputLabel; const labels={mouse:'마우스',keyboard:'키보드',webcam:'웹캠',arduino:'터치 센서',touch:'터치'}; return labels[work.input]||work.input||''; }
-    const inputLabel=getInputLabel(work); let metaHTML=`<span class="work-name">${work.name}</span>`; if(inputLabel) metaHTML+=`<span class="badge">${inputLabel}</span>`; if(work.sound) metaHTML+=`<span class="badge">♪ 사운드</span>`; document.getElementById('work-meta').innerHTML=metaHTML;
-    const canvas=document.getElementById('canvas-area'); const mode=work.displayMode || (work.input==='webcam'||work.input==='arduino'?'external':'embed');
-    if(mode==='local'){ canvas.innerHTML=`<div class="local-wrap" id="local-wrap"><iframe id="work-iframe" src="${work.link}" allow="autoplay; fullscreen; camera; microphone" allowfullscreen loading="lazy" title="${work.title}"></iframe></div>`; function fitLocalIframe(){ const wrap=document.getElementById('local-wrap'); const iframe=document.getElementById('work-iframe'); const scale=Math.min(wrap.clientWidth/CANVAS_W,wrap.clientHeight/CANVAS_H); iframe.style.transform=`translate(-50%, -50%) scale(${scale})`; } window.addEventListener('resize',fitLocalIframe); document.getElementById('work-iframe').addEventListener('load',fitLocalIframe); setTimeout(fitLocalIframe,100); }
-    else if(mode==='embed'){ canvas.innerHTML=`<div class="embed-wrap"><iframe id="work-iframe" src="${work.link}" allow="autoplay; fullscreen; camera; microphone" allowfullscreen loading="lazy" title="${work.title}"></iframe></div>`; }
-    else { const icon=work.input==='webcam'?'📷':work.input==='arduino'?'⚡':'↗'; const title=work.input==='webcam'?'웹캠을 사용하는 작품입니다':work.input==='arduino'?'센서 또는 외부 장치로 체험하는 작품입니다':'새 탭에서 여는 작품입니다'; const desc=work.input==='webcam'?'새 탭에서 열면 카메라 권한을 허용할 수 있습니다.':work.input==='arduino'?'전시 공간의 장치를 사용하거나 새 탭에서 작품을 확인해 주세요.':'작품 특성상 새 탭에서 여는 방식을 권장합니다.'; canvas.innerHTML=`<div class="notice-box"><div class="notice-icon">${icon}</div><div class="notice-text"><p>${title}</p><span>${desc}</span></div><a href="${work.link}" target="_blank" rel="noopener" class="open-btn">작품 열기</a></div>`; }
-    const guideRows=[]; if(inputLabel) guideRows.push(['입력 방식',inputLabel]); if(work.interaction) guideRows.push(['관람 방법',work.interaction]); if(work.reaction) guideRows.push(['작품 반응',work.reaction]); if(work.sound&&work.soundGuide) guideRows.push(['사운드',`<span class="sound-guide">♪ ${work.soundGuide}</span>`]); else if(work.sound) guideRows.push(['사운드','<span class="sound-guide">♪ 사운드가 포함된 작품입니다. 화면을 클릭한 뒤 체험해 주세요.</span>']); document.getElementById('guide-box').innerHTML=guideRows.length?`<div class="guide-inner">${guideRows.map(([label,text])=>`<div class="guide-label">${label}</div><div class="guide-text">${text}</div>`).join('')}</div>`:'';
-    const nav=document.getElementById('work-nav'); const prev=id>0?works[id-1]:null; const next=id<works.length-1?works[id+1]:null; let navHTML=''; if(prev) navHTML+=`<a href="work.html?id=${id-1}" class="nav-btn prev"><span class="nav-direction">← 이전 작품</span><span class="nav-work-title">${prev.title}</span><span class="nav-work-name">${prev.name}</span></a>`; else navHTML+='<div class="nav-placeholder"></div>'; if(next) navHTML+=`<a href="work.html?id=${id+1}" class="nav-btn next"><span class="nav-direction">다음 작품 →</span><span class="nav-work-title">${next.title}</span><span class="nav-work-name">${next.name}</span></a>`; else navHTML+='<div class="nav-placeholder"></div>'; nav.innerHTML=navHTML;
+    const CANVAS_W = 1280;
+    const CANVAS_H = 720;
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10) || 0;
+    const work = works[id];
+
+    if (!work) window.location.href = 'index.html';
+
+    document.title = `${work.title} — Creatures of Sense`;
+    document.getElementById('work-title').textContent = work.title;
+    document.getElementById('work-description').textContent = work.description || '';
+    document.getElementById('nav-counter').textContent = `${id + 1} / ${works.length}`;
+
+    function getInputLabel(work) {
+      if (work.inputLabel) return work.inputLabel;
+      const labels = {
+        mouse: '마우스',
+        keyboard: '키보드',
+        webcam: '웹캠',
+        arduino: '터치 센서',
+        touch: '터치'
+      };
+      return labels[work.input] || work.input || '';
+    }
+
+    const meta = document.getElementById('work-meta');
+    const inputLabel = getInputLabel(work);
+    let metaHTML = `<span class="work-name">${work.name}</span>`;
+    if (inputLabel) metaHTML += `<span class="badge">${inputLabel}</span>`;
+    if (work.sound) metaHTML += `<span class="badge">♪ 사운드</span>`;
+    meta.innerHTML = metaHTML;
+
+    const canvas = document.getElementById('canvas-area');
+    const mode = work.displayMode || (work.input === 'webcam' || work.input === 'arduino' ? 'external' : 'embed');
+
+    if (mode === 'local') {
+      canvas.innerHTML = `
+        <div class="local-wrap" id="local-wrap">
+          <iframe
+            id="work-iframe"
+            src="${work.link}"
+            allow="autoplay; fullscreen; camera; microphone"
+            allowfullscreen
+            loading="lazy"
+            title="${work.title}"
+          ></iframe>
+        </div>
+      `;
+
+      function fitLocalIframe() {
+        const wrap = document.getElementById('local-wrap');
+        const iframe = document.getElementById('work-iframe');
+        const scale = wrap.clientWidth / CANVAS_W;
+        iframe.style.transform = `scale(${scale})`;
+        wrap.style.height = `${CANVAS_H * scale}px`;
+      }
+
+      window.addEventListener('resize', fitLocalIframe);
+      document.getElementById('work-iframe').addEventListener('load', fitLocalIframe);
+      setTimeout(fitLocalIframe, 100);
+    } else if (mode === 'embed') {
+      canvas.innerHTML = `
+        <div class="embed-wrap">
+          <iframe
+            id="work-iframe"
+            src="${work.link}"
+            allow="autoplay; fullscreen; camera; microphone"
+            allowfullscreen
+            loading="lazy"
+            title="${work.title}"
+          ></iframe>
+        </div>
+      `;
+    } else {
+      const icon = work.input === 'webcam' ? '📷' : work.input === 'arduino' ? '⚡' : '↗';
+      const title = work.input === 'webcam'
+        ? '웹캠을 사용하는 작품입니다'
+        : work.input === 'arduino'
+          ? '센서 또는 외부 장치로 체험하는 작품입니다'
+          : '새 탭에서 여는 작품입니다';
+      const desc = work.input === 'webcam'
+        ? '새 탭에서 열면 카메라 권한을 허용할 수 있습니다.'
+        : work.input === 'arduino'
+          ? '전시 공간의 장치를 사용하거나 새 탭에서 작품을 확인해 주세요.'
+          : '작품 특성상 새 탭에서 여는 방식을 권장합니다.';
+      canvas.innerHTML = `
+        <div class="notice-box">
+          <div class="notice-icon">${icon}</div>
+          <div class="notice-text">
+            <p>${title}</p>
+            <span>${desc}</span>
+          </div>
+          <a href="${work.link}" target="_blank" rel="noopener" class="open-btn">작품 열기</a>
+        </div>
+      `;
+    }
+
+    const guideRows = [];
+    if (inputLabel) guideRows.push(['입력 방식', inputLabel]);
+    if (work.interaction) guideRows.push(['관람 방법', work.interaction]);
+    if (work.reaction) guideRows.push(['작품 반응', work.reaction]);
+    if (work.sound && work.soundGuide) guideRows.push(['사운드', `<span class="sound-guide">♪ ${work.soundGuide}</span>`]);
+    else if (work.sound) guideRows.push(['사운드', '<span class="sound-guide">♪ 사운드가 포함된 작품입니다. 볼륨을 확인해주세요.</span>']);
+
+    document.getElementById('guide-box').innerHTML = guideRows.length
+      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `<div class="guide-label">${label}</div><div class="guide-text">${text}</div>`).join('')}</div>`
+      : '';
+
+    const nav = document.getElementById('work-nav');
+    const prev = id > 0 ? works[id - 1] : null;
+    const next = id < works.length - 1 ? works[id + 1] : null;
+
+    let navHTML = '';
+    if (prev) {
+      navHTML += `
+        <a href="work.html?id=${id - 1}" class="nav-btn prev">
+          <span class="nav-direction">← 이전 작품</span>
+          <span class="nav-work-title">${prev.title}</span>
+          <span class="nav-work-name">${prev.name}</span>
+        </a>
+      `;
+    } else {
+      navHTML += `<div class="nav-placeholder"></div>`;
+    }
+
+    if (next) {
+      navHTML += `
+        <a href="work.html?id=${id + 1}" class="nav-btn next">
+          <span class="nav-direction">다음 작품 →</span>
+          <span class="nav-work-title">${next.title}</span>
+          <span class="nav-work-name">${next.name}</span>
+        </a>
+      `;
+    } else {
+      navHTML += `<div class="nav-placeholder"></div>`;
+    }
+
+    nav.innerHTML = navHTML;
   </script>
 </body>
 </html>
