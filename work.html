@@ -180,7 +180,7 @@
 
     .side-work-card {
       position: absolute;
-      top: 74px;
+      top: 70px;
       min-width: 170px;
       max-width: 240px;
       padding: 0;
@@ -194,20 +194,20 @@
     }
 
     .side-work-nav.prev .side-work-card {
-      right: 0;
+      right: calc(100% + 10px);
       text-align: right;
-      transform: translateY(-4px);
+      transform: translate(6px, -4px);
     }
 
     .side-work-nav.next .side-work-card {
-      left: 0;
+      left: calc(100% + 10px);
       text-align: left;
-      transform: translateY(-4px);
+      transform: translate(-6px, -4px);
     }
 
     .side-work-nav:hover .side-work-card {
       opacity: 1;
-      transform: translateY(0);
+      transform: translate(0, 0);
     }
 
     .side-work-kicker {
