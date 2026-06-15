@@ -24,8 +24,8 @@ let musicReady = false;
 
 function preload() {
   soundFormats('mp3');
-  leftSound  = loadSound('ikoliks_aj-acoustic-spring-mothers-day-music-320427.mp3');
-  rightSound = loadSound('Sufjan Stevens - Mystery of Love (Official Instrumental) (mp3cut.net).mp3');
+  leftSound  = loadSound('spring.mp3');
+  rightSound = loadSound('load.mp3');
 }
 
 function initAudio() {
