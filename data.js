@@ -447,6 +447,8 @@ const works = [
     "localLink": "works/son-hyewon-glass/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251179.jpg",
+    "canvasWidth": 1200,
+    "canvasHeight": 600,
     "inputDevice": "마우스 입력",
     "inputAction": "클릭·움직임",
     "output": "시각반응",
