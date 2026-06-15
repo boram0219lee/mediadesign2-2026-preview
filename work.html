@@ -447,14 +447,17 @@
 
   <script src="data.js"></script>
   <script>
-    const CANVAS_W = 1280;
-    const CANVAS_H = 720;
+    const DEFAULT_CANVAS_W = 1280;
+    const DEFAULT_CANVAS_H = 720;
 
     const params = new URLSearchParams(window.location.search);
     const id = parseInt(params.get('id'), 10) || 0;
     const work = works[id];
 
     if (!work) window.location.href = 'index.html';
+
+    const CANVAS_W = work.canvasWidth || DEFAULT_CANVAS_W;
+    const CANVAS_H = work.canvasHeight || DEFAULT_CANVAS_H;
 
     document.title = `${work.title} — Creatures of Sense`;
     document.getElementById('work-title').textContent = work.title || '';
@@ -506,11 +509,60 @@
           wrap.clientHeight / CANVAS_H
         );
 
+        iframe.style.width = `${CANVAS_W}px`;
+        iframe.style.height = `${CANVAS_H}px`;
         iframe.style.transform = `translate(-50%, -50%) scale(${scale})`;
       }
 
+      function normalizeLocalIframe() {
+        const iframe = document.getElementById('work-iframe');
+
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!doc || !doc.head) return;
+
+          if (doc.getElementById('md2-iframe-normalize-style')) return;
+
+          const style = doc.createElement('style');
+          style.id = 'md2-iframe-normalize-style';
+          style.textContent = `
+            html, body {
+              margin: 0 !important;
+              padding: 0 !important;
+              width: 100% !important;
+              height: 100% !important;
+              overflow: hidden !important;
+            }
+
+            body {
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+            }
+
+            canvas {
+              display: block !important;
+              margin: 0 auto !important;
+            }
+          `;
+
+          doc.head.appendChild(style);
+        } catch (error) {
+          console.warn('Could not normalize local iframe:', error);
+        }
+      }
+
+      const localIframe = document.getElementById('work-iframe');
       window.addEventListener('resize', fitLocalIframe);
-      document.getElementById('work-iframe').addEventListener('load', fitLocalIframe);
+      localIframe.addEventListener('load', () => {
+        normalizeLocalIframe();
+        fitLocalIframe();
+
+        setTimeout(() => {
+          normalizeLocalIframe();
+          fitLocalIframe();
+        }, 250);
+      });
       setTimeout(fitLocalIframe, 100);
     } else if (mode === 'embed') {
       canvas.innerHTML = `
