@@ -33,7 +33,7 @@
       align-items: center;
       padding: 20px var(--page-padding);
       border-bottom: 1px solid var(--line);
-      background: rgba(246, 245, 240, 0.92);
+      background: rgba(246, 245, 240, 0.94);
     }
 
     .back-btn {
@@ -46,7 +46,7 @@
       transition: color 0.2s;
     }
 
-    .back-btn:hover { color: var(--accent); }
+    .back-btn:hover { color: var(--text); }
     .back-btn::before { content: '←'; font-size: 15px; }
 
     .nav-counter {
@@ -58,96 +58,85 @@
     .work-header {
       max-width: var(--page-width);
       margin: 0 auto;
-      padding: 48px var(--page-padding) 28px;
+      padding: 48px var(--page-padding) 34px;
       width: 100%;
     }
 
     .work-title {
-      font-size: clamp(30px, 3.5vw, 50px);
+      font-size: clamp(44px, 5.8vw, 92px);
       font-weight: 500;
-      letter-spacing: -0.04em;
-      line-height: 1.1;
-      margin-bottom: 12px;
+      letter-spacing: -0.055em;
+      line-height: 0.98;
+      margin-bottom: 22px;
       color: var(--text);
     }
 
-    .work-meta {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 26px;
-    }
-
-    .work-name {
-      font-size: 14px;
+    .artist-name {
+      font-size: 16px;
+      line-height: 1.5;
       color: var(--muted);
-      margin-right: 4px;
+      margin-bottom: 44px;
     }
 
-    .badge {
-      font-size: 11px;
-      padding: 4px 9px;
-      border-radius: 20px;
-      border: 1px solid var(--line);
-      color: var(--accent);
-      font-weight: 400;
-      background: var(--surface);
-    }
-
-    .info-block {
+    .work-info-table {
       display: grid;
-      grid-template-columns: 128px minmax(0, 760px);
-      column-gap: 28px;
-      row-gap: 16px;
-      max-width: 960px;
+      grid-template-columns: 170px minmax(0, 1fr);
+      column-gap: 40px;
+      row-gap: 24px;
+      max-width: 1120px;
     }
 
     .info-label {
-      font-size: 12px;
-      color: var(--muted);
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text);
       line-height: 1.75;
       white-space: nowrap;
     }
 
     .info-text {
-      font-size: 14px;
-      color: #555550;
-      line-height: 1.78;
+      font-size: 18px;
+      line-height: 1.82;
+      color: #4F4F49;
       word-break: keep-all;
       white-space: pre-line;
     }
 
-    .canvas-area {
+    .viewer-section {
       max-width: var(--page-width);
       margin: 0 auto;
       padding: 0 var(--page-padding);
       width: 100%;
     }
 
-    .canvas-head {
+    .viewer-meta {
+      min-height: 32px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      min-height: 28px;
-      margin-bottom: 8px;
-    }
-
-    .viewer-tags {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .viewer-tags .badge {
+      margin-bottom: 10px;
       color: var(--muted);
-      background: rgba(255,255,255,0.72);
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
     }
 
-    .viewer-tags .badge.sound {
-      color: var(--accent);
+    .meta-summary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      flex-wrap: wrap;
+      text-align: right;
+    }
+
+    .meta-summary span {
+      display: inline-block;
+      color: var(--muted);
+    }
+
+    .meta-summary .dot {
+      color: var(--line);
     }
 
     .embed-wrap {
@@ -203,7 +192,7 @@
 
     .notice-icon { font-size: 40px; line-height: 1; }
     .notice-text { text-align: center; padding: 0 24px; }
-    .notice-text p { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 500; }
+    .notice-text p { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 600; }
     .notice-text span { font-size: 13px; color: var(--muted); line-height: 1.6; }
 
     .open-btn {
@@ -234,35 +223,33 @@
 
     .guide-inner {
       border-top: 1px solid var(--line);
-      padding-top: 18px;
+      padding-top: 22px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      column-gap: 32px;
-      row-gap: 18px;
-      font-size: 13px;
-      line-height: 1.68;
-    }
-
-    .guide-item {
-      display: grid;
-      grid-template-columns: 96px minmax(0, 1fr);
-      column-gap: 18px;
-      align-items: start;
+      column-gap: 48px;
+      row-gap: 20px;
+      font-size: 14px;
+      line-height: 1.72;
     }
 
     .guide-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--muted);
-      white-space: nowrap;
+      font-weight: 700;
+      margin-bottom: 8px;
     }
 
     .guide-text {
       color: #555550;
       word-break: keep-all;
+      white-space: pre-line;
     }
 
     .work-nav {
       max-width: var(--page-width);
-      margin: 44px auto 64px;
+      margin: 46px auto 68px;
       padding: 32px var(--page-padding) 0;
       width: 100%;
       display: flex;
@@ -300,20 +287,21 @@
 
     @media (max-width: 1200px) {
       :root { --page-padding: 40px; }
+      .work-info-table { grid-template-columns: 150px minmax(0, 1fr); column-gap: 32px; }
     }
 
     @media (max-width: 760px) {
       :root { --page-padding: 24px; }
       nav { padding-top: 18px; padding-bottom: 18px; }
-      .work-header { padding-top: 34px; padding-bottom: 22px; }
-      .work-title { font-size: 28px; }
-      .info-block { grid-template-columns: 1fr; row-gap: 6px; }
-      .info-label { margin-top: 10px; }
-      .guide-inner { grid-template-columns: 1fr; }
-      .guide-item { grid-template-columns: 1fr; row-gap: 4px; }
-      .guide-label { margin-top: 4px; }
-      .canvas-head { justify-content: flex-start; }
-      .viewer-tags { justify-content: flex-start; }
+      .work-header { padding-top: 34px; padding-bottom: 28px; }
+      .work-title { font-size: 42px; margin-bottom: 16px; }
+      .artist-name { margin-bottom: 28px; }
+      .work-info-table { grid-template-columns: 1fr; row-gap: 8px; }
+      .info-label { font-size: 14px; margin-top: 16px; }
+      .info-text { font-size: 15px; line-height: 1.75; }
+      .viewer-meta { justify-content: flex-start; text-align: left; margin-top: 4px; }
+      .meta-summary { justify-content: flex-start; text-align: left; }
+      .guide-inner { grid-template-columns: 1fr; row-gap: 20px; }
       .work-nav { margin-top: 38px; }
     }
   </style>
@@ -326,11 +314,22 @@
 
   <div class="work-header">
     <h1 class="work-title" id="work-title"></h1>
-    <div class="work-meta" id="work-meta"></div>
-    <div class="info-block" id="info-block"></div>
+    <p class="artist-name" id="artist-name"></p>
+
+    <div class="work-info-table">
+      <div class="info-label">감각 출발점</div>
+      <div class="info-text" id="sense-text"></div>
+
+      <div class="info-label">작품 설명</div>
+      <div class="info-text" id="description-text"></div>
+    </div>
   </div>
 
-  <div class="canvas-area" id="canvas-area"></div>
+  <div class="viewer-section">
+    <div class="viewer-meta" id="viewer-meta"></div>
+    <div id="canvas-area"></div>
+  </div>
+
   <div class="guide-box" id="guide-box"></div>
   <div class="work-nav" id="work-nav"></div>
 
@@ -346,31 +345,27 @@
     if (!work) window.location.href = 'index.html';
 
     document.title = `${work.title} — Creatures of Sense`;
-    document.getElementById('work-title').textContent = work.title;
+    document.getElementById('work-title').textContent = work.title || '';
+    document.getElementById('artist-name').textContent = work.name || '';
+    document.getElementById('sense-text').textContent = work.sense || '';
+    document.getElementById('description-text').textContent = work.description || '';
     document.getElementById('nav-counter').textContent = `${id + 1} / ${works.length}`;
 
-    const tags = Array.isArray(work.tags) ? work.tags : [];
-    const meta = document.getElementById('work-meta');
-    meta.innerHTML = `<span class="work-name">${work.name}</span>`;
+    const viewerMeta = document.getElementById('viewer-meta');
+    const metaParts = [];
+    if (work.inputDevice) metaParts.push(work.inputDevice);
+    if (work.inputAction) metaParts.push(work.inputAction);
+    if (work.output) metaParts.push(work.output);
 
-    const infoRows = [];
-    if (work.sense) infoRows.push(['감각 출발점', work.sense]);
-    if (work.description) infoRows.push(['작품 설명', work.description]);
-
-    document.getElementById('info-block').innerHTML = infoRows.map(([label, text]) => `
-      <div class="info-label">${label}</div>
-      <div class="info-text">${text}</div>
-    `).join('');
+    viewerMeta.innerHTML = metaParts.length
+      ? `<div class="meta-summary">${metaParts.map((part, i) => `${i > 0 ? '<span class="dot">·</span>' : ''}<span>${part}</span>`).join('')}</div>`
+      : '';
 
     const canvas = document.getElementById('canvas-area');
-    const mode = work.displayMode || 'local';
-    const tagHTML = tags.length
-      ? `<div class="canvas-head"><div class="viewer-tags">${tags.map(tag => `<span class="badge ${tag.includes('사운드') ? 'sound' : ''}">${tag}</span>`).join('')}</div></div>`
-      : '';
+    const mode = work.displayMode || 'embed';
 
     if (mode === 'local') {
       canvas.innerHTML = `
-        ${tagHTML}
         <div class="local-wrap" id="local-wrap">
           <iframe
             id="work-iframe"
@@ -400,11 +395,10 @@
       setTimeout(fitLocalIframe, 100);
     } else if (mode === 'embed') {
       canvas.innerHTML = `
-        ${tagHTML}
         <div class="embed-wrap">
           <iframe
             id="work-iframe"
-            src="${work.fallbackLink || work.link}"
+            src="${work.link}"
             allow="autoplay; fullscreen; camera; microphone"
             allowfullscreen
             loading="lazy"
@@ -413,19 +407,14 @@
         </div>
       `;
     } else {
-      const icon = (work.input || '').includes('웹캠') ? '📷' : (work.input || '').includes('기타') ? '🎸' : '↗';
-      const title = (work.input || '').includes('웹캠')
+      const icon = (work.rawInput || '').includes('웹캠') ? '📷' : (work.rawInput || '').includes('기타') ? '🎸' : '↗';
+      const title = (work.rawInput || '').includes('웹캠')
         ? '웹캠을 사용하는 작품입니다'
-        : (work.input || '').includes('기타')
-          ? '외부 입력 장치를 사용하는 작품입니다'
-          : '새 탭에서 여는 작품입니다';
-      const desc = (work.input || '').includes('웹캠')
+        : '새 탭에서 여는 작품입니다';
+      const desc = (work.rawInput || '').includes('웹캠')
         ? '새 탭에서 열면 카메라 권한을 허용할 수 있습니다.'
-        : (work.input || '').includes('기타')
-          ? '전시 공간의 입력 장치와 오디오 장치를 확인한 뒤 체험해 주세요.'
-          : '작품 특성상 새 탭에서 여는 방식을 권장합니다.';
+        : '작품 특성상 새 탭에서 여는 방식을 권장합니다.';
       canvas.innerHTML = `
-        ${tagHTML}
         <div class="notice-box">
           <div class="notice-icon">${icon}</div>
           <div class="notice-text">
@@ -442,12 +431,7 @@
     if (work.outputGuide) guideRows.push(['Output', work.outputGuide]);
 
     document.getElementById('guide-box').innerHTML = guideRows.length
-      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `
-        <div class="guide-item">
-          <div class="guide-label">${label}</div>
-          <div class="guide-text">${text}</div>
-        </div>
-      `).join('')}</div>`
+      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `<div><div class="guide-label">${label}</div><div class="guide-text">${text}</div></div>`).join('')}</div>`
       : '';
 
     const nav = document.getElementById('work-nav');

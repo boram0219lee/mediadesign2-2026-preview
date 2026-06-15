@@ -91,7 +91,7 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       color: var(--muted);
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .work-count {
@@ -111,7 +111,7 @@
       overflow: hidden;
       cursor: pointer;
       background: var(--surface);
-      border: 1px solid rgba(218, 217, 211, 0.45);
+      border: 1px solid rgba(218, 217, 211, 0.38);
     }
 
     .work-item img {
@@ -166,34 +166,6 @@
       color: rgba(255,255,255,0.78);
     }
 
-    .work-badges {
-      position: absolute;
-      top: 12px;
-      right: 12px;
-      display: flex;
-      gap: 4px;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-      max-width: calc(100% - 24px);
-    }
-
-    .work-item:hover .work-badges {
-      opacity: 1;
-    }
-
-    .badge {
-      font-size: 10px;
-      padding: 3px 7px;
-      border-radius: 20px;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      background: rgba(255,255,255,0.94);
-      color: var(--accent);
-      white-space: nowrap;
-    }
-
     .work-placeholder {
       width: 100%;
       height: 100%;
@@ -201,7 +173,7 @@
       align-items: center;
       justify-content: center;
       background:
-        linear-gradient(135deg, rgba(0,122,83,0.06), rgba(255,255,255,0.4)),
+        linear-gradient(135deg, rgba(0,122,83,0.055), rgba(255,255,255,0.30)),
         var(--surface);
       padding: 18px;
     }
@@ -238,7 +210,6 @@
       .subtitle { font-size: 16px; }
       .grid { grid-template-columns: repeat(2, 1fr); }
       .section-head { align-items: flex-start; flex-direction: column; gap: 8px; }
-      .work-overlay { padding: 14px; }
     }
 
     @media (max-width: 420px) {
@@ -281,8 +252,6 @@
         window.location.href = `work.html?id=${index}`;
       };
 
-      const tags = Array.isArray(work.tags) ? work.tags : [];
-
       item.innerHTML = `
         ${work.thumbnail
           ? `<img src="${work.thumbnail}" alt="${work.title}" onerror="this.parentElement.querySelector('.work-placeholder').style.display='flex'; this.style.display='none';">`
@@ -291,7 +260,6 @@
           <span>${work.title}</span>
         </div>
         <div class="work-overlay">
-          <div class="work-badges">${tags.map(tag => `<span class="badge">${tag}</span>`).join('')}</div>
           <div class="work-info">
             <p class="work-title">${work.title}</p>
             <p class="work-name">${work.name}</p>
