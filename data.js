@@ -539,7 +539,7 @@ const works = [
     "link": "works/park-seojin-pending/index.html",
     "localLink": "works/park-seojin-pending/index.html",
     "displayMode": "local",
-    "thumbnail": "thumbnails/s20241660.jpg",
+    "thumbnail": "thumbnails/s20241660.png",
     "inputDevice": "",
     "inputAction": "",
     "output": "",
