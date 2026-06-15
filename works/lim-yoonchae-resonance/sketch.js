@@ -54,7 +54,7 @@ let crowdFlowY = 0;
 function preload() {
   soundFormats('mp3');
   music = loadSound(
-    'sound/music.mp3');
+    'music.mp3');
 }
 
 // ==========================================
