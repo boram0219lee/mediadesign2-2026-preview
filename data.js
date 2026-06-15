@@ -235,7 +235,7 @@ const works = [
     "folder": "ahn-jungwon-echo",
     "title": "꿈 속의 메아리",
     "sense": "하굣길에 좋아하는 음악을 들으며 버스 창밖의 풍경을 바라본 감각",
-    "description": "이 작품은 음악을 몰입하여 들어볼 수 있고 그 음악에 직점 참여해볼 수 있는 작품이다. 그리고 그 음악을 통해서 풍경이 어떻게 달라질 수 ...",
+    "description": "이 작품은 음악을 몰입하여 들어볼 수 있고 그 음악에 직접 참여해볼 수 있는 작품이다. 그리고 그 음악을 통해서 풍경이 어떻게 달라질 수 있는지 상상해볼 수 있는 작품이다. 이 음악을 듣고 느꼈던 감각을 그대로 전달해보고 싶었다.",
     "link": "works/ahn-jungwon-echo/index.html",
     "localLink": "works/ahn-jungwon-echo/index.html",
     "displayMode": "local",
