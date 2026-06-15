@@ -42,18 +42,33 @@
       width: 100%;
     }
 
-    .back-btn {
-      font-size: 13px;
+    .home-btn {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       color: var(--muted);
       text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      transition: color 0.2s;
+      background: rgba(255, 255, 255, 0.35);
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      flex: 0 0 auto;
     }
 
-    .back-btn:hover { color: var(--text); }
-    .back-btn::before { content: '←'; font-size: 15px; }
+    .home-btn:hover {
+      color: var(--text);
+      border-color: var(--text);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .home-btn svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+
 
     .nav-counter {
       margin-left: auto;
@@ -320,7 +335,12 @@
 <body>
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="back-btn">목록으로</a>
+      <a href="index.html" class="home-btn" aria-label="목록으로" title="목록으로">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M7 10.5L12 6l5 4.5V19H7z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M10.2 19v-4.8h3.6V19" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        </svg>
+      </a>
       <span class="nav-counter" id="nav-counter"></span>
     </div>
   </nav>
