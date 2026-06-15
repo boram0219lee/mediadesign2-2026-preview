@@ -45,12 +45,12 @@
     }
 
     .home-btn {
-      width: 32px;
-      height: 32px;
+      width: 36px;
+      height: 36px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      color: #6E6E68;
+      color: #343431;
       text-decoration: none;
       background: transparent;
       border: none;
@@ -59,12 +59,12 @@
     }
 
     .home-btn:hover {
-      color: var(--text);
+      color: var(--accent);
     }
 
     .home-btn svg {
-      width: 22px;
-      height: 22px;
+      width: 26px;
+      height: 26px;
       display: block;
     }
 
@@ -149,22 +149,22 @@
       top: 50%;
       transform: translateY(-50%);
       z-index: 5;
-      width: 44px;
-      height: 92px;
+      width: 54px;
+      height: 112px;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(115, 115, 110, 0.72);
+      color: rgba(115, 115, 110, 0.66);
       text-decoration: none;
       transition: color 0.2s, opacity 0.2s;
     }
 
     .side-work-nav.prev {
-      left: -72px;
+      left: -108px;
     }
 
     .side-work-nav.next {
-      right: -72px;
+      right: -108px;
     }
 
     .side-work-nav .arrow {
@@ -175,40 +175,39 @@
     }
 
     .side-work-nav:hover {
-      color: var(--text);
+      color: var(--accent);
     }
 
     .side-work-card {
       position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      min-width: 160px;
-      max-width: 230px;
-      padding: 12px 14px;
-      border: 1px solid rgba(218, 217, 211, 0.9);
-      border-radius: 10px;
-      background: rgba(251, 251, 248, 0.94);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.055);
+      top: 74px;
+      min-width: 170px;
+      max-width: 240px;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.18s ease, transform 0.18s ease;
     }
 
     .side-work-nav.prev .side-work-card {
-      left: 42px;
-      text-align: left;
-      transform: translate(-6px, -50%);
+      right: 0;
+      text-align: right;
+      transform: translateY(-4px);
     }
 
     .side-work-nav.next .side-work-card {
-      right: 42px;
-      text-align: right;
-      transform: translate(6px, -50%);
+      left: 0;
+      text-align: left;
+      transform: translateY(-4px);
     }
 
     .side-work-nav:hover .side-work-card {
       opacity: 1;
-      transform: translate(0, -50%);
+      transform: translateY(0);
     }
 
     .side-work-kicker {
@@ -235,6 +234,15 @@
       margin-top: 4px;
       font-size: 12px;
       line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .side-work-nav:hover .side-work-title {
+      color: var(--text);
+    }
+
+    .side-work-nav:hover .side-work-name,
+    .side-work-nav:hover .side-work-kicker {
       color: var(--muted);
     }
 
@@ -411,8 +419,8 @@
     <div class="nav-inner">
       <a href="index.html" class="home-btn" aria-label="목록으로" title="목록으로">
         <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M7 10.5L12 6l5 4.5V19H7z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-          <path d="M10.2 19v-4.8h3.6V19" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M5.8 11.1L12 5.4l6.2 5.7V20H5.8V11.1Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M10 20v-5.6h4V20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
         </svg>
       </a>
       <span class="nav-counter" id="nav-counter"></span>
