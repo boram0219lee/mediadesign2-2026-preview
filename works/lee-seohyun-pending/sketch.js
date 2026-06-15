@@ -25,7 +25,7 @@ let musicReady = false;
 function preload() {
   soundFormats('mp3');
   leftSound  = loadSound('spring.mp3');
-  rightSound = loadSound('load.mp3');
+  rightSound = loadSound('love.mp3');
 }
 
 function initAudio() {
