@@ -29,11 +29,17 @@
     }
 
     nav {
-      display: flex;
-      align-items: center;
-      padding: 20px var(--page-padding);
       border-bottom: 1px solid var(--line);
       background: rgba(246, 245, 240, 0.94);
+    }
+
+    .nav-inner {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 20px var(--page-padding);
+      display: flex;
+      align-items: center;
+      width: 100%;
     }
 
     .back-btn {
@@ -63,11 +69,11 @@
     }
 
     .work-title {
-      font-size: clamp(42px, 4.4vw, 68px);
+      font-size: clamp(36px, 3.6vw, 58px);
       font-weight: 500;
-      letter-spacing: -0.045em;
-      line-height: 1.06;
-      margin-bottom: 18px;
+      letter-spacing: -0.04em;
+      line-height: 1.08;
+      margin-bottom: 16px;
       color: var(--text);
       max-width: 1120px;
       word-break: keep-all;
@@ -100,8 +106,8 @@
     }
 
     .info-text {
-      font-size: 17px;
-      line-height: 1.82;
+      font-size: 16px;
+      line-height: 1.8;
       color: #4F4F49;
       font-weight: 400;
       word-break: keep-all;
@@ -131,18 +137,17 @@
       display: inline-flex;
       align-items: center;
       justify-content: flex-end;
-      gap: 6px;
+      gap: 8px;
       flex-wrap: wrap;
       text-align: right;
     }
 
-    .meta-summary span {
+    .meta-tag {
       display: inline-block;
       color: var(--muted);
-    }
-
-    .meta-summary .dot {
-      color: var(--line);
+      font-size: 13px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
     }
 
     .embed-wrap {
@@ -298,9 +303,9 @@
 
     @media (max-width: 760px) {
       :root { --page-padding: 24px; }
-      nav { padding-top: 18px; padding-bottom: 18px; }
+      .nav-inner { padding-top: 18px; padding-bottom: 18px; }
       .work-header { padding-top: 34px; padding-bottom: 28px; }
-      .work-title { font-size: 38px; margin-bottom: 16px; }
+      .work-title { font-size: 34px; margin-bottom: 14px; }
       .artist-name { margin-bottom: 28px; }
       .work-info-table { grid-template-columns: 1fr; row-gap: 8px; }
       .info-label { font-size: 14px; margin-top: 16px; }
@@ -314,8 +319,10 @@
 </head>
 <body>
   <nav>
-    <a href="index.html" class="back-btn">목록으로</a>
-    <span class="nav-counter" id="nav-counter"></span>
+    <div class="nav-inner">
+      <a href="index.html" class="back-btn">목록으로</a>
+      <span class="nav-counter" id="nav-counter"></span>
+    </div>
   </nav>
 
   <div class="work-header">
@@ -363,8 +370,15 @@
     if (work.inputAction) metaParts.push(work.inputAction);
     if (work.output) metaParts.push(work.output);
 
+    function toHashTag(text) {
+      return '#' + String(text || '')
+        .replace(/\s*\/\s*/g, '')
+        .replace(/\s*·\s*/g, '')
+        .replace(/\s+/g, '');
+    }
+
     viewerMeta.innerHTML = metaParts.length
-      ? `<div class="meta-summary">${metaParts.map((part, i) => `${i > 0 ? '<span class="dot">·</span>' : ''}<span>${part}</span>`).join('')}</div>`
+      ? `<div class="meta-summary">${metaParts.map(part => `<span class="meta-tag">${toHashTag(part)}</span>`).join('')}</div>`
       : '';
 
     const canvas = document.getElementById('canvas-area');
