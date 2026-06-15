@@ -144,7 +144,7 @@
       width: 100%;
     }
 
-    .side-work-nav {
+.side-work-nav {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -180,7 +180,7 @@
 
     .side-work-card {
       position: absolute;
-      top: 70px;
+      top: 50%;
       min-width: 170px;
       max-width: 240px;
       padding: 0;
@@ -196,28 +196,22 @@
     .side-work-nav.prev .side-work-card {
       right: calc(100% + 10px);
       text-align: right;
-      transform: translate(6px, -4px);
+      transform: translate(6px, -50%);
     }
 
     .side-work-nav.next .side-work-card {
       left: calc(100% + 10px);
       text-align: left;
-      transform: translate(-6px, -4px);
+      transform: translate(-6px, -50%);
     }
 
     .side-work-nav:hover .side-work-card {
       opacity: 1;
-      transform: translate(0, 0);
+      transform: translate(0, -50%);
     }
 
     .side-work-kicker {
-      display: block;
-      font-size: 10px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 5px;
-      white-space: nowrap;
+      display: none;
     }
 
     .side-work-title {
