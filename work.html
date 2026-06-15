@@ -58,46 +58,52 @@
     .work-header {
       max-width: var(--page-width);
       margin: 0 auto;
-      padding: 48px var(--page-padding) 34px;
+      padding: 48px var(--page-padding) 36px;
       width: 100%;
     }
 
     .work-title {
-      font-size: clamp(44px, 5.8vw, 92px);
+      font-size: clamp(42px, 4.4vw, 68px);
       font-weight: 500;
-      letter-spacing: -0.055em;
-      line-height: 0.98;
-      margin-bottom: 22px;
+      letter-spacing: -0.045em;
+      line-height: 1.06;
+      margin-bottom: 18px;
       color: var(--text);
+      max-width: 1120px;
+      word-break: keep-all;
+      overflow-wrap: break-word;
     }
 
     .artist-name {
       font-size: 16px;
       line-height: 1.5;
       color: var(--muted);
-      margin-bottom: 44px;
+      margin-bottom: 38px;
+      font-weight: 400;
     }
 
     .work-info-table {
       display: grid;
-      grid-template-columns: 170px minmax(0, 1fr);
-      column-gap: 40px;
-      row-gap: 24px;
+      grid-template-columns: 150px minmax(0, 1fr);
+      column-gap: 38px;
+      row-gap: 22px;
       max-width: 1120px;
     }
 
     .info-label {
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 700;
       color: var(--text);
-      line-height: 1.75;
+      line-height: 1.8;
       white-space: nowrap;
+      letter-spacing: -0.01em;
     }
 
     .info-text {
-      font-size: 18px;
+      font-size: 17px;
       line-height: 1.82;
       color: #4F4F49;
+      font-weight: 400;
       word-break: keep-all;
       white-space: pre-line;
     }
@@ -110,11 +116,11 @@
     }
 
     .viewer-meta {
-      min-height: 32px;
+      min-height: 28px;
       display: flex;
       justify-content: flex-end;
       align-items: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       color: var(--muted);
       font-size: 13px;
       line-height: 1.4;
@@ -294,7 +300,7 @@
       :root { --page-padding: 24px; }
       nav { padding-top: 18px; padding-bottom: 18px; }
       .work-header { padding-top: 34px; padding-bottom: 28px; }
-      .work-title { font-size: 42px; margin-bottom: 16px; }
+      .work-title { font-size: 38px; margin-bottom: 16px; }
       .artist-name { margin-bottom: 28px; }
       .work-info-table { grid-template-columns: 1fr; row-gap: 8px; }
       .info-label { font-size: 14px; margin-top: 16px; }
