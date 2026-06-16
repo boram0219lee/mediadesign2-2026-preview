@@ -258,6 +258,22 @@
       display: block;
     }
 
+    .bottom-nav-btn:hover .bottom-nav-title,
+    .bottom-nav-btn:hover .bottom-nav-name,
+    .bottom-nav-btn:hover .bottom-nav-arrow {
+      color: var(--accent);
+    }
+
+    .bottom-home-btn {
+      width: auto;
+      min-width: 72px;
+      padding: 0 10px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+
     .bottom-nav-placeholder {
       min-height: 44px;
     }
@@ -703,12 +719,7 @@
 
     bottomNav.innerHTML = [
       prev ? makeBottomNav('prev', id - 1, prev) : '<div class="bottom-nav-placeholder"></div>',
-      `<a href="index_layout2.html" class="bottom-home-btn" aria-label="목록으로" title="목록으로">
-        <svg viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M5.8 11.1L12 5.4l6.2 5.7V20H5.8V11.1Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-          <path d="M10 20v-5.6h4V20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
-        </svg>
-      </a>`,
+      `<a href="index_layout2.html" class="bottom-home-btn" aria-label="목록으로" title="목록으로">목록으로</a>`,
       next ? makeBottomNav('next', id + 1, next) : '<div class="bottom-nav-placeholder"></div>'
     ].join('');
 
