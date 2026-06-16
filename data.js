@@ -439,7 +439,7 @@ const works = [
   },
   {
     "name": "허유민",
-    "studentId": "202391939",
+    "studentId": "20231939",
     "folder": "heo-yumin-hypnagogia",
     "title": "Hypnagogia",
     "sense": "잠에 들기 직전의 몽롱하고 불분명한 감각",
@@ -447,7 +447,7 @@ const works = [
     "link": "works/heo-yumin-hypnagogia/index.html",
     "localLink": "works/heo-yumin-hypnagogia/index.html",
     "displayMode": "local",
-    "thumbnail": "thumbnails/s202391939.jpg",
+    "thumbnail": "thumbnails/s20231939.jpg",
     "inputDevice": "마우스 입력",
     "inputAction": "클릭",
     "output": "시각반응",
