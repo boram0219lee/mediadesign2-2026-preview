@@ -220,18 +220,26 @@ class WatercolorPlant {
     this.growth = 0;
     this.targetGrowth = 0.015;
     this.seed = random(1000);
-
     this.absorbRadius = 125 * scaleFactor;
 
     this.petals = [];
     this.softLeaves = [];
     this.mistDots = [];
 
+    // 식물 전용 이미지 버퍼
+    this.pgSize = floor(520 * scaleFactor + 160);
+    this.pg = createGraphics(this.pgSize, this.pgSize);
+    this.pg.pixelDensity(1);
+    this.pg.colorMode(RGB, 255, 255, 255, 255);
+
+    this.needsRedraw = true;
+    this.redrawCooldown = 0;
+
     this.makePlant();
   }
 
   makePlant() {
-    let count = 9;
+    let count = 8;
 
     for (let i = 0; i < count; i++) {
       let a = (TWO_PI / count) * i + random(-0.25, 0.25);
@@ -241,14 +249,14 @@ class WatercolorPlant {
         dist: random(45, 155) * this.scaleFactor,
         w: random(70, 130) * this.scaleFactor,
         h: random(38, 88) * this.scaleFactor,
-        delay: 0.08 + i * 0.055 + random(-0.02, 0.02),
+        delay: 0.08 + i * 0.06 + random(-0.02, 0.02),
         rot: random(-0.9, 0.9),
         colorPick: random(),
         seed: random(1000)
       });
     }
 
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < 4; i++) {
       let a = random(TWO_PI);
 
       this.softLeaves.push({
@@ -256,14 +264,14 @@ class WatercolorPlant {
         dist: random(115, 245) * this.scaleFactor,
         w: random(95, 185) * this.scaleFactor,
         h: random(34, 78) * this.scaleFactor,
-        delay: 0.55 + i * 0.085 + random(-0.03, 0.03),
+        delay: 0.56 + i * 0.09 + random(-0.03, 0.03),
         rot: random(-1.2, 1.2),
         colorPick: random(),
         seed: random(1000)
       });
     }
 
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 10; i++) {
       let a = random(TWO_PI);
       let d = random(35, 250) * this.scaleFactor;
 
@@ -280,48 +288,75 @@ class WatercolorPlant {
   absorb(amount) {
     this.targetGrowth += amount;
     this.targetGrowth = constrain(this.targetGrowth, 0, 1);
+    this.needsRedraw = true;
   }
 
   update() {
-    this.growth += (this.targetGrowth - this.growth) * 0.012;
+    let prev = this.growth;
+
+    // 성장 속도: 낮을수록 천천히
+    this.growth += (this.targetGrowth - this.growth) * 0.009;
+
+    // 매 프레임 다시 그리지 않고, 변화가 있을 때만 갱신
+    if (abs(prev - this.growth) > 0.0018) {
+      this.redrawCooldown++;
+
+      if (this.redrawCooldown >= 3) {
+        this.needsRedraw = true;
+        this.redrawCooldown = 0;
+      }
+    }
   }
 
   draw() {
-    push();
-    translate(this.x, this.y);
+    if (this.needsRedraw) {
+      this.redrawPlant();
+      this.needsRedraw = false;
+    }
 
-    this.drawSoftAura();
+    imageMode(CENTER);
+    image(this.pg, this.x, this.y);
+  }
+
+  redrawPlant() {
+    let pg = this.pg;
+    pg.clear();
+
+    pg.push();
+    pg.translate(pg.width / 2, pg.height / 2);
+
+    this.drawSoftAura(pg);
 
     for (let leaf of this.softLeaves) {
-      this.drawLeafBlob(leaf, true);
+      this.drawLeafBlob(pg, leaf, true);
     }
 
     for (let p of this.petals) {
-      this.drawLeafBlob(p, false);
+      this.drawLeafBlob(pg, p, false);
     }
 
-    this.drawDots();
-    this.drawCenter();
+    this.drawDots(pg);
+    this.drawCenter(pg);
 
-    pop();
+    pg.pop();
   }
 
-  drawSoftAura() {
+  drawSoftAura(pg) {
     let g = easeOut(constrain(this.growth * 1.3, 0, 1));
 
-    blendMode(MULTIPLY);
-    noStroke();
+    pg.blendMode(MULTIPLY);
+    pg.noStroke();
 
-    for (let i = 4; i >= 1; i--) {
+    for (let i = 3; i >= 1; i--) {
       let s = i * 38 * g * this.scaleFactor;
-      fill(90, 145, 95, 1.15);
-      ellipse(0, 0, s * 1.35, s);
+      pg.fill(90, 145, 95, 1.2);
+      pg.ellipse(0, 0, s * 1.35, s);
     }
 
-    blendMode(BLEND);
+    pg.blendMode(BLEND);
   }
 
-  drawLeafBlob(data, outer) {
+  drawLeafBlob(pg, data, outer) {
     let localG = map(this.growth, data.delay, 1, 0, 1, true);
     localG = easeOut(localG);
 
@@ -332,24 +367,26 @@ class WatercolorPlant {
     let x = cos(data.angle) * moveD;
     let y = sin(data.angle) * moveD * 0.72;
 
-    push();
-    translate(x, y);
-    rotate(data.angle + data.rot * 0.35);
+    pg.push();
+    pg.translate(x, y);
+    pg.rotate(data.angle + data.rot * 0.35);
 
     let w = data.w * localG;
     let h = data.h * localG;
 
     let col = this.pickColor(data.colorPick, outer);
 
-    for (let layer = 3; layer >= 1; layer--) {
-      let sc = map(layer, 1, 3, 0.78, 1.32);
-      let alpha = outer ? layer * 8 : layer * 11;
-      fill(col[0], col[1], col[2], alpha);
-      noStroke();
+    // 레이어/점 수 줄여서 렉 감소
+    for (let layer = 2; layer >= 1; layer--) {
+      let sc = map(layer, 1, 2, 0.82, 1.3);
+      let alpha = outer ? layer * 10 : layer * 14;
 
-      beginShape();
+      pg.fill(col[0], col[1], col[2], alpha);
+      pg.noStroke();
 
-      for (let a = 0; a <= TWO_PI + 0.2; a += TWO_PI / 14) {
+      pg.beginShape();
+
+      for (let a = 0; a <= TWO_PI + 0.2; a += TWO_PI / 10) {
         let nx = cos(a);
         let ny = sin(a);
 
@@ -364,39 +401,40 @@ class WatercolorPlant {
         let px = nx * w * 0.5 * sc * rr;
         let py = ny * h * 0.5 * sc * rr;
 
-        curveVertex(px, py);
+        pg.curveVertex(px, py);
       }
 
-      endShape(CLOSE);
+      pg.endShape(CLOSE);
     }
 
+    // 중심맥 아주 약하게
     if (!outer) {
-      noFill();
-      stroke(135, 185, 115, 10);
-      strokeWeight(0.7 * this.scaleFactor);
+      pg.noFill();
+      pg.stroke(110, 170, 100, 8);
+      pg.strokeWeight(0.55 * this.scaleFactor);
 
-      beginShape();
-      for (let i = 0; i <= 10; i++) {
-        let t = i / 10;
+      pg.beginShape();
+      for (let i = 0; i <= 8; i++) {
+        let t = i / 8;
         let xx = lerp(-w * 0.34, w * 0.34, t);
         let yy = sin(t * PI) * h * 0.06;
-        curveVertex(xx, yy);
+        pg.curveVertex(xx, yy);
       }
-      endShape();
+      pg.endShape();
     }
 
-    pop();
+    pg.pop();
   }
 
-  drawCenter() {
+  drawCenter(pg) {
     let g = easeOut(constrain(this.growth * 2.4, 0, 1));
 
-    blendMode(ADD);
-    noStroke();
+    pg.blendMode(ADD);
+    pg.noStroke();
 
-    for (let i = 4; i >= 1; i--) {
-      fill(120, 210, 130, i * 0.6);
-      ellipse(
+    for (let i = 3; i >= 1; i--) {
+      pg.fill(120, 210, 130, i * 0.55);
+      pg.ellipse(
         0,
         0,
         i * 14 * g * this.scaleFactor,
@@ -404,12 +442,12 @@ class WatercolorPlant {
       );
     }
 
-    blendMode(BLEND);
+    pg.blendMode(BLEND);
   }
 
-  drawDots() {
-    blendMode(ADD);
-    noStroke();
+  drawDots(pg) {
+    pg.blendMode(ADD);
+    pg.noStroke();
 
     for (let d of this.mistDots) {
       let g = map(this.growth, d.delay, 1, 0, 1, true);
@@ -423,48 +461,48 @@ class WatercolorPlant {
       let col = d.colorPick < 0.5 ? [150, 230, 135] : [130, 210, 185];
 
       if (g > 0.2) {
-        blendMode(SCREEN);
-        noFill();
+        pg.blendMode(SCREEN);
+        pg.noFill();
 
-        stroke(col[0], col[1], col[2], 10 * g);
-        strokeWeight(0.34 * this.scaleFactor);
+        pg.stroke(col[0], col[1], col[2], 13 * g);
+        pg.strokeWeight(0.3 * this.scaleFactor);
 
-        beginShape();
+        pg.beginShape();
 
         let midX = x * 0.45 + sin(d.x * 0.02 + this.seed) * 7;
         let midY = y * 0.45 + cos(d.y * 0.02 + this.seed) * 6;
 
-        curveVertex(0, 0);
-        curveVertex(0, 0);
-        curveVertex(midX, midY);
-        curveVertex(x, y);
-        curveVertex(x, y);
+        pg.curveVertex(0, 0);
+        pg.curveVertex(0, 0);
+        pg.curveVertex(midX, midY);
+        pg.curveVertex(x, y);
+        pg.curveVertex(x, y);
 
-        endShape();
+        pg.endShape();
 
-        blendMode(ADD);
-        noStroke();
+        pg.blendMode(ADD);
+        pg.noStroke();
       }
 
-      fill(col[0], col[1], col[2], 10 * g);
-      ellipse(x, y, d.s * 2.0 * g);
+      pg.fill(col[0], col[1], col[2], 12 * g);
+      pg.ellipse(x, y, d.s * 2.0 * g);
 
-      fill(230, 255, 190, 18 * g);
-      ellipse(x, y, d.s * 0.65 * g);
+      pg.fill(230, 255, 190, 16 * g);
+      pg.ellipse(x, y, d.s * 0.65 * g);
     }
 
-    blendMode(BLEND);
+    pg.blendMode(BLEND);
   }
 
   pickColor(t, outer) {
     if (outer) {
-      if (t < 0.4) return [95, 170, 105];
-      if (t < 0.75) return [110, 190, 120];
-      return [125, 205, 150];
+      if (t < 0.4) return [65, 145, 78];
+      if (t < 0.75) return [78, 165, 88];
+      return [92, 185, 115];
     } else {
-      if (t < 0.35) return [85, 180, 90];
-      if (t < 0.7) return [105, 200, 105];
-      return [130, 215, 135];
+      if (t < 0.35) return [50, 155, 62];
+      if (t < 0.7) return [70, 180, 74];
+      return [95, 200, 96];
     }
   }
 }
