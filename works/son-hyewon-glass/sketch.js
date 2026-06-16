@@ -86,9 +86,10 @@ function draw() {
   if (jumping) drawCreatureToCanvas();
   
   // ★ 기존의 drawMouseFleeBoundary 대신 커스텀 커서를 그리는 함수를 호출합니다.
+    image(glassLayer, 0, 0);
   drawCustomCursor();
   
-  image(glassLayer, 0, 0);
+
 }
 
 // --- 생명체 및 파티클 로직 ---
