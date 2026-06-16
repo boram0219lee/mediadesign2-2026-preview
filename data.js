@@ -21,7 +21,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
-    "cropTop": 72
+    "cropTop": 58
   },
   {
     "name": "오성연",
@@ -371,7 +371,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
     "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ",
-    "cropTop": 72
+    "cropTop": 58
   },
   {
     "name": "김윤아",
