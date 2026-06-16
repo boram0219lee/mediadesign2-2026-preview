@@ -496,7 +496,7 @@ const works = [
     "link": "works/bae-geumbi-pending/index.html",
     "localLink": "works/bae-geumbi-pending/index.html",
     "displayMode": "local",
-    "thumbnail": "thumbnails/s20251177.jpg",
+    "thumbnail": "thumbnails/s20251177.png",
     "inputDevice": "",
     "inputAction": "",
     "output": "",
