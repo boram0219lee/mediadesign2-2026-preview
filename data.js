@@ -464,7 +464,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/yewon1189/full/vGogxsuRU",
     "thumbnailOriginal": "https://drive.google.com/open?id=1piDtNLiSgTS32px2jul8OjRu6JDRHtGK",
-    "cropTop": 72
+    "cropTop": 58
   },
   {
     "name": "정유민",
