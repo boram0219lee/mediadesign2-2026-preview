@@ -578,15 +578,24 @@
     </div>
   `;
 
+    const embedWrap = document.getElementById('embed-wrap');
+  const iframe = document.getElementById('work-iframe');
+
+  const embedW = work.canvasWidth || DEFAULT_CANVAS_W;
+  const embedH = work.canvasHeight || DEFAULT_CANVAS_H;
+  embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
+
   const cropTop = Number(work.cropTop || 0);
 
   if (cropTop > 0) {
-    const embedWrap = document.getElementById('embed-wrap');
-    const iframe = document.getElementById('work-iframe');
-
     embedWrap.style.overflow = 'hidden';
-    iframe.style.transform = `translateY(-${cropTop}px)`;
+    iframe.style.display = 'block';
+    iframe.style.width = '100%';
+    iframe.style.maxWidth = '100%';
     iframe.style.height = `calc(100% + ${cropTop}px)`;
+    iframe.style.transformOrigin = 'top left';
+    iframe.style.transform = `translateY(-${cropTop}px)`;
+    iframe.style.border = 'none';
   }
 } else {
       const icon = (work.rawInput || '').includes('웹캠') ? '📷' : (work.rawInput || '').includes('기타') ? '🎸' : '↗';
