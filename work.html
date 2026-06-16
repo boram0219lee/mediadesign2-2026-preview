@@ -564,20 +564,31 @@
         }, 250);
       });
       setTimeout(fitLocalIframe, 100);
-    } else if (mode === 'embed') {
-      canvas.innerHTML = `
-        <div class="embed-wrap">
-          <iframe
-            id="work-iframe"
-            src="${work.link}"
-            allow="autoplay; fullscreen; camera; microphone"
-            allowfullscreen
-            loading="lazy"
-            title="${work.title}"
-          ></iframe>
-        </div>
-      `;
-    } else {
+   } else if (mode === 'embed') {
+  canvas.innerHTML = `
+    <div class="embed-wrap" id="embed-wrap">
+      <iframe
+        id="work-iframe"
+        src="${work.link}"
+        allow="autoplay; fullscreen; camera; microphone"
+        allowfullscreen
+        loading="lazy"
+        title="${work.title}"
+      ></iframe>
+    </div>
+  `;
+
+  const cropTop = Number(work.cropTop || 0);
+
+  if (cropTop > 0) {
+    const embedWrap = document.getElementById('embed-wrap');
+    const iframe = document.getElementById('work-iframe');
+
+    embedWrap.style.overflow = 'hidden';
+    iframe.style.transform = `translateY(-${cropTop}px)`;
+    iframe.style.height = `calc(100% + ${cropTop}px)`;
+  }
+} else {
       const icon = (work.rawInput || '').includes('웹캠') ? '📷' : (work.rawInput || '').includes('기타') ? '🎸' : '↗';
       const title = (work.rawInput || '').includes('웹캠')
         ? '웹캠을 사용하는 작품입니다'
