@@ -416,6 +416,13 @@
     .nav-btn:hover .nav-work-title { color: var(--accent); }
     .nav-placeholder { width: 200px; }
 
+
+    .guide-label {
+      letter-spacing: -0.01em;
+      text-transform: none;
+      font-size: 13px;
+    }
+
     @media (max-width: 1500px) {
       :root { --info-width: 330px; --layout-gap: 34px; --page-padding: 40px; }
       .side-work-nav.prev { left: -62px; }
@@ -453,6 +460,35 @@
       .bottom-nav-arrow {
         font-size: 32px;
       }
+    }
+
+  
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      justify-content: flex-end;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 24px;
+      padding: 4px 9px 4px;
+      border: 1px solid rgba(111, 118, 123, 0.42);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.62);
+      color: #5F666B;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .tag::before {
+      content: none !important;
     }
 
   </style>
@@ -502,7 +538,19 @@
   <div class="work-nav" id="work-nav"></div>
 
 
-  <script src="data.js"></script>
+  <script src="data.js">
+    function getViewingGuide(work) {
+      const guide = work.viewingGuide || work.guide || work.interactionGuide || "";
+      const reaction = work.reaction || work.outputGuide || "";
+      let merged = guide;
+      if (reaction && !merged.includes(reaction)) merged = `${merged} ${reaction}`.trim();
+      if (!merged) merged = "작품 화면을 천천히 탐색해보세요.";
+      const hasSound = work.sound || (work.tags || []).includes("사운드");
+      if (hasSound && !merged.includes("헤드셋")) merged = `헤드셋을 착용한 뒤, ${merged}`;
+      return merged.replace(/\s+/g, " ").trim();
+    }
+
+  </script>
   <script>
     const DEFAULT_CANVAS_W = 1280;
     const DEFAULT_CANVAS_H = 720;
@@ -524,20 +572,19 @@
     document.getElementById('nav-counter').textContent = `${id + 1} / ${works.length}`;
 
     const viewerMeta = document.getElementById('viewer-meta');
-    const metaParts = [];
-    if (work.inputDevice) metaParts.push(work.inputDevice);
-    if (work.inputAction) metaParts.push(work.inputAction);
-    if (work.output) metaParts.push(work.output);
 
-    function toHashTag(text) {
-      return '#' + String(text || '')
-        .replace(/\s*\/\s*/g, '')
-        .replace(/\s*·\s*/g, '')
+    function normalizeTagText(text) {
+      return String(text || '')
+        .replace(/^#/, '')
         .replace(/\s+/g, '');
     }
 
+    const metaParts = Array.isArray(work.tags) && work.tags.length
+      ? work.tags
+      : [work.inputDevice, work.inputAction, work.output].filter(Boolean);
+
     viewerMeta.innerHTML = metaParts.length
-      ? `<div class="meta-summary">${metaParts.map(part => `<span class="meta-tag">${toHashTag(part)}</span>`).join('')}</div>`
+      ? `<div class="meta-summary">${metaParts.map(part => `<span class="meta-tag">#${normalizeTagText(part)}</span>`).join('')}</div>`
       : '';
 
     const canvas = document.getElementById('canvas-area');
@@ -686,8 +733,8 @@
     }
 
     const guideRows = [];
-    if (work.interactionGuide) guideRows.push(['Interaction', work.interactionGuide]);
-    if (work.outputGuide) guideRows.push(['Output', work.outputGuide]);
+    if (work.interactionGuide) guideRows.push(['관람 안내', work.interactionGuide]);
+    if (work.reaction) guideRows.push(['작품 반응', work.reaction]);
 
     document.getElementById('guide-box').innerHTML = guideRows.length
       ? `<div class="guide-inner">${guideRows.map(([label, text]) => `<div class="guide-block"><div class="guide-label">${label}</div><div class="guide-text">${text}</div></div>`).join('')}</div>`
@@ -763,6 +810,18 @@
     }
 
     nav.innerHTML = navHTML;
+  
+    function getViewingGuide(work) {
+      const guide = work.viewingGuide || work.guide || work.interactionGuide || "";
+      const reaction = work.reaction || work.outputGuide || "";
+      let merged = guide;
+      if (reaction && !merged.includes(reaction)) merged = `${merged} ${reaction}`.trim();
+      if (!merged) merged = "작품 화면을 천천히 탐색해보세요.";
+      const hasSound = work.sound || (work.tags || []).includes("사운드");
+      if (hasSound && !merged.includes("헤드셋")) merged = `헤드셋을 착용한 뒤, ${merged}`;
+      return merged.replace(/\s+/g, " ").trim();
+    }
+
   </script>
 </body>
 </html>

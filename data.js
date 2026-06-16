@@ -10,8 +10,8 @@ const works = [
     "localLink": "works/kim-taeri-blanket/index.html",
     "displayMode": "embed",
     "thumbnail": "thumbnails/s20251167.jpg",
-    "inputDevice": "마우스·키보드 입력",
-    "inputAction": "움직임·키조작",
+    "inputDevice": "마우스이동",
+    "inputAction": "키보드",
     "output": "",
     "interactionGuide": "마우스를 움직여보세요. · 잠시 멈추고 기다려보세요. · 키보드를 눌러 잠에서 깨어나보세요.",
     "reaction": "마우스의 움직임에 따라 Creature의 거대한 몸이 살짝 들어올려지며, 따뜻한 색으로 변화합니다. - Creature가 마우스를 감싸 안아줍니다 - 키보드 화살표 양옆 키를 연타하여 벗어날 수 있습니다",
@@ -21,7 +21,12 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
-    "cropTop": 58
+    "cropTop": 72,
+    "tags": [
+      "마우스",
+      "키보드"
+    ],
+    "viewingGuide": "마우스를 움직여보세요. · 잠시 멈추고 기다려보세요. · 키보드를 눌러 잠에서 깨어나보세요. 마우스의 움직임에 따라 Creature의 거대한 몸이 살짝 들어올려지며, 따뜻한 색으로 변화합니다. - Creature가 마우스를 감싸 안아줍니다 - 키보드 화살표 양옆 키를 연타하여 벗어날 수 있습니다"
   },
   {
     "name": "오성연",
@@ -34,8 +39,8 @@ const works = [
     "localLink": "works/oh-seongyeon-rainforest/index.html",
     "displayMode": "embed",
     "thumbnail": "thumbnails/s20253217.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
     "output": "",
     "interactionGuide": "마우스를 움직여 생명체들을 쫓아보세요. · 화면을 클릭해 날씨를 바꿔보세요.",
     "reaction": "곤충들이 마우스를 피해 움직이지만 결국 닿았을 때 빛 파티클을 뿌리게 됩니다.",
@@ -45,7 +50,11 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/osy1027a/full/G18ncUOj8",
     "thumbnailOriginal": "https://drive.google.com/open?id=1UuZ7geRHbsG44pQnKrk7hAPTx_xgV-CY",
-    "cropTop": 72
+    "cropTop": 72,
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "마우스를 움직여 생명체들을 쫓아보세요. · 화면을 클릭해 날씨를 바꿔보세요. 곤충들이 마우스를 피해 움직이지만 결국 닿았을 때 빛 파티클을 뿌리게 됩니다."
   },
   {
     "name": "정혜윤",
@@ -58,17 +67,22 @@ const works = [
     "localLink": "works/jung-hyeyoon-pulse-bloom/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20253373.jpeg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "마우스를 생명체 가까이 가져가보세요. · 화면을 클릭해보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 마우스를 생명체 가까이 가져가보세요. · 화면을 클릭해보세요.",
     "reaction": "마우스를 이용해 생명체에 가까이 다가갈 시 생명체는 더욱 활발하게 맥동하며 그 형태가 왜곡됩니다. 화면의 아무 곳을 마우스로 클릭하면 하단에서 레이저가 발사됩니다. 이때 생명체는 공격을 받으면 순간적으로 수축하고 크기가 감소하며, 세 번의 공격을 받으면 폭발과 함께 붕괴됩니다. 또한 빗맞췄을 시에는 레이저로부터 회피하는 행동을 보입니다. 이후 생명체는 일정 시간이 지난 뒤 다시 생성됩니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/xoderline/full/PstTIQgZR",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1bjA9mRY2Rhsc9Qrlm2Q0WqTecThakr2j"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1bjA9mRY2Rhsc9Qrlm2Q0WqTecThakr2j",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 마우스를 생명체 가까이 가져가보세요. · 화면을 클릭해보세요. 마우스를 이용해 생명체에 가까이 다가갈 시 생명체는 더욱 활발하게 맥동하며 그 형태가 왜곡됩니다. 화면의 아무 곳을 마우스로 클릭하면 하단에서 레이저가 발사됩니다. 이때 생명체는 공격을 받으면 순간적으로 수축하고 크기가 감소하며, 세 번의 공격을 받으면 폭발과 함께 붕괴됩니다. 또한 빗맞췄을 시에는 레이저로부터 회피하는 행동을 보입니다. 이후 생명체는 일정 시간이 지난 뒤 다시 생성됩니다."
   },
   {
     "name": "지성혁",
@@ -81,17 +95,23 @@ const works = [
     "localLink": "works/ji-sunghyuk-jazz/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20253395.JPG",
-    "inputDevice": "마우스·키보드 입력",
-    "inputAction": "클릭·키조작",
-    "output": "사운드 출력",
-    "interactionGuide": "재생 버튼을 클릭한 뒤, 방향키와 숫자 키 1·2로 생물을 조작해보세요.",
+    "inputDevice": "마우스클릭",
+    "inputAction": "키보드",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 재생 버튼을 클릭한 뒤, 방향키와 숫자 키 1·2로 생물을 조작해보세요.",
     "reaction": "이동을 하며 키 조작에 따라 추가적인 요소들의 호응 (작은 크리쳐들 등장, 파동 생성)과 색 변형이 일어납니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스클릭 #키보드 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/zeitgeist1111/full/9Ddm26LtB",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1sKoqePCEWAtxVJ6638ogHTg5PgbcLkkx"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1sKoqePCEWAtxVJ6638ogHTg5PgbcLkkx",
+    "tags": [
+      "마우스",
+      "키보드",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 재생 버튼을 클릭한 뒤, 방향키와 숫자 키 1·2로 생물을 조작해보세요. 이동을 하며 키 조작에 따라 추가적인 요소들의 호응 (작은 크리쳐들 등장, 파동 생성)과 색 변형이 일어납니다."
   },
   {
     "name": "이다해",
@@ -104,8 +124,8 @@ const works = [
     "localLink": "works/lee-dahae-haebangchon/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20268009.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "움직임",
+    "inputDevice": "마우스이동",
+    "inputAction": "",
     "output": "",
     "interactionGuide": "마우스를 천천히 움직여보세요.",
     "reaction": "용자는 마우스를 움직이며 해방촌의 분위기와 변화를 경험할 수 있다.",
@@ -114,7 +134,11 @@ const works = [
     "rawInput": "#마우스이동",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ldh20422/full/G-AUmdLGq",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1_1p_R2Giz-IKf2yvPXAiFv_CrHJdInIj"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1_1p_R2Giz-IKf2yvPXAiFv_CrHJdInIj",
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "마우스를 천천히 움직여보세요. 용자는 마우스를 움직이며 해방촌의 분위기와 변화를 경험할 수 있다."
   },
   {
     "name": "이예림",
@@ -127,17 +151,22 @@ const works = [
     "localLink": "works/lee-yerim-duck/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20253286.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "마우스를 움직여 숨겨진 오리를 찾아 클릭해보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 마우스를 움직여 숨겨진 오리를 찾아 클릭해보세요.",
     "reaction": "크리처들은 마우스를 따라 움직이며, 오리의 발견 여부에 따라 서로 다른 색, 형태로 변화합니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/eile35/full/aJjNwsiew",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1FgQ0ETWz7gmIOqCPpcIkOK0BFjDmPFF6"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1FgQ0ETWz7gmIOqCPpcIkOK0BFjDmPFF6",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 마우스를 움직여 숨겨진 오리를 찾아 클릭해보세요. 크리처들은 마우스를 따라 움직이며, 오리의 발견 여부에 따라 서로 다른 색, 형태로 변화합니다."
   },
   {
     "name": "이하은",
@@ -150,17 +179,23 @@ const works = [
     "localLink": "works/lee-haeun-music-spirit/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20252870.png",
-    "inputDevice": "마우스·키보드 입력",
-    "inputAction": "클릭·키조작",
-    "output": "사운드 출력",
-    "interactionGuide": "화면을 클릭해 시작하고, 키보드 D·F·J·K 키를 눌러 춤추게 해보세요. · 크리처가 스스로를 가리키면 클릭해보세요.",
+    "inputDevice": "마우스클릭",
+    "inputAction": "키보드",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면을 클릭해 시작하고, 키보드 D·F·J·K 키를 눌러 춤추게 해보세요. · 크리처가 스스로를 가리키면 클릭해보세요.",
     "reaction": "입력한 키에 따라 각각 다른 동작을 하며 춤을 춥니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스클릭 #키보드 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/herien718/full/ygWtgWgRd",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1YPwU1HG4zE_N9WvBr--OSHvqwqLvYYQo"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1YPwU1HG4zE_N9WvBr--OSHvqwqLvYYQo",
+    "tags": [
+      "마우스",
+      "키보드",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면을 클릭해 시작하고, 키보드 D·F·J·K 키를 눌러 춤추게 해보세요. · 크리처가 스스로를 가리키면 클릭해보세요. 입력한 키에 따라 각각 다른 동작을 하며 춤을 춥니다."
   },
   {
     "name": "박예진",
@@ -173,17 +208,22 @@ const works = [
     "localLink": "works/park-yejin-festival/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251175.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "화면을 클릭하고, 마우스를 중앙으로 움직여보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면을 클릭하고, 마우스를 중앙으로 움직여보세요.",
     "reaction": "중앙에 있던 크리쳐들이 모여들며 음악의 하이라이트 부분이 나오는 순간에 터지듯 퍼져나갑니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/yj3145/full/-SmADkYhD",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1VHyH1AuITZrFTQSPe7cDlGtdVTFLyKSz"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1VHyH1AuITZrFTQSPe7cDlGtdVTFLyKSz",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면을 클릭하고, 마우스를 중앙으로 움직여보세요. 중앙에 있던 크리쳐들이 모여들며 음악의 하이라이트 부분이 나오는 순간에 터지듯 퍼져나갑니다."
   },
   {
     "name": "최지수",
@@ -196,8 +236,8 @@ const works = [
     "localLink": "works/choi-jisu-emptying/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251191.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
     "output": "",
     "interactionGuide": "마우스를 생각 가까이 가져가보세요. · 화면을 클릭해보세요.",
     "reaction": "마우스로 가까이 다가가면 생각의 크기가 커집니다. / 마우스를 클릭하여 빛을 만들어내어 생각을 정리할 수 있습니다.",
@@ -206,7 +246,11 @@ const works = [
     "rawInput": "#마우스이동 #마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/wlsuuo4/full/h60hpZre3",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1OEYyZZQ2YRHp6uKS19A5nr0haPA8naZd"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1OEYyZZQ2YRHp6uKS19A5nr0haPA8naZd",
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "마우스를 생각 가까이 가져가보세요. · 화면을 클릭해보세요. 마우스로 가까이 다가가면 생각의 크기가 커집니다. / 마우스를 클릭하여 빛을 만들어내어 생각을 정리할 수 있습니다."
   },
   {
     "name": "안정원",
@@ -219,17 +263,23 @@ const works = [
     "localLink": "works/ahn-jungwon-echo/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20252803.png",
-    "inputDevice": "키보드·기타 입력",
-    "inputAction": "키조작·연주",
-    "output": "사운드 출력",
-    "interactionGuide": "앞에 놓인 기타를 음악에 맞춰 연주해보세요. · 키보드 Q(기타)·W(베이스)·E(드럼)·R(보컬)로 악기를 하나씩 꺼보세요.",
+    "inputDevice": "키보드",
+    "inputAction": "기타연주",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 앞에 놓인 기타를 음악에 맞춰 연주해보세요. · 키보드 Q(기타)·W(베이스)·E(드럼)·R(보컬)로 악기를 하나씩 꺼보세요. 오디오 인터페이스를 통한 입력·출력이 필요합니다.",
     "reaction": "기타를 치면 배경이 왜곡되고 크리쳐가 반응한다. 그리고 q,w,e,r을 각각 누르거나 한번에 누르면 각 키에 해당하는 악기들이 음소거되며 환경이 변화한다.",
-    "outputGuide": "사운드 있음, 오디오 인터페이스를 통하여 입력, 출력 되어야 합니다.",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#키보드 #기타연주 #사운드",
     "rawOutput": "사운드 있음, 오디오 인터페이스를 통하여 입력, 출력 되어야 합니다.",
     "p5Original": "https://editor.p5js.org/a88446399/full/0xq_UTRuY",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1Hj2m6JO12dQ_SFFYoSivo3-e4RKpAWM0"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1Hj2m6JO12dQ_SFFYoSivo3-e4RKpAWM0",
+    "tags": [
+      "키보드",
+      "기타",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 앞에 놓인 기타를 음악에 맞춰 연주해보세요. · 키보드 Q(기타)·W(베이스)·E(드럼)·R(보컬)로 악기를 하나씩 꺼보세요. 오디오 인터페이스를 통한 입력·출력이 필요합니다. 기타를 치면 배경이 왜곡되고 크리쳐가 반응한다. 그리고 q,w,e,r을 각각 누르거나 한번에 누르면 각 키에 해당하는 악기들이 음소거되며 환경이 변화한다."
   },
   {
     "name": "성수연",
@@ -242,17 +292,22 @@ const works = [
     "localLink": "works/sung-suyeon-breath/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20252787.png",
-    "inputDevice": "마우스 입력",
-    "inputAction": "움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "마우스를 화면 위에서 천천히 움직여보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "사운드",
+    "output": "",
+    "interactionGuide": "헤드셋을 착용한 뒤, 마우스를 화면 위에서 천천히 움직여보세요.",
     "reaction": "마우스의 위치에 따라 희미한 노란 빛이 밝혀지고, 노이즈 사운드와 함께 글리치가 발생합니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/elly2015/full/MOnxYt4lA",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1e3C_PwqfxXhDrLvhnOOgKNqejObsZMuT"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1e3C_PwqfxXhDrLvhnOOgKNqejObsZMuT",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 마우스를 화면 위에서 천천히 움직여보세요. 마우스의 위치에 따라 희미한 노란 빛이 밝혀지고, 노이즈 사운드와 함께 글리치가 발생합니다."
   },
   {
     "name": "강다은",
@@ -265,17 +320,22 @@ const works = [
     "localLink": "works/kang-daeun-frost/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251159.jpg",
-    "inputDevice": "웹캠 입력",
-    "inputAction": "클릭·움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "웹캠 앞에 가만히 서 있어보세요. · 몸을 움직이거나 손을 흔들어보세요.",
+    "inputDevice": "웹캠",
+    "inputAction": "움직임감지",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면을 한 번 클릭해 사운드를 켜고 웹캠 앞에 가만히 서 있거나 몸을 움직여보세요.",
     "reaction": "가만히 있을 때는 가까이 다가오고 (크기가 커지고), 움직일 때는 달아난다.(속도가 빨라지며 작아진다)",
-    "outputGuide": "사운드 있음, 사운드 재생을 위해서는 화면을 한 번 클릭 해야하고, 헤드셋 착용이 필요합니다.",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#웹캠 #움직임감지 #사운드",
     "rawOutput": "사운드 있음, 사운드 재생을 위해서는 화면을 한 번 클릭 해야하고, 헤드셋 착용이 필요합니다.",
     "p5Original": "https://editor.p5js.org/daeunkang/full/UJQ3iwrCc",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1k3psuYp51m3DDZpFSaQxQFDYNaxnopvQ"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1k3psuYp51m3DDZpFSaQxQFDYNaxnopvQ",
+    "tags": [
+      "웹캠",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면을 한 번 클릭해 사운드를 켜고 웹캠 앞에 가만히 서 있거나 몸을 움직여보세요. 가만히 있을 때는 가까이 다가오고 (크기가 커지고), 움직일 때는 달아난다.(속도가 빨라지며 작아진다)"
   },
   {
     "name": "임윤채",
@@ -288,17 +348,23 @@ const works = [
     "localLink": "works/lim-yoonchae-resonance/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20253330.png",
-    "inputDevice": "마우스·키보드 입력",
-    "inputAction": "클릭·움직임·키조작",
-    "output": "사운드 출력",
-    "interactionGuide": "화면을 클릭해 시작하고, 마우스를 자유롭게 움직여보세요. · 키보드 위아래 방향키도 눌러보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
+    "output": "키보드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면을 클릭해 시작하고, 마우스를 자유롭게 움직여보세요. · 키보드 위아래 방향키도 눌러보세요.",
     "reaction": "키보드 방향키의 위아래, 마우스를 드래그하는 움직임 속도와 리듬에 따라 이들의 빛과 크기, 군집의 흐름이 다채롭게 변화합니다. 클릭함에 따라 파동이 일어나고 creature가 빛납니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #마우스클릭 #키보드 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/253330/full/p6b2-JkIE",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1P_uw3HkjHS2-35E7F-X755s7Ey0lPz6p"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1P_uw3HkjHS2-35E7F-X755s7Ey0lPz6p",
+    "tags": [
+      "마우스",
+      "키보드",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면을 클릭해 시작하고, 마우스를 자유롭게 움직여보세요. · 키보드 위아래 방향키도 눌러보세요. 키보드 방향키의 위아래, 마우스를 드래그하는 움직임 속도와 리듬에 따라 이들의 빛과 크기, 군집의 흐름이 다채롭게 변화합니다. 클릭함에 따라 파동이 일어나고 creature가 빛납니다."
   },
   {
     "name": "박서진(24)",
@@ -311,17 +377,22 @@ const works = [
     "localLink": "works/park-seojin-pending/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20241660.png",
-    "inputDevice": "마우스 입력",
-    "inputAction": "움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "마우스를 화면 위에서 천천히 움직여보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "사운드",
+    "output": "",
+    "interactionGuide": "헤드셋을 착용한 뒤, 마우스를 화면 위에서 천천히 움직여보세요.",
     "reaction": "마우스를 각각의 Creature 위로 가져다대면 해당 Creature의 소리가 선명하게 들리고 나머지는 배경으로 물러납니다",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/restresp1/full/ofIIt56E_",
-    "thumbnailOriginal": "https://drive.google.com/open?id=17GUsyyTZjOTkCx0kA4ye_xKLpDWKz4LD"
+    "thumbnailOriginal": "https://drive.google.com/open?id=17GUsyyTZjOTkCx0kA4ye_xKLpDWKz4LD",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 마우스를 화면 위에서 천천히 움직여보세요. 마우스를 각각의 Creature 위로 가져다대면 해당 Creature의 소리가 선명하게 들리고 나머지는 배경으로 물러납니다"
   },
   {
     "name": "손혜원",
@@ -337,8 +408,8 @@ const works = [
     "canvasHeight": 600,
     "cropTop": 72,
     "thumbnail": "thumbnails/s20251179.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
     "output": "",
     "interactionGuide": "마우스를 움직이고, 화면을 클릭해보세요.",
     "reaction": "마우스와 생명체의 거리, 클릭 횟수에 따라 생명체의 반응이 달라집니다.",
@@ -347,7 +418,11 @@ const works = [
     "rawInput": "#마우스이동 #마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ne.341358/full/Qtyoy1JyP",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1JOW-yuq1EAbXVNp2pS5kzhlhOSYeRsYS"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1JOW-yuq1EAbXVNp2pS5kzhlhOSYeRsYS",
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "마우스를 움직이고, 화면을 클릭해보세요. 마우스와 생명체의 거리, 클릭 횟수에 따라 생명체의 반응이 달라집니다."
   },
   {
     "name": "허유민",
@@ -360,8 +435,8 @@ const works = [
     "localLink": "works/heo-yumin-hypnagogia/index.html",
     "displayMode": "embed",
     "thumbnail": "thumbnails/s20231939.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭",
+    "inputDevice": "마우스클릭",
+    "inputAction": "",
     "output": "",
     "interactionGuide": "화면을 마우스로 클릭해보세요.",
     "reaction": "마우스 클릭에 따라 잠에서 깨어납니다",
@@ -371,7 +446,11 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
     "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ",
-    "cropTop": 58
+    "cropTop": 72,
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "화면을 마우스로 클릭해보세요. 마우스 클릭에 따라 잠에서 깨어납니다"
   },
   {
     "name": "김윤아",
@@ -384,17 +463,22 @@ const works = [
     "localLink": "works/kim-yuna-bingle/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251166.png",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭",
-    "output": "사운드 출력",
-    "interactionGuide": "화면 속 LP판을 클릭해보세요.",
+    "inputDevice": "마우스클릭",
+    "inputAction": "사운드",
+    "output": "",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면 속 LP판을 클릭해보세요.",
     "reaction": "마우스 클릭에 따라 음악이 재생되거나 애벌레의 움직임이 달라집니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/yunakimyuna/full/pvjP7_8zr",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1D8Io3IdLtdB6h6AnOIcSs0TlM-W_E5E_"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1D8Io3IdLtdB6h6AnOIcSs0TlM-W_E5E_",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면 속 LP판을 클릭해보세요. 마우스 클릭에 따라 음악이 재생되거나 애벌레의 움직임이 달라집니다."
   },
   {
     "name": "배금비",
@@ -407,17 +491,22 @@ const works = [
     "localLink": "works/bae-geumbi-pending/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251177.png",
-    "inputDevice": "터치센서 입력",
-    "inputAction": "터치",
-    "output": "사운드 출력",
-    "interactionGuide": "앞에 놓인 터치 패드를 손으로 터치해보세요.",
+    "inputDevice": "터치센서",
+    "inputAction": "사운드",
+    "output": "",
+    "interactionGuide": "헤드셋을 착용한 뒤, 앞에 놓인 터치 패드를 손으로 터치해보세요.",
     "reaction": "터치 입력에 반응하여 각 사운드에 맞춰 움직이기 시작함",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#터치센서 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/rainy22/full/ou4ELJd-8",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1Jrhe1_l5mV8planIaiaJnMwboMXe1Wxn"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1Jrhe1_l5mV8planIaiaJnMwboMXe1Wxn",
+    "tags": [
+      "터치",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 앞에 놓인 터치 패드를 손으로 터치해보세요. 터치 입력에 반응하여 각 사운드에 맞춰 움직이기 시작함"
   },
   {
     "name": "허찬우",
@@ -430,8 +519,8 @@ const works = [
     "localLink": "works/heo-chanwoo-yudae/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20231601.jpeg",
-    "inputDevice": "웹캠 입력",
-    "inputAction": "움직임",
+    "inputDevice": "웹캠",
+    "inputAction": "움직임감지",
     "output": "",
     "interactionGuide": "웹캠 앞에서 천천히 움직여보세요.",
     "reaction": "웹캠이 움직임을 감지하면 입자와 배경이 불안정한 상태를 보입니다.",
@@ -440,7 +529,11 @@ const works = [
     "rawInput": "#웹캠 #움직임감지",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/matthur/full/XGQucFT35",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1bQaLSjsIPa0Cfta058jBtrL73dKHXVHA"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1bQaLSjsIPa0Cfta058jBtrL73dKHXVHA",
+    "tags": [
+      "웹캠"
+    ],
+    "viewingGuide": "웹캠 앞에서 천천히 움직여보세요. 웹캠이 움직임을 감지하면 입자와 배경이 불안정한 상태를 보입니다."
   },
   {
     "name": "최예원",
@@ -453,8 +546,8 @@ const works = [
     "localLink": "works/choi-yewon-rain/index.html",
     "displayMode": "embed",
     "thumbnail": "thumbnails/s20251189.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭",
+    "inputDevice": "마우스클릭",
+    "inputAction": "",
     "output": "",
     "interactionGuide": "화면을 클릭해 빗방울을 떨어뜨려보세요.",
     "reaction": "빗방울의 파동을 맞은 존재들이 기쁘게 반응하게 됩니다",
@@ -464,7 +557,11 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/yewon1189/full/vGogxsuRU",
     "thumbnailOriginal": "https://drive.google.com/open?id=1piDtNLiSgTS32px2jul8OjRu6JDRHtGK",
-    "cropTop": 58
+    "cropTop": 72,
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "화면을 클릭해 빗방울을 떨어뜨려보세요. 빗방울의 파동을 맞은 존재들이 기쁘게 반응하게 됩니다"
   },
   {
     "name": "정유민",
@@ -477,8 +574,8 @@ const works = [
     "localLink": "works/jung-yumin-in-sense/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251188.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
     "output": "",
     "interactionGuide": "마우스를 천천히 움직이거나 화면을 클릭해보세요.",
     "reaction": "마우스의 움직임에 따라 크리쳐가 밀려나고, 클릭한 위치로 크리쳐들이 원을그리며 모여듭니다.",
@@ -487,7 +584,11 @@ const works = [
     "rawInput": "#마우스이동 #마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/chickencheek/full/P5chuAt7y",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1in536t2WeQQDF5p8Ei2NmCiWwyhAIcuE"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1in536t2WeQQDF5p8Ei2NmCiWwyhAIcuE",
+    "tags": [
+      "마우스"
+    ],
+    "viewingGuide": "마우스를 천천히 움직이거나 화면을 클릭해보세요. 마우스의 움직임에 따라 크리쳐가 밀려나고, 클릭한 위치로 크리쳐들이 원을그리며 모여듭니다."
   },
   {
     "name": "나이린아웅",
@@ -500,8 +601,8 @@ const works = [
     "localLink": "works/naylinaung-lights-breathe/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20251168.png",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
     "output": "",
     "interactionGuide": "화면의 빛을 클릭해 변화를 시작해보세요.",
     "reaction": "관람자의 움직임에 따라 빛의 흐름과 생명체의 움직임이 변화합니다.마우스 움직임에 따라 빛이 모이고 퍼지며 생명체가 반응합니다.",
@@ -510,7 +611,12 @@ const works = [
     "rawInput": "#마우스이동 #마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/naylinaunginu/full/gxKIbtr0T",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1OfPM7KuL_uegVyXd1ENUI_g0027C1WnO"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1OfPM7KuL_uegVyXd1ENUI_g0027C1WnO",
+    "tags": [
+      "마우스",
+      "터치"
+    ],
+    "viewingGuide": "화면의 빛을 클릭해 변화를 시작해보세요. 관람자의 움직임에 따라 빛의 흐름과 생명체의 움직임이 변화합니다.마우스 움직임에 따라 빛이 모이고 퍼지며 생명체가 반응합니다."
   },
   {
     "name": "이서현",
@@ -523,17 +629,22 @@ const works = [
     "localLink": "works/lee-seohyun-pending/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20252835.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭·움직임",
-    "output": "사운드 출력",
-    "interactionGuide": "화면을 한 번 클릭해 시작하고, 마우스를 좌우로 움직이며 중간중간 클릭해보세요.",
+    "inputDevice": "마우스이동",
+    "inputAction": "마우스클릭",
+    "output": "사운드",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면을 한 번 클릭해 시작하고, 마우스를 좌우로 움직이며 중간중간 클릭해보세요.",
     "reaction": "마우스를 움직이거나 클릭함에 따라 파동의 형태가 달라지고, 환경이 달라집니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스이동 #마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/iseohyeon105_2/full/mTYv8lKle",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1qaevFE4jokkqZHb2zAnnlbJdRXJHcPOO"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1qaevFE4jokkqZHb2zAnnlbJdRXJHcPOO",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면을 한 번 클릭해 시작하고, 마우스를 좌우로 움직이며 중간중간 클릭해보세요. 마우스를 움직이거나 클릭함에 따라 파동의 형태가 달라지고, 환경이 달라집니다."
   },
   {
     "name": "신자운",
@@ -546,17 +657,22 @@ const works = [
     "localLink": "works/shin-jawoon-pending/index.html",
     "displayMode": "local",
     "thumbnail": "thumbnails/s20253197.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "드래그",
-    "output": "사운드 출력",
-    "interactionGuide": "마우스를 클릭한 채로 화면 위를 움직여보세요.",
+    "inputDevice": "마우스드래그",
+    "inputAction": "사운드",
+    "output": "",
+    "interactionGuide": "헤드셋을 착용한 뒤, 마우스를 클릭한 채로 화면 위를 움직여보세요.",
     "reaction": "크리쳐가 마우스를 따라오고, 크리쳐가 오브젝트에 머물면 오브젝트의 이야기가 드러납니다.",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스드래그 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/shinjaw55/full/XSq31YMr4",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1hK03o9ZhlXP7ammrL6VUwTGQ5VuTRaeJ"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1hK03o9ZhlXP7ammrL6VUwTGQ5VuTRaeJ",
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 마우스를 클릭한 채로 화면 위를 움직여보세요. 크리쳐가 마우스를 따라오고, 크리쳐가 오브젝트에 머물면 오브젝트의 이야기가 드러납니다."
   },
   {
     "name": "김시우",
@@ -569,17 +685,22 @@ const works = [
     "localLink": "works/kim-siwoo-sumsum/index.html",
     "displayMode": "embed",
     "thumbnail": "thumbnails/s20251164.jpg",
-    "inputDevice": "마우스 입력",
-    "inputAction": "클릭",
-    "output": "사운드 출력",
-    "interactionGuide": "화면을 마우스로 클릭해보세요.",
+    "inputDevice": "마우스클릭",
+    "inputAction": "사운드",
+    "output": "",
+    "interactionGuide": "헤드셋을 착용한 뒤, 화면을 마우스로 클릭해보세요.",
     "reaction": "캐릭터가 반응하고 행동합니다",
-    "outputGuide": "사운드 있음",
+    "outputGuide": "",
     "sound": true,
     "rawInput": "#마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/us157202/full/ugjGrkj89",
     "thumbnailOriginal": "https://drive.google.com/open?id=1aBPQDJtuyaXTn8gptOEVENW1CnZEKXKL",
-    "cropTop": 56
+    "cropTop": 56,
+    "tags": [
+      "마우스",
+      "사운드"
+    ],
+    "viewingGuide": "헤드셋을 착용한 뒤, 화면을 마우스로 클릭해보세요. 캐릭터가 반응하고 행동합니다"
   }
 ];
