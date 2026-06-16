@@ -19,6 +19,11 @@
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
+    html, body {
+      overflow-x: hidden;
+    }
+
+
     body {
       font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
       background: var(--bg);
@@ -564,41 +569,50 @@
         }, 250);
       });
       setTimeout(fitLocalIframe, 100);
-   } else if (mode === 'embed') {
-  canvas.innerHTML = `
-    <div class="embed-wrap" id="embed-wrap">
-      <iframe
-        id="work-iframe"
-        src="${work.link}"
-        allow="autoplay; fullscreen; camera; microphone"
-        allowfullscreen
-        loading="lazy"
-        scrolling="no"
-        title="${work.title}"
-      ></iframe>
-    </div>
-  `;
+    } else if (mode === 'embed') {
+      canvas.innerHTML = `
+        <div class="embed-wrap" id="embed-wrap">
+          <iframe
+            id="work-iframe"
+            src="${work.link}"
+            allow="autoplay; fullscreen; camera; microphone"
+            allowfullscreen
+            loading="lazy"
+            scrolling="no"
+            title="${work.title}"
+          ></iframe>
+        </div>
+      `;
 
-    const embedWrap = document.getElementById('embed-wrap');
-  const iframe = document.getElementById('work-iframe');
+      const embedWrap = document.getElementById('embed-wrap');
+      const iframe = document.getElementById('work-iframe');
 
-  const embedW = work.canvasWidth || DEFAULT_CANVAS_W;
-  const embedH = work.canvasHeight || DEFAULT_CANVAS_H;
-  embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
+      const embedW = work.canvasWidth || DEFAULT_CANVAS_W;
+      const embedH = work.canvasHeight || DEFAULT_CANVAS_H;
+      embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
+      embedWrap.style.overflow = 'hidden';
 
-  const cropTop = Number(work.cropTop || 0);
+      const cropTop = Number(work.cropTop || 0);
+      const scrollbarHide = Number(work.scrollbarHide || 32);
 
-  if (cropTop > 0) {
-    embedWrap.style.overflow = 'hidden';
-    iframe.style.display = 'block';
-    iframe.style.width = '100%';
-    iframe.style.maxWidth = '100%';
-    iframe.style.height = `calc(100% + ${cropTop}px)`;
-    iframe.style.transformOrigin = 'top left';
-    iframe.style.transform = `translateY(-${cropTop}px)`;
-    iframe.style.border = 'none';
-  }
-} else {
+      iframe.setAttribute('scrolling', 'no');
+      iframe.style.display = 'block';
+      iframe.style.border = 'none';
+      iframe.style.overflow = 'hidden';
+      iframe.style.transformOrigin = 'top left';
+
+      if (cropTop > 0) {
+        iframe.style.width = `calc(100% + ${scrollbarHide}px)`;
+        iframe.style.maxWidth = 'none';
+        iframe.style.height = `calc(100% + ${cropTop + scrollbarHide}px)`;
+        iframe.style.transform = `translateY(-${cropTop}px)`;
+      } else {
+        iframe.style.width = '100%';
+        iframe.style.maxWidth = '100%';
+        iframe.style.height = '100%';
+        iframe.style.transform = 'none';
+      }
+    } else {
       const icon = (work.rawInput || '').includes('웹캠') ? '📷' : (work.rawInput || '').includes('기타') ? '🎸' : '↗';
       const title = (work.rawInput || '').includes('웹캠')
         ? '웹캠을 사용하는 작품입니다'
