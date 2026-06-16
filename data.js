@@ -6,9 +6,9 @@ const works = [
     "title": "숨숨",
     "sense": "함께 있지만 혼자 있는 것만 같은 순간",
     "description": "함께 있으면서도 혼자 있는 것만 같은 순간, 우리는 내면을 들여다보고 스스로를 돌볼 수 있습니다. 숨 가쁜 현실과 대비되는 자신만의 속도로 일상을 지켜나가는 Creature의 모습은 이를 대변합니다. Creature를 관찰하고 마우스 클릭으로 그 일상에 간접적으로 다가가는 경험을 통해, 우리는 위안과 나 자신을 돌보고자 하는 마음을 갖게 됩니다.",
-    "link": "works/kim-siwoo-sumsum/index.html",
+    "link": "https://editor.p5js.org/us157202/full/ugjGrkj89",
     "localLink": "works/kim-siwoo-sumsum/index.html",
-    "displayMode": "local",
+    "displayMode": "embed",
     "thumbnail": "thumbnails/s20251164.jpg",
     "inputDevice": "마우스 입력",
     "inputAction": "클릭",
@@ -20,7 +20,8 @@ const works = [
     "rawInput": "#마우스클릭 #사운드",
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/us157202/full/ugjGrkj89",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1aBPQDJtuyaXTn8gptOEVENW1CnZEKXKL"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1aBPQDJtuyaXTn8gptOEVENW1CnZEKXKL",
+    "cropTop": 72
   },
   {
     "name": "오성연",
@@ -29,9 +30,9 @@ const works = [
     "title": "비 내리는 숲의 조각 속으로",
     "sense": "비 오는 여름, 녹빛이 우거진 가로수길을 산책하며 느낀 포근하고 축축한 공기와 시각적 즐거움",
     "description": "이 작품은 비 내리는 신비로운 숲의 풍경과 그 속을 유영하는 생명체들의 움직임을 시각화한 인터랙티브 미디어 아트입니다. 마우스의 움직임을 부드럽게 추적하는 요정은 관람자의 가상 아바타가 되어 화면 속 자연환경과 끊임없이 상호작용합니다. 화면을 클릭할 때마다 실시간으로 변하는 날씨는 빛내림 효과와 창문에 맺히는 물방울, 현실적인 번개 연출을 통해 몽환적이면서도 깊이감 있는 몰입감을 선사합니다. 군집 알고리즘을 기반으로 구현된 새, 나비, 반딧불이 등의 생명체들은 요정과의 거리에 따라 반응하며 빛 파티클을 남기고 생동감 넘치게 화면을 가득 채웁니다. 이 작품은 자연의 고요함과 생명력을 유기적으로 연결하여, 관람객에게 환상 동화 속에 들어온 듯한 영롱하고 입체적인 시각 경험을 제공합니다.",
-    "link": "works/oh-seongyeon-rainforest/index.html",
+    "link": "https://editor.p5js.org/osy1027a/full/G18ncUOj8",
     "localLink": "works/oh-seongyeon-rainforest/index.html",
-    "displayMode": "local",
+    "displayMode": "embed",
     "thumbnail": "thumbnails/s20253217.jpg",
     "inputDevice": "마우스 입력",
     "inputAction": "클릭·움직임",
@@ -43,7 +44,8 @@ const works = [
     "rawInput": "#마우스이동 #마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/osy1027a/full/G18ncUOj8",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1UuZ7geRHbsG44pQnKrk7hAPTx_xgV-CY"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1UuZ7geRHbsG44pQnKrk7hAPTx_xgV-CY",
+    "cropTop": 72
   },
   {
     "name": "정혜윤",
@@ -351,9 +353,9 @@ const works = [
     "title": "축축한 설렘",
     "sense": "비가 내리는 여름 오후, 친구들과 함께 버스를 타고 가던 그때의 감각",
     "description": "그 버스 안에서 느껴졌던 젖은 공기와 서늘한 바람 속, 축축하고 간질거리는 설렘의 감정을 담고 싶었습니다. 작품 속 Creature는 고요하지만 비를 내려주면 꿈틀거리며 기쁘게 반응하는 존재들로, 식물을 성장하게 만들기도 합니다. 빗방울을 맞지 못하면 움직임이 줄어들고, 말라버립니다.",
-    "link": "works/choi-yewon-rain/index.html",
+    "link": "https://editor.p5js.org/yewon1189/full/vGogxsuRU",
     "localLink": "works/choi-yewon-rain/index.html",
-    "displayMode": "local",
+    "displayMode": "embed",
     "thumbnail": "thumbnails/s20251189.jpg",
     "inputDevice": "마우스 입력",
     "inputAction": "클릭",
@@ -365,7 +367,8 @@ const works = [
     "rawInput": "#마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/yewon1189/full/vGogxsuRU",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1piDtNLiSgTS32px2jul8OjRu6JDRHtGK"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1piDtNLiSgTS32px2jul8OjRu6JDRHtGK",
+    "cropTop": 72
   },
   {
     "name": "이서현",
@@ -443,9 +446,9 @@ const works = [
     "title": "Hypnagogia",
     "sense": "잠에 들기 직전의 몽롱하고 불분명한 감각",
     "description": "이 작품은 잠에 들기 직전의 몽롱하고 불분명한 감각에서 출발했습니다. 화면 속 Creature는 잠을 좋아하고 느긋한 존재로, 의식과 무의식의 경계에서 천천히 잠에 빠져듭니다. 시간이 흐를수록 Creature의 세계는 입면기(Hypnagogia)의 환각처럼 패턴화된 이미지로 변하고, 현실의 형상은 점점 흐려집니다. 사용자는 마우스로 Creature를 클릭해 잠을 깨울 수 있지만, 깊이 잠들수록 여러 번 클릭해야 반응합니다. 잠들어가는 Creature의 의식과 무의식의 세계를 함께 느껴보세요.",
-    "link": "works/heo-yumin-hypnagogia/index.html",
+    "link": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
     "localLink": "works/heo-yumin-hypnagogia/index.html",
-    "displayMode": "local",
+    "displayMode": "embed",
     "thumbnail": "thumbnails/s20231939.jpg",
     "inputDevice": "마우스 입력",
     "inputAction": "클릭",
@@ -457,7 +460,8 @@ const works = [
     "rawInput": "#마우스클릭",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ",
+    "cropTop": 72
   },
   {
     "name": "손혜원",
