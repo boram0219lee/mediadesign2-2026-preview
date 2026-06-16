@@ -171,7 +171,99 @@
       margin: 0 auto;
     }
 
+    .bottom-work-nav {
+      width: 100%;
+      max-width: 1280px;
+      margin: 18px auto 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      column-gap: 24px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+    }
+
+    .bottom-nav-btn,
+    .bottom-home-btn {
+      color: rgba(115, 115, 110, 0.86);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      min-height: 44px;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    .bottom-nav-btn:hover,
+    .bottom-home-btn:hover {
+      color: var(--accent);
+    }
+
+    .bottom-nav-btn.prev {
+      justify-self: start;
+      text-align: left;
+    }
+
+    .bottom-nav-btn.next {
+      justify-self: end;
+      text-align: right;
+    }
+
+    .bottom-nav-arrow {
+      font-size: 30px;
+      font-weight: 300;
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    .bottom-nav-btn.prev .bottom-nav-arrow {
+      margin-right: 12px;
+    }
+
+    .bottom-nav-btn.next .bottom-nav-arrow {
+      margin-left: 12px;
+    }
+
+    .bottom-nav-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      max-width: 260px;
+    }
+
+    .bottom-nav-title {
+      font-size: 13px;
+      line-height: 1.35;
+      font-weight: 600;
+      color: var(--text);
+      word-break: keep-all;
+    }
+
+    .bottom-nav-name {
+      font-size: 12px;
+      line-height: 1.35;
+      color: var(--muted);
+    }
+
+    .bottom-home-btn {
+      justify-self: center;
+      width: 44px;
+      height: 44px;
+      justify-content: center;
+      color: #343431;
+    }
+
+    .bottom-home-btn svg {
+      width: 25px;
+      height: 25px;
+      display: block;
+    }
+
+    .bottom-nav-placeholder {
+      min-height: 44px;
+    }
+
     .side-work-nav {
+      display: none;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -307,6 +399,10 @@
       .side-work-nav.prev { left: 8px; }
       .side-work-nav.next { right: 8px; }
       .side-work-card { display: none; }
+
+      .bottom-work-nav {
+        max-width: none;
+      }
     }
 
     @media (max-width: 760px) {
@@ -314,6 +410,19 @@
       .nav-inner { padding-top: 14px; padding-bottom: 14px; }
       .detail-layout { padding-top: 28px; }
       .work-title { font-size: 32px; }
+
+      .bottom-work-nav {
+        grid-template-columns: 1fr auto 1fr;
+        column-gap: 12px;
+      }
+
+      .bottom-nav-text {
+        display: none;
+      }
+
+      .bottom-nav-arrow {
+        font-size: 32px;
+      }
     }
 
   </style>
@@ -322,7 +431,7 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="index.html" class="home-btn" aria-label="목록으로" title="목록으로">
+      <a href="index_layout2.html" class="home-btn" aria-label="목록으로" title="목록으로">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M5.8 11.1L12 5.4l6.2 5.7V20H5.8V11.1Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
           <path d="M10 20v-5.6h4V20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
@@ -356,6 +465,7 @@
         <div id="canvas-area"></div>
         <div id="side-nav-layer"></div>
       </div>
+      <div class="bottom-work-nav" id="bottom-work-nav"></div>
     </section>
   </main>
 
@@ -559,32 +669,53 @@
 
 
     const sideNavLayer = document.getElementById('side-nav-layer');
+    sideNavLayer.innerHTML = '';
 
-    function makeSideNav(direction, targetIndex, targetWork) {
+    const bottomNav = document.getElementById('bottom-work-nav');
+
+    function makeBottomNav(direction, targetIndex, targetWork) {
       const isPrev = direction === 'prev';
       const label = isPrev ? '이전 작품' : '다음 작품';
       const arrow = isPrev ? '‹' : '›';
+
+      if (isPrev) {
+        return `
+          <a href="work_layout2.html?id=${targetIndex}" class="bottom-nav-btn prev" aria-label="${label}: ${targetWork.title}">
+            <span class="bottom-nav-arrow">${arrow}</span>
+            <span class="bottom-nav-text">
+              <span class="bottom-nav-title">${targetWork.title}</span>
+              <span class="bottom-nav-name">${targetWork.name}</span>
+            </span>
+          </a>
+        `;
+      }
+
       return `
-        <a href="work.html?id=${targetIndex}" class="side-work-nav ${direction}" aria-label="${label}: ${targetWork.title}">
-          <span class="arrow">${arrow}</span>
-          <span class="side-work-card">
-            <span class="side-work-kicker">${label}</span>
-            <span class="side-work-title">${targetWork.title}</span>
-            <span class="side-work-name">${targetWork.name}</span>
+        <a href="work_layout2.html?id=${targetIndex}" class="bottom-nav-btn next" aria-label="${label}: ${targetWork.title}">
+          <span class="bottom-nav-text">
+            <span class="bottom-nav-title">${targetWork.title}</span>
+            <span class="bottom-nav-name">${targetWork.name}</span>
           </span>
+          <span class="bottom-nav-arrow">${arrow}</span>
         </a>
       `;
     }
 
-    sideNavLayer.innerHTML = [
-      prev ? makeSideNav('prev', id - 1, prev) : '',
-      next ? makeSideNav('next', id + 1, next) : ''
+    bottomNav.innerHTML = [
+      prev ? makeBottomNav('prev', id - 1, prev) : '<div class="bottom-nav-placeholder"></div>',
+      `<a href="index_layout2.html" class="bottom-home-btn" aria-label="목록으로" title="목록으로">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.8 11.1L12 5.4l6.2 5.7V20H5.8V11.1Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M10 20v-5.6h4V20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+        </svg>
+      </a>`,
+      next ? makeBottomNav('next', id + 1, next) : '<div class="bottom-nav-placeholder"></div>'
     ].join('');
 
     let navHTML = '';
     if (prev) {
       navHTML += `
-        <a href="work.html?id=${id - 1}" class="nav-btn prev">
+        <a href="work_layout2.html?id=${id - 1}" class="nav-btn prev">
           <span class="nav-direction">← 이전 작품</span>
           <span class="nav-work-title">${prev.title}</span>
           <span class="nav-work-name">${prev.name}</span>
@@ -596,7 +727,7 @@
 
     if (next) {
       navHTML += `
-        <a href="work.html?id=${id + 1}" class="nav-btn next">
+        <a href="work_layout2.html?id=${id + 1}" class="nav-btn next">
           <span class="nav-direction">다음 작품 →</span>
           <span class="nav-work-title">${next.title}</span>
           <span class="nav-work-name">${next.name}</span>
