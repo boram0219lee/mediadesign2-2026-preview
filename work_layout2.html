@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>작품 — Creatures of Sense</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+  <style>
+
+    :root {
+      --bg: #F8F7F2;
+      --surface: #FFFFFF;
+      --text: #111111;
+      --muted: #73736E;
+      --line: #DAD9D3;
+      --accent: #007A53;
+      --page-width: 1760px;
+      --page-padding: 48px;
+      --info-width: 360px;
+      --layout-gap: 40px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { overflow-x: hidden; }
+
+    body {
+      font-family: "Pretendard", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    nav {
+      border-bottom: 1px solid rgba(218, 217, 211, 0.72);
+      background: #FBFBF8;
+      flex: 0 0 auto;
+    }
+
+    .nav-inner {
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 16px var(--page-padding);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .home-btn {
+      width: 36px;
+      height: 36px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #343431;
+      text-decoration: none;
+      background: transparent;
+      border: none;
+      transition: color 0.2s, opacity 0.2s;
+      flex: 0 0 auto;
+    }
+
+    .home-btn:hover { color: var(--accent); }
+    .home-btn svg { width: 26px; height: 26px; display: block; }
+    .nav-counter { margin-left: auto; font-size: 13px; color: var(--muted); }
+
+    .detail-layout {
+      width: 100%;
+      max-width: var(--page-width);
+      margin: 0 auto;
+      padding: 34px var(--page-padding) 44px;
+      display: grid;
+      grid-template-columns: var(--info-width) minmax(0, 1fr);
+      gap: var(--layout-gap);
+      align-items: start;
+      flex: 1 1 auto;
+    }
+
+    .info-panel {
+      min-width: 0;
+      position: sticky;
+      top: 28px;
+      align-self: start;
+      max-height: calc(100vh - 96px);
+      overflow-y: auto;
+      padding-right: 4px;
+      scrollbar-width: thin;
+    }
+
+    .work-title {
+      font-size: clamp(28px, 2.2vw, 40px);
+      font-weight: 600;
+      letter-spacing: -0.04em;
+      line-height: 1.12;
+      margin-bottom: 12px;
+      color: var(--text);
+      word-break: keep-all;
+      overflow-wrap: break-word;
+    }
+
+    .artist-name {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-weight: 400;
+    }
+
+    .info-block {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      margin-top: 18px;
+    }
+
+    .info-label, .guide-label {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.4;
+      margin-bottom: 8px;
+    }
+
+    .info-text, .guide-text {
+      font-size: 14px;
+      line-height: 1.72;
+      color: #4F4F49;
+      font-weight: 400;
+      word-break: keep-all;
+      white-space: pre-line;
+    }
+
+    .stage-panel { min-width: 0; width: 100%; padding-top: 2px; }
+
+    .viewer-meta {
+      min-height: 28px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+    }
+
+    .meta-summary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap;
+      text-align: right;
+    }
+
+    .meta-tag {
+      display: inline-block;
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+
+    .viewer-frame {
+      position: relative;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .side-work-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 54px;
+      height: 112px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(115, 115, 110, 0.66);
+      text-decoration: none;
+      transition: color 0.2s, opacity 0.2s;
+    }
+
+    .side-work-nav.prev { left: -82px; }
+    .side-work-nav.next { right: -82px; }
+    .side-work-nav .arrow { font-size: 38px; font-weight: 300; line-height: 1; letter-spacing: -0.04em; }
+    .side-work-nav:hover { color: var(--accent); }
+
+    .side-work-card {
+      position: absolute;
+      top: 50%;
+      min-width: 170px;
+      max-width: 240px;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .side-work-nav.prev .side-work-card { right: calc(100% + 10px); text-align: right; transform: translate(6px, -50%); }
+    .side-work-nav.next .side-work-card { left: calc(100% + 10px); text-align: left; transform: translate(-6px, -50%); }
+    .side-work-nav:hover .side-work-card { opacity: 1; transform: translate(0, -50%); }
+    .side-work-kicker { display: none; }
+    .side-work-title { display: block; font-size: 13px; font-weight: 600; line-height: 1.35; color: var(--text); word-break: keep-all; }
+    .side-work-name { display: block; margin-top: 4px; font-size: 12px; line-height: 1.35; color: var(--muted); }
+
+    .embed-wrap, .local-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: #000;
+    }
+
+    .embed-wrap iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+      overflow: hidden;
+    }
+
+    .local-wrap { position: relative; }
+    .local-wrap iframe {
+      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 1280px;
+      height: 720px;
+      border: none;
+      transform-origin: center center;
+      background: #000;
+    }
+
+    .notice-box {
+      width: 100%;
+      aspect-ratio: 16/9;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      background: var(--surface);
+    }
+
+    .notice-icon { font-size: 40px; line-height: 1; }
+    .notice-text { text-align: center; padding: 0 24px; }
+    .notice-text p { font-size: 15px; color: var(--text); margin-bottom: 6px; font-weight: 600; }
+    .notice-text span { font-size: 13px; color: var(--muted); line-height: 1.6; }
+
+    .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--text);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      font-size: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    .open-btn:hover { background: var(--accent); }
+    .open-btn::after { content: '↗'; }
+
+    .guide-box { margin-top: 22px; width: 100%; }
+    .guide-inner { display: flex; flex-direction: column; gap: 18px; font-size: 14px; line-height: 1.72; }
+    .guide-block { border-top: 1px solid var(--line); padding-top: 18px; }
+
+    .work-nav { display: none; }
+    .nav-btn { display: flex; flex-direction: column; gap: 4px; cursor: pointer; text-decoration: none; max-width: 280px; }
+    .nav-btn.prev { align-items: flex-start; }
+    .nav-btn.next { align-items: flex-end; text-align: right; }
+    .nav-btn .nav-direction { font-size: 11px; color: var(--muted); letter-spacing: 0.06em; text-transform: uppercase; }
+    .nav-btn .nav-work-title { font-size: 14px; color: var(--text); font-weight: 500; }
+    .nav-btn .nav-work-name { font-size: 12px; color: var(--muted); }
+    .nav-btn:hover .nav-work-title { color: var(--accent); }
+    .nav-placeholder { width: 200px; }
+
+    @media (max-width: 1500px) {
+      :root { --info-width: 330px; --layout-gap: 34px; --page-padding: 40px; }
+      .side-work-nav.prev { left: -62px; }
+      .side-work-nav.next { right: -62px; }
+    }
+
+    @media (max-width: 1100px) {
+      .detail-layout { display: block; }
+      .info-panel { position: static; max-height: none; overflow: visible; padding-right: 0; margin-bottom: 32px; }
+      .viewer-frame { max-width: none; }
+      .side-work-nav.prev { left: 8px; }
+      .side-work-nav.next { right: 8px; }
+      .side-work-card { display: none; }
+    }
+
+    @media (max-width: 760px) {
+      :root { --page-padding: 24px; }
+      .nav-inner { padding-top: 14px; padding-bottom: 14px; }
+      .detail-layout { padding-top: 28px; }
+      .work-title { font-size: 32px; }
+    }
+
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-inner">
+      <a href="index.html" class="home-btn" aria-label="목록으로" title="목록으로">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M5.8 11.1L12 5.4l6.2 5.7V20H5.8V11.1Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+          <path d="M10 20v-5.6h4V20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <span class="nav-counter" id="nav-counter"></span>
+    </div>
+  </nav>
+
+  <main class="detail-layout">
+    <aside class="info-panel">
+      <h1 class="work-title" id="work-title"></h1>
+      <p class="artist-name" id="artist-name"></p>
+
+      <div class="info-block">
+        <div class="info-label">감각 출발점</div>
+        <div class="info-text" id="sense-text"></div>
+      </div>
+
+      <div class="info-block">
+        <div class="info-label">작품 설명</div>
+        <div class="info-text" id="description-text"></div>
+      </div>
+
+      <div class="guide-box" id="guide-box"></div>
+    </aside>
+
+    <section class="stage-panel">
+      <div class="viewer-meta" id="viewer-meta"></div>
+      <div class="viewer-frame" id="viewer-frame">
+        <div id="canvas-area"></div>
+        <div id="side-nav-layer"></div>
+      </div>
+    </section>
+  </main>
+
+  <div class="work-nav" id="work-nav"></div>
+
+
+  <script src="data.js"></script>
+  <script>
+    const DEFAULT_CANVAS_W = 1280;
+    const DEFAULT_CANVAS_H = 720;
+
+    const params = new URLSearchParams(window.location.search);
+    const id = parseInt(params.get('id'), 10) || 0;
+    const work = works[id];
+
+    if (!work) window.location.href = 'index.html';
+
+    const CANVAS_W = work.canvasWidth || DEFAULT_CANVAS_W;
+    const CANVAS_H = work.canvasHeight || DEFAULT_CANVAS_H;
+
+    document.title = `${work.title} — Creatures of Sense`;
+    document.getElementById('work-title').textContent = work.title || '';
+    document.getElementById('artist-name').textContent = work.name || '';
+    document.getElementById('sense-text').textContent = work.sense || '';
+    document.getElementById('description-text').textContent = work.description || '';
+    document.getElementById('nav-counter').textContent = `${id + 1} / ${works.length}`;
+
+    const viewerMeta = document.getElementById('viewer-meta');
+    const metaParts = [];
+    if (work.inputDevice) metaParts.push(work.inputDevice);
+    if (work.inputAction) metaParts.push(work.inputAction);
+    if (work.output) metaParts.push(work.output);
+
+    function toHashTag(text) {
+      return '#' + String(text || '')
+        .replace(/\s*\/\s*/g, '')
+        .replace(/\s*·\s*/g, '')
+        .replace(/\s+/g, '');
+    }
+
+    viewerMeta.innerHTML = metaParts.length
+      ? `<div class="meta-summary">${metaParts.map(part => `<span class="meta-tag">${toHashTag(part)}</span>`).join('')}</div>`
+      : '';
+
+    const canvas = document.getElementById('canvas-area');
+    const mode = work.displayMode || 'embed';
+
+    if (mode === 'local') {
+      canvas.innerHTML = `
+        <div class="local-wrap" id="local-wrap">
+          <iframe
+            id="work-iframe"
+            src="${work.link}"
+            allow="autoplay; fullscreen; camera; microphone"
+            allowfullscreen
+            loading="lazy"
+            title="${work.title}"
+          ></iframe>
+        </div>
+      `;
+
+      function fitLocalIframe() {
+        const wrap = document.getElementById('local-wrap');
+        const iframe = document.getElementById('work-iframe');
+
+        const scale = Math.min(
+          wrap.clientWidth / CANVAS_W,
+          wrap.clientHeight / CANVAS_H
+        );
+
+        iframe.style.width = `${CANVAS_W}px`;
+        iframe.style.height = `${CANVAS_H}px`;
+        iframe.style.transform = `translate(-50%, -50%) scale(${scale})`;
+      }
+
+      function normalizeLocalIframe() {
+        const iframe = document.getElementById('work-iframe');
+
+        try {
+          const doc = iframe.contentDocument || iframe.contentWindow.document;
+          if (!doc || !doc.head) return;
+
+          if (doc.getElementById('md2-iframe-normalize-style')) return;
+
+          const style = doc.createElement('style');
+          style.id = 'md2-iframe-normalize-style';
+          style.textContent = `
+            html, body {
+              margin: 0 !important;
+              padding: 0 !important;
+              width: 100% !important;
+              height: 100% !important;
+              overflow: hidden !important;
+            }
+
+            body {
+              display: flex !important;
+              align-items: center !important;
+              justify-content: center !important;
+            }
+
+            canvas {
+              display: block !important;
+              margin: 0 auto !important;
+            }
+          `;
+
+          doc.head.appendChild(style);
+        } catch (error) {
+          console.warn('Could not normalize local iframe:', error);
+        }
+      }
+
+      const localIframe = document.getElementById('work-iframe');
+      window.addEventListener('resize', fitLocalIframe);
+      localIframe.addEventListener('load', () => {
+        normalizeLocalIframe();
+        fitLocalIframe();
+
+        setTimeout(() => {
+          normalizeLocalIframe();
+          fitLocalIframe();
+        }, 250);
+      });
+      setTimeout(fitLocalIframe, 100);
+
+    } else if (mode === 'embed') {
+      canvas.innerHTML = `
+        <div class="embed-wrap" id="embed-wrap">
+          <iframe
+            id="work-iframe"
+            src="${work.link}"
+            allow="autoplay; fullscreen; camera; microphone"
+            allowfullscreen
+            loading="lazy"
+            scrolling="no"
+            title="${work.title}"
+          ></iframe>
+        </div>
+      `;
+
+      const embedWrap = document.getElementById('embed-wrap');
+      const iframe = document.getElementById('work-iframe');
+
+      const embedW = work.canvasWidth || DEFAULT_CANVAS_W;
+      const embedH = work.canvasHeight || DEFAULT_CANVAS_H;
+      embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
+      embedWrap.style.overflow = 'hidden';
+
+      const cropTop = Number(work.cropTop || 0);
+      const scrollbarHide = Number(work.scrollbarHide || 32);
+
+      iframe.setAttribute('scrolling', 'no');
+      iframe.style.display = 'block';
+      iframe.style.border = 'none';
+      iframe.style.overflow = 'hidden';
+      iframe.style.transformOrigin = 'top left';
+
+      if (cropTop > 0) {
+        iframe.style.width = `calc(100% + ${scrollbarHide}px)`;
+        iframe.style.maxWidth = 'none';
+        iframe.style.height = `calc(100% + ${cropTop + scrollbarHide}px)`;
+        iframe.style.transform = `translateY(-${cropTop}px)`;
+      } else {
+        iframe.style.width = '100%';
+        iframe.style.maxWidth = '100%';
+        iframe.style.height = '100%';
+        iframe.style.transform = 'none';
+      }
+    } else {
+      const icon = (work.rawInput || '').includes('웹캠') ? '📷' : (work.rawInput || '').includes('기타') ? '🎸' : '↗';
+      const title = (work.rawInput || '').includes('웹캠')
+        ? '웹캠을 사용하는 작품입니다'
+        : '새 탭에서 여는 작품입니다';
+      const desc = (work.rawInput || '').includes('웹캠')
+        ? '새 탭에서 열면 카메라 권한을 허용할 수 있습니다.'
+        : '작품 특성상 새 탭에서 여는 방식을 권장합니다.';
+      canvas.innerHTML = `
+        <div class="notice-box">
+          <div class="notice-icon">${icon}</div>
+          <div class="notice-text">
+            <p>${title}</p>
+            <span>${desc}</span>
+          </div>
+          <a href="${work.link}" target="_blank" rel="noopener" class="open-btn">작품 열기</a>
+        </div>
+      `;
+    }
+
+    const guideRows = [];
+    if (work.interactionGuide) guideRows.push(['Interaction', work.interactionGuide]);
+    if (work.outputGuide) guideRows.push(['Output', work.outputGuide]);
+
+    document.getElementById('guide-box').innerHTML = guideRows.length
+      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `<div class="guide-block"><div class="guide-label">${label}</div><div class="guide-text">${text}</div></div>`).join('')}</div>`
+      : '';
+
+    const nav = document.getElementById('work-nav');
+    const prev = id > 0 ? works[id - 1] : null;
+    const next = id < works.length - 1 ? works[id + 1] : null;
+
+
+    const sideNavLayer = document.getElementById('side-nav-layer');
+
+    function makeSideNav(direction, targetIndex, targetWork) {
+      const isPrev = direction === 'prev';
+      const label = isPrev ? '이전 작품' : '다음 작품';
+      const arrow = isPrev ? '‹' : '›';
+      return `
+        <a href="work.html?id=${targetIndex}" class="side-work-nav ${direction}" aria-label="${label}: ${targetWork.title}">
+          <span class="arrow">${arrow}</span>
+          <span class="side-work-card">
+            <span class="side-work-kicker">${label}</span>
+            <span class="side-work-title">${targetWork.title}</span>
+            <span class="side-work-name">${targetWork.name}</span>
+          </span>
+        </a>
+      `;
+    }
+
+    sideNavLayer.innerHTML = [
+      prev ? makeSideNav('prev', id - 1, prev) : '',
+      next ? makeSideNav('next', id + 1, next) : ''
+    ].join('');
+
+    let navHTML = '';
+    if (prev) {
+      navHTML += `
+        <a href="work.html?id=${id - 1}" class="nav-btn prev">
+          <span class="nav-direction">← 이전 작품</span>
+          <span class="nav-work-title">${prev.title}</span>
+          <span class="nav-work-name">${prev.name}</span>
+        </a>
+      `;
+    } else {
+      navHTML += `<div class="nav-placeholder"></div>`;
+    }
+
+    if (next) {
+      navHTML += `
+        <a href="work.html?id=${id + 1}" class="nav-btn next">
+          <span class="nav-direction">다음 작품 →</span>
+          <span class="nav-work-title">${next.title}</span>
+          <span class="nav-work-name">${next.name}</span>
+        </a>
+      `;
+    } else {
+      navHTML += `<div class="nav-placeholder"></div>`;
+    }
+
+    nav.innerHTML = navHTML;
+  </script>
+</body>
+</html>
