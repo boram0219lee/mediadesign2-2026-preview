@@ -566,6 +566,64 @@
     }
 
 
+  
+    /* final tag pill style */
+    .viewer-meta {
+      min-height: 30px;
+      margin-bottom: 8px;
+    }
+
+    .meta-summary {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 7px;
+      flex-wrap: wrap;
+      text-align: right;
+    }
+
+    .meta-tag {
+      display: inline-flex !important;
+      align-items: center;
+      justify-content: center;
+      min-height: 24px;
+      padding: 4px 11px 5px;
+      border: 1px solid rgba(116, 122, 126, 0.28);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.76);
+      color: #5F666A;
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.025);
+    }
+
+    .meta-tag::before {
+      content: none !important;
+    }
+
+    /* final bottom hover: keep key color subtle */
+    .bottom-nav-btn:hover {
+      color: inherit !important;
+      transform: translateY(-1px);
+    }
+
+    .bottom-nav-btn:hover .bottom-nav-title {
+      color: var(--accent) !important;
+    }
+
+    .bottom-nav-btn:hover .bottom-nav-arrow {
+      color: var(--accent) !important;
+      opacity: 0.68;
+    }
+
+    .bottom-nav-btn:hover .bottom-nav-name {
+      color: var(--muted) !important;
+      opacity: 0.82;
+    }
+
   </style>
 </head>
 <body>
@@ -615,14 +673,21 @@
 
   <script src="data.js">
     function getViewingGuide(work) {
-      const guide = work.viewingGuide || work.guide || work.interactionGuide || "";
-      const reaction = work.reaction || work.outputGuide || "";
-      let merged = guide;
-      if (reaction && !merged.includes(reaction)) merged = `${merged} ${reaction}`.trim();
-      if (!merged) merged = "작품 화면을 천천히 탐색해보세요.";
+      let guide = String(work.viewingGuide || work.guide || work.interactionGuide || "").trim();
+      const reaction = String(work.reaction || work.outputGuide || "").trim();
+
+      if (reaction && !guide.includes(reaction)) {
+        guide = `${guide} ${reaction}`.trim();
+      }
+
+      if (!guide) guide = "작품 화면을 천천히 탐색해보세요.";
+
       const hasSound = work.sound || (work.tags || []).includes("사운드");
-      if (hasSound && !merged.includes("헤드셋")) merged = `헤드셋을 착용한 뒤, ${merged}`;
-      return merged.replace(/\s+/g, " ").trim();
+      if (hasSound && !guide.includes("헤드셋")) {
+        guide = `헤드셋을 착용한 뒤, ${guide}`;
+      }
+
+      return guide.replace(/\s+/g, " ").trim();
     }
 
   </script>
@@ -659,7 +724,7 @@
       : [work.inputDevice, work.inputAction, work.output].filter(Boolean);
 
     viewerMeta.innerHTML = metaParts.length
-      ? `<div class="meta-summary">${metaParts.map(part => `<span class="meta-tag">#${normalizeTagText(part)}</span>`).join('')}</div>`
+      ? `<div class="meta-summary">${metaParts.map(part => `<span class="meta-tag">${normalizeTagText(part)}</span>`).join('')}</div>`
       : '';
 
     const canvas = document.getElementById('canvas-area');
@@ -807,12 +872,10 @@
       `;
     }
 
-    const guideRows = [];
-    if (work.interactionGuide) guideRows.push(['관람 안내', work.interactionGuide]);
-    if (work.reaction) guideRows.push(['작품 반응', work.reaction]);
+    const guideText = getViewingGuide(work);
 
-    document.getElementById('guide-box').innerHTML = guideRows.length
-      ? `<div class="guide-inner">${guideRows.map(([label, text]) => `<div class="guide-block"><div class="guide-label">${label}</div><div class="guide-text">${text}</div></div>`).join('')}</div>`
+    document.getElementById('guide-box').innerHTML = guideText
+      ? `<div class="guide-inner"><div class="guide-block"><div class="guide-label">관람 안내</div><div class="guide-text">${guideText}</div></div></div>`
       : '';
 
     const nav = document.getElementById('work-nav');
