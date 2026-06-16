@@ -9,7 +9,6 @@ let backDebris = [];
 let midDebris = [];
 let frontDebris = [];
 
-// [추가됨] 사운드 변수에 soundCharge 추가
 let bgm, glowSound, magicSound, soundCharge; 
 let soundTV, soundRadio, soundRing, soundArcade, soundKids, soundRewind;
 
@@ -33,15 +32,14 @@ function preload() {
   glowSound = loadSound('ding.mp3');
   magicSound = loadSound('magic2.mp3');
   
-  // [신규 추가] 준비 상태 사운드
   soundCharge = loadSound('charge.mp3');
   
-  soundTV = loadSound('tv1.mp3');
-  soundRadio = loadSound('radio.mp3');
-  soundRing = loadSound('ring1.mp3');
-  soundArcade = loadSound('arcade.wav'); 
-  soundKids = loadSound('kids2.mp3');
-  soundRewind = loadSound('rewind.mp3');
+  soundTV = loadSound('-tv.mp3');
+  soundRadio = loadSound('-radio1.mp3');
+  soundRing = loadSound('-phone.mp3');
+  soundArcade = loadSound('-gameboy.mp3'); 
+  soundKids = loadSound('-kids2.mp3');
+  soundRewind = loadSound('-cassette.mp3');
 }
 
 function setup() {
@@ -49,16 +47,17 @@ function setup() {
   noStroke(); 
   imageMode(CENTER); 
   
-  if (glowSound) glowSound.setVolume(0.1);
-  if (magicSound) magicSound.setVolume(0.4);
-  if (soundCharge) soundCharge.setVolume(0.1); // 차징 사운드 기본 볼륨
+  if (bgm) bgm.setVolume(0.3)
+  if (glowSound) glowSound.setVolume(0.05);
+  if (magicSound) magicSound.setVolume(0.2);
+  if (soundCharge) soundCharge.setVolume(0.05); 
   
-  if (soundTV) soundTV.setVolume(0.2);
+  if (soundTV) soundTV.setVolume(0.5);
   if (soundRadio) soundRadio.setVolume(0.3);
-  if (soundRing) soundRing.setVolume(0.1);
-  if (soundArcade) soundArcade.setVolume(0.1);
-  if (soundKids) soundKids.setVolume(0.1);
-  if (soundRewind) soundRewind.setVolume(0.1);
+  if (soundRing) soundRing.setVolume(0.3);
+  if (soundArcade) soundArcade.setVolume(0.3);
+  if (soundKids) soundKids.setVolume(0.3);
+  if (soundRewind) soundRewind.setVolume(0.5);
   
   abyssColor = color(10, 15, 10);
   debrisBackCol = color(42, 52, 38);
@@ -66,7 +65,8 @@ function setup() {
   debrisFrontCol = color(15, 20, 15);
   bgDebrisColors = [debrisBackCol, debrisMidCol, debrisFrontCol];
   
-  for (let i = 0; i < 4; i++) {
+  // [수정] 화면에 생성되는 오브젝트 개수를 4개에서 7개로 증가
+  for (let i = 0; i < 7; i++) {
     let x, y;
     let attempts = 0;
     let overlapping = true;
@@ -268,11 +268,11 @@ class SinkingObject {
     this.imgIndex = floor(random(objectImgs.length));
     this.img = objectImgs[this.imgIndex]; 
     
-    this.speed = random(0.2, 0.7); 
+    this.speed = random(0.3, 0.8); 
     this.angle = random(TWO_PI);
     this.rotationSpeed = (0.001); 
     
-    this.targetWidth = 450; 
+    this.targetWidth = 400; 
     if (this.img && this.img.width > 0) {
       let aspectRatio = this.img.height / this.img.width;
       this.targetHeight = this.targetWidth * aspectRatio; 
@@ -283,7 +283,6 @@ class SinkingObject {
     this.glowAlpha = 0; 
     this.interactionParticles = [];
 
-    // [수정됨] 'cooling' 상태 추가
     this.state = 'normal'; 
     this.stateTimer = 0; 
   }
@@ -322,17 +321,13 @@ class SinkingObject {
     let isNear = (d < this.targetWidth / 2 - 10);
     let isCreatureGlowing = (creature.glowFactor > 0.5);
 
-    // ==========================================
-    // [수정됨] 상호작용 기믹 상태 머신
-    // ==========================================
     if (this.state === 'normal' || this.state === 'cooling') {
       if (isNear && isCreatureGlowing) {
         this.state = 'ready';
         
-        // 1. 차징 사운드 시작 (끊겼다가 다시 와도 처음부터 재생)
         if (soundCharge && soundCharge.isLoaded()) {
-          soundCharge.stop(); // 진행 중이던 페이드아웃이나 잔여 재생 중지
-          soundCharge.setVolume(0.5); // 원래 볼륨 복구
+          soundCharge.stop(); 
+          soundCharge.setVolume(0.1); 
           soundCharge.play();
         }
       }
@@ -340,48 +335,38 @@ class SinkingObject {
     
     if (this.state === 'ready') {
       if (!isNear || !isCreatureGlowing) {
-        // 2. 도중에 끊겼을 때 바로 꺼지지 않고 'cooling' 상태로 돌입
         this.state = 'cooling';
         
-        // 사운드 0.5초간 서서히 페이드아웃
         if (soundCharge && soundCharge.isPlaying()) {
           soundCharge.setVolume(0, 0.5);
           setTimeout(() => {
-            // 다른 오브젝트에 의해 재실행되지 않고 완전히 소리가 죽었을 때만 스톱
             if (soundCharge && soundCharge.getVolume() <= 0.01) {
               soundCharge.stop();
             }
           }, 500);
         }
       } else {
-        // 끊기지 않고 진행 중: 현재 수치에서 계속해서 240을 향해 증가
-        // 최대치 240에 3초(180프레임) 만에 도달해야 하므로 프레임당 약 1.33 증가
         this.glowAlpha += (240 / 180);
 
-        // 240 도달 시 반응 상태로!
         if (this.glowAlpha >= 240) {
           this.state = 'activated';
           this.stateTimer = 0;
-          this.glowAlpha = 0; // 발광 즉시 끄기
+          this.glowAlpha = 0; 
 
-          // 차징 사운드 즉각 정지
           if (soundCharge && soundCharge.isPlaying()) {
             soundCharge.stop();
           }
 
           if (magicSound && magicSound.isLoaded()) magicSound.play();
           
+          // [수정] new4 사운드 중복 재생 버그 픽스 (soundKids 제거)
           if (this.imgIndex === 0 && soundTV) soundTV.play();
           else if (this.imgIndex === 1 && soundRadio) soundRadio.play();
           else if (this.imgIndex === 2 && soundRing) soundRing.play();
-          else if (this.imgIndex === 3) {
-            if (soundArcade) soundArcade.play();
-            if (soundKids) soundKids.play();
-          } 
+          else if (this.imgIndex === 3 && soundArcade) soundArcade.play(); 
           else if (this.imgIndex === 4 && soundKids) soundKids.play();
           else if (this.imgIndex === 5 && soundRewind) soundRewind.play();
 
-          // 3. 파티클 더 많이(40개), 더 넓게(-8~8) 퍼지도록 스케일 업
           for(let i = 0; i < 40; i++) {
             this.interactionParticles.push({
               x: 0, y: 0,
@@ -393,12 +378,11 @@ class SinkingObject {
       }
     } 
     else if (this.state === 'cooling') {
-      // 끊긴 상태: 0.5초(30프레임) 동안 240기준 0까지 서서히 감소 (프레임당 8씩 감소)
       this.glowAlpha -= 8;
       
       if (this.glowAlpha <= 0) {
         this.glowAlpha = 0;
-        this.state = 'normal'; // 완전히 식으면 기본 상태로 리셋
+        this.state = 'normal'; 
       }
     }
     else if (this.state === 'activated') {
@@ -415,16 +399,14 @@ class SinkingObject {
       }
     }
 
-    // 파티클 물리 업데이트 (마찰력 적용)
     for (let i = this.interactionParticles.length - 1; i >= 0; i--) {
       let p = this.interactionParticles[i];
       p.x += p.vx; 
       p.y += p.vy; 
       
-      // 마찰 효과: 터지고 나서 서서히 느려짐
       p.vx *= 0.95; 
       p.vy *= 0.95; 
-      p.life -= 4; // 더 여운 있게 남도록 생명력 감소폭 조절
+      p.life -= 4; 
       
       if (p.life <= 0) this.interactionParticles.splice(i, 1);
     }
@@ -457,18 +439,17 @@ class SinkingObject {
     } 
     else if (this.state === 'fading') {
       currentBright = map(this.stateTimer, 0, 120, 100, 20);
-      currentSaturate = map(this.stateTimer, 0, 120, 100, 40);
+      currentSaturate = map(this.stateTimer, 0, 120, 100, 20);
     } 
     else if (this.state === 'exhausted') {
       currentBright = 20;
-      currentSaturate = 40;
+      currentSaturate = 20;
     }
 
     drawingContext.filter = `brightness(${currentBright}%) saturate(${currentSaturate}%)`;
     image(this.img, 0, 0, this.targetWidth, this.targetHeight);
     pop(); 
 
-    // 노란색 오버레이 빛 효과
     if (this.glowAlpha > 0) {
       push();
       rotate(this.angle);
@@ -478,7 +459,6 @@ class SinkingObject {
       pop();
     }
     
-    // 사방으로 퍼지는 금빛 파티클 렌더링
     if (this.interactionParticles.length > 0) {
       drawingContext.shadowBlur = 10;
       drawingContext.shadowColor = color(255, 234, 100);
