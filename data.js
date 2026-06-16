@@ -21,7 +21,7 @@ const works = [
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/us157202/full/ugjGrkj89",
     "thumbnailOriginal": "https://drive.google.com/open?id=1aBPQDJtuyaXTn8gptOEVENW1CnZEKXKL",
-    "cropTop": 72
+    "cropTop": 56
   },
   {
     "name": "오성연",
