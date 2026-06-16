@@ -565,9 +565,9 @@ const works = [
     "title": "이불 속은 위험해",
     "sense": "보들보들하고 포근한 이불 속",
     "description": "다들 보들보들하고 포근한 이불 속에서 빠져나오지 못했던 경험이 있죠. 이 크리처는 자신을 만지는 관람자를 반갑게 맞이하는 존재로, 처음에는 가까이 다가오다 어느 순간 조용히 곁을 에워쌉니다. 마우스로 크리처의 온기를 느끼다 보면 어느새 그 포근함 속에 감싸이고, 나른한 졸음이 밀려옵니다. 키보드를 통해 잠깐 벗어나 볼 수도 있지만, 과연 빠져나올 수 있을지는 모릅니다.",
-    "link": "works/kim-taeri-blanket/index.html",
+    "link": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "localLink": "works/kim-taeri-blanket/index.html",
-    "displayMode": "local",
+    "displayMode": "embed",
     "thumbnail": "thumbnails/s20251167.jpg",
     "inputDevice": "마우스·키보드 입력",
     "inputAction": "움직임·키조작",
@@ -580,5 +580,6 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC"
+     "cropTop": 72,
   }
 ];
