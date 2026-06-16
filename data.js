@@ -21,7 +21,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
-    "cropTop": 72,
+    "cropTop": 58,
     "tags": [
       "마우스",
       "키보드"
@@ -37,7 +37,7 @@ const works = [
     "description": "이 작품은 비 내리는 신비로운 숲의 풍경과 그 속을 유영하는 생명체들의 움직임을 시각화한 인터랙티브 미디어 아트입니다. 마우스의 움직임을 부드럽게 추적하는 요정은 관람자의 가상 아바타가 되어 화면 속 자연환경과 끊임없이 상호작용합니다. 화면을 클릭할 때마다 실시간으로 변하는 날씨는 빛내림 효과와 창문에 맺히는 물방울, 현실적인 번개 연출을 통해 몽환적이면서도 깊이감 있는 몰입감을 선사합니다. 군집 알고리즘을 기반으로 구현된 새, 나비, 반딧불이 등의 생명체들은 요정과의 거리에 따라 반응하며 빛 파티클을 남기고 생동감 넘치게 화면을 가득 채웁니다. 이 작품은 자연의 고요함과 생명력을 유기적으로 연결하여, 관람객에게 환상 동화 속에 들어온 듯한 영롱하고 입체적인 시각 경험을 제공합니다.",
     "link": "https://editor.p5js.org/osy1027a/full/G18ncUOj8",
     "localLink": "works/oh-seongyeon-rainforest/index.html",
-    "displayMode": "embed",
+    "displayMode": "local",
     "thumbnail": "thumbnails/s20253217.jpg",
     "inputDevice": "마우스이동",
     "inputAction": "마우스클릭",
@@ -446,7 +446,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
     "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ",
-    "cropTop": 72,
+    "cropTop": 58,
     "tags": [
       "마우스"
     ],
@@ -557,7 +557,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/yewon1189/full/vGogxsuRU",
     "thumbnailOriginal": "https://drive.google.com/open?id=1piDtNLiSgTS32px2jul8OjRu6JDRHtGK",
-    "cropTop": 72,
+    "cropTop": 58,
     "tags": [
       "마우스"
     ],
