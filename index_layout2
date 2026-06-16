@@ -249,7 +249,7 @@
       const item = document.createElement('div');
       item.className = 'work-item';
       item.onclick = () => {
-        window.location.href = `work.html?id=${index}`;
+        window.location.href = `work_layout2.html?id=${index}`;
       };
 
       item.innerHTML = `
