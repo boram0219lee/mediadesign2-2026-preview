@@ -579,7 +579,7 @@ const works = [
     "rawInput": "#마우스이동 #키보드",
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
-    "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC"
+    "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
      "cropTop": 72
   }
 ];
