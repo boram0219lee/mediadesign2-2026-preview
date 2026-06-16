@@ -470,6 +470,7 @@ const works = [
     "link": "https://editor.p5js.org/ne.341358/full/Qtyoy1JyP",
     "localLink": "works/son-hyewon-glass/index.html",
     "displayMode": "embed",
+    "cropTop": 56
     "thumbnail": "thumbnails/s20251179.jpg",
     "inputDevice": "마우스 입력",
     "inputAction": "클릭·움직임",
