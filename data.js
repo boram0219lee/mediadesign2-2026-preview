@@ -532,7 +532,7 @@ const works = [
     "thumbnailOriginal": "https://drive.google.com/open?id=1hK03o9ZhlXP7ammrL6VUwTGQ5VuTRaeJ"
   },
   {
-    "name": "박서진",
+    "name": "박서진(24)",
     "studentId": "20241660",
     "folder": "park-seojin-pending",
     "title": "공원의 악보",
