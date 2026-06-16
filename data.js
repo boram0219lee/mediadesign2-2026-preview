@@ -21,7 +21,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
-    "cropTop": 58,
+    "cropTop": 57,
     "tags": [
       "마우스",
       "키보드"
