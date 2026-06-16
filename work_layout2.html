@@ -53,7 +53,7 @@
       height: 40px;
       display: inline-flex;
       align-items: center;
-      justify-content: center;
+      justify-content: flex-start;
       color: #343431;
       text-decoration: none;
       background: transparent;
@@ -66,11 +66,12 @@
     .home-btn svg { width: 26px; height: 26px; display: block; }
 
     .home-icon {
-      width: 28px;
-      height: 28px;
+      width: 32px;
+      height: 32px;
       color: #6F767B;
       stroke-linecap: round;
       transition: color 0.2s ease;
+      margin-left: -6px;
     }
 
     .home-btn:hover .home-icon {
@@ -462,8 +463,8 @@
     <div class="nav-inner">
       <a href="index_layout2.html" class="home-btn" aria-label="목록으로" title="목록으로">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="home-icon">
-          <path d="M5.6 10.4L12 4.8L18.4 10.4V18.2C18.4 19.2 17.6 20 16.6 20H7.4C6.4 20 5.6 19.2 5.6 18.2V10.4Z" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M9.1 16.6H14.9" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"/>
+          <path d="M4.7 10.2L12 4.1L19.3 10.2V18.1C19.3 19.3 18.4 20.2 17.2 20.2H6.8C5.6 20.2 4.7 19.3 4.7 18.1V10.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.7 16.7H15.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
         </svg>
       </a>
       <span class="nav-counter" id="nav-counter"></span>
