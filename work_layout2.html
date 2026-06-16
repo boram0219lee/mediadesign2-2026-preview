@@ -624,6 +624,24 @@
       opacity: 0.82;
     }
 
+  
+    /* current-file based embed fit fix */
+    .embed-wrap {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .embed-wrap iframe {
+      position: absolute;
+      display: block;
+      border: none;
+      max-width: none;
+      overflow: hidden;
+      background: transparent;
+    }
+
   </style>
 </head>
 <body>
@@ -829,29 +847,42 @@
 
       const embedW = work.canvasWidth || DEFAULT_CANVAS_W;
       const embedH = work.canvasHeight || DEFAULT_CANVAS_H;
-      embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
-      embedWrap.style.overflow = 'hidden';
-
       const cropTop = Number(work.cropTop || 0);
       const scrollbarHide = Number(work.scrollbarHide || 32);
 
+      embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
+      embedWrap.style.overflow = 'hidden';
+
       iframe.setAttribute('scrolling', 'no');
+      iframe.style.position = 'absolute';
       iframe.style.display = 'block';
       iframe.style.border = 'none';
+      iframe.style.maxWidth = 'none';
       iframe.style.overflow = 'hidden';
       iframe.style.transformOrigin = 'top left';
 
-      if (cropTop > 0) {
-        iframe.style.width = `calc(100% + ${scrollbarHide}px)`;
-        iframe.style.maxWidth = 'none';
-        iframe.style.height = `calc(100% + ${cropTop + scrollbarHide}px)`;
-        iframe.style.transform = `translateY(-${cropTop}px)`;
-      } else {
-        iframe.style.width = '100%';
-        iframe.style.maxWidth = '100%';
-        iframe.style.height = '100%';
-        iframe.style.transform = 'none';
+      function fitEmbedIframe() {
+        const scale = Math.min(
+          embedWrap.clientWidth / embedW,
+          embedWrap.clientHeight / embedH
+        );
+
+        const scaledW = embedW * scale;
+        const scaledH = embedH * scale;
+
+        iframe.style.width = `${embedW}px`;
+        iframe.style.height = `${embedH + cropTop + scrollbarHide}px`;
+        iframe.style.left = `${(embedWrap.clientWidth - scaledW) / 2}px`;
+        iframe.style.top = `${(embedWrap.clientHeight - scaledH) / 2 - cropTop * scale}px`;
+        iframe.style.transform = `scale(${scale})`;
       }
+
+      window.addEventListener('resize', fitEmbedIframe);
+      iframe.addEventListener('load', () => {
+        fitEmbedIframe();
+        setTimeout(fitEmbedIframe, 250);
+      });
+      setTimeout(fitEmbedIframe, 100);
     } else {
       const icon = (work.rawInput || '').includes('웹캠') ? '📷' : (work.rawInput || '').includes('기타') ? '🎸' : '↗';
       const title = (work.rawInput || '').includes('웹캠')
