@@ -447,7 +447,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
     "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ",
-    "cropTop": 0,
+    "cropTop": 40,
     "tags": [
       "마우스"
     ],
