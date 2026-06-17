@@ -406,7 +406,7 @@ const works = [
     "displayMode": "embed",
     "canvasWidth": 1200,
     "canvasHeight": 600,
-    "cropTop": 72,
+    "cropTop": 0,
     "thumbnail": "thumbnails/s20251179.jpg",
     "inputDevice": "마우스이동",
     "inputAction": "마우스클릭",
