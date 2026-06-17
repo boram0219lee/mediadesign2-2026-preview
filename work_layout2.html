@@ -77,7 +77,17 @@
     .home-btn:hover .home-icon {
       color: var(--accent);
     }
+.bottom-nav-label {
+  font-size: 11px;
+  line-height: 1.35;
+  color: var(--muted);
+  font-weight: 500;
+}
 
+.bottom-nav-btn:hover .bottom-nav-label {
+  color: var(--muted);
+  opacity: 0.82;
+}
 .nav-counter {
   margin-left: auto;
   font-size: 12px;
@@ -633,7 +643,7 @@
 
   <nav>
     <div class="nav-inner">
-      <a href="index_layout2.html" class="home-btn" aria-label="목록으로" title="목록으로">
+      <a href="index_layout2.html" class="home-btn" aria-label="홈으로" title="홈으로">
         <svg viewBox="0 0 24 24" aria-hidden="true" class="home-icon">
           <path d="M4.7 10.2L12 4.1L19.3 10.2V18.1C19.3 19.3 18.4 20.2 17.2 20.2H6.8C5.6 20.2 4.7 19.3 4.7 18.1V10.2Z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M8.7 16.7H15.3" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
@@ -897,33 +907,35 @@ bottomWorkNav.style.maxWidth = `${CANVAS_W}px`;
 
     const bottomNav = document.getElementById('bottom-work-nav');
 
-    function makeBottomNav(direction, targetIndex, targetWork) {
-      const isPrev = direction === 'prev';
-      const label = isPrev ? '이전 작품' : '다음 작품';
-      const arrow = isPrev ? '‹' : '›';
+function makeBottomNav(direction, targetIndex, targetWork) {
+  const isPrev = direction === 'prev';
+  const label = isPrev ? '이전 작품' : '다음 작품';
+  const arrow = isPrev ? '‹' : '›';
 
-      if (isPrev) {
-        return `
-          <a href="work_layout2.html?id=${targetIndex}" class="bottom-nav-btn prev" aria-label="${label}: ${targetWork.title}">
-            <span class="bottom-nav-arrow">${arrow}</span>
-            <span class="bottom-nav-text">
-              <span class="bottom-nav-title">${targetWork.title}</span>
-              <span class="bottom-nav-name">${targetWork.name}</span>
-            </span>
-          </a>
-        `;
-      }
+  if (isPrev) {
+    return `
+      <a href="work_layout2.html?id=${targetIndex}" class="bottom-nav-btn prev" aria-label="${label}: ${targetWork.title}">
+        <span class="bottom-nav-arrow">${arrow}</span>
+        <span class="bottom-nav-text">
+          <span class="bottom-nav-label">${label}</span>
+          <span class="bottom-nav-title">${targetWork.title}</span>
+          <span class="bottom-nav-name">${targetWork.name}</span>
+        </span>
+      </a>
+    `;
+  }
 
-      return `
-        <a href="work_layout2.html?id=${targetIndex}" class="bottom-nav-btn next" aria-label="${label}: ${targetWork.title}">
-          <span class="bottom-nav-text">
-            <span class="bottom-nav-title">${targetWork.title}</span>
-            <span class="bottom-nav-name">${targetWork.name}</span>
-          </span>
-          <span class="bottom-nav-arrow">${arrow}</span>
-        </a>
-      `;
-    }
+  return `
+    <a href="work_layout2.html?id=${targetIndex}" class="bottom-nav-btn next" aria-label="${label}: ${targetWork.title}">
+      <span class="bottom-nav-text">
+        <span class="bottom-nav-label">${label}</span>
+        <span class="bottom-nav-title">${targetWork.title}</span>
+        <span class="bottom-nav-name">${targetWork.name}</span>
+      </span>
+      <span class="bottom-nav-arrow">${arrow}</span>
+    </a>
+  `;
+}
 
     bottomNav.innerHTML = [
       prev ? makeBottomNav('prev', id - 1, prev) : '<div class="bottom-nav-placeholder"></div>',
