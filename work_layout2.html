@@ -965,17 +965,20 @@ function makeBottomNav(direction, targetIndex, targetWork) {
     nav.innerHTML = navHTML;
   
     function getViewingGuide(work) {
-      const guide = work.viewingGuide || work.guide || work.interactionGuide || "";
-      const reaction = work.reaction || work.outputGuide || "";
-      let merged = guide;
-      if (reaction && !merged.includes(reaction)) merged = `${merged} ${reaction}`.trim();
-      if (!merged) merged = "작품 화면을 천천히 탐색해보세요.";
-      const hasSound = work.sound || (work.tags || []).includes("사운드");
-      if (hasSound && !merged.includes("헤드셋")) merged = `헤드셋을 착용한 뒤, ${merged}`;
-return merged
-  .replace(/[ \t]+/g, " ")
-  .replace(/\n\s+/g, "\n")
-  .trim();    }
+  let guide = work.viewingGuide || work.guide || work.interactionGuide || "";
+
+  if (!guide) guide = "작품 화면을 천천히 탐색해보세요.";
+
+  const hasSound = work.sound || (work.tags || []).includes("사운드");
+  if (hasSound && !guide.includes("헤드셋")) {
+    guide = `헤드셋을 착용한 뒤, ${guide}`;
+  }
+
+  return guide
+    .replace(/[ \t]+/g, " ")
+    .replace(/\n\s+/g, "\n")
+    .trim();
+}
 
   </script>
 </body>
