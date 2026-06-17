@@ -257,7 +257,7 @@
   font-size: 13px;
   line-height: 1.35;
   font-weight: 700;
-  color: #252522;
+  color:rgba(79, 79, 73, 0.82);
   word-break: keep-all;
 }
 
@@ -560,9 +560,9 @@
 }
 
 .bottom-nav-label {
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.3;
-  color: rgba(79, 79, 73, 0.52);
+  color: rgba(79, 79, 73, 0.58);
   font-weight: 400;
   margin-bottom: 4px;
 }
@@ -612,7 +612,42 @@
   opacity: 0.72;
   transform: none !important;
 }
+/* final tag pill style */
+.viewer-meta {
+  min-height: 30px;
+  margin-bottom: 8px;
+}
 
+.meta-summary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 7px;
+  flex-wrap: wrap;
+  text-align: right;
+}
+
+.meta-tag {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  min-height: 24px;
+  padding: 4px 11px 5px;
+  border: 1px solid rgba(116, 122, 126, 0.28);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.76);
+  color: #5F666A;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  white-space: nowrap;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.025);
+}
+
+.meta-tag::before {
+  content: none !important;
+}
     
   </style>
 </head>
