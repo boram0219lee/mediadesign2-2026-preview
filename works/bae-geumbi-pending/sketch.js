@@ -1,4 +1,4 @@
-// ─── Web Serial API ───────────────────────────────────────────
+// ─── Web Serial API 변수 설정 ───────────────────────────────────────────
 let serialPort = null;
 let serialReader = null;
 let serialBuffer = '';
@@ -15,7 +15,7 @@ let nextNoteTime = 0;
 let currentStep = 0;
 const TEMPO = 128;
 let bassEnergy = 0;
-let midEnergy = 0;
+let midEnergy  = 0;
 
 // Room environments
 let room1Dots = [];
@@ -142,6 +142,9 @@ function draw() {
 
   background(25, 25, 25);
 
+  // [중요] 패치 파트: 시리얼 수신 처리를 draw 루프 내에서 실시간 체크하여 무한 루프 오진 원천 차단
+  checkSerialBuffer();
+
   push();
   translate(offsetX, offsetY);
   scale(renderScale);
@@ -158,7 +161,7 @@ function draw() {
     background(250, 248, 240);
     drawRoom1Environment();
   } else if (currentRoom === 2) {
-    background(246, 242, 232); // 포스터의 부드러운 아이보리 스킨 톤 배경
+    background(246, 242, 232); 
     drawRoom2Environment();
     updateRoom2();
   } else if (currentRoom === 3) {
@@ -187,7 +190,7 @@ function drawVariableRings(cx, cy, totalR, ringDefs, radiusScale, isBg) {
   for (let rd of ringDefs) {
     if (curR <= 0) break;
     let col = color(rd.c);
-    if (isBg) col.setAlpha(70); // 사형의 피드백 반영: 배경 그레이 원 좀 더 진하게 수정
+    if (isBg) col.setAlpha(70); 
     fill(col);
     ellipse(cx, cy, curR * 2, curR * 2);
     curR -= rd.t * scale;
@@ -337,7 +340,6 @@ function mousePressed() {
       }
     }
   } else {
-    // 사형의 요청에 따라 화면상의 뒤로가기 마우스 트리거를 삭제했습니다.
     playRoomSound(currentRoom);
 
     if (currentRoom === 1) {
@@ -397,7 +399,7 @@ function initRooms() {
   r2_burstT = 0;
 }
 
-// ─── ROOM 1 (스케일업 및 요소 확장) ───────────────────────────────
+// ─── ROOM 1 ──────────────────────────────────────────────────
 function createRoom1Environment() {
   room1Dots = [];
   let sc = createVector(V_WIDTH/2, V_HEIGHT/2);
@@ -407,7 +409,7 @@ function createRoom1Environment() {
       homeX:sc.x+cos(a)*r, homeY:sc.y+sin(a)*r, 
       x:sc.x+cos(a)*r, y:sc.y+sin(a)*r, 
       vx:0, vy:0, seed:random(10000), 
-      size:random(18, 42) // 사형의 피드백 반영: 요소들 크기 대폭 상향 수정
+      size:random(18, 42)
     });
   }
 }
@@ -423,18 +425,17 @@ function drawRoom1Environment() {
   pop();
 }
 
-// ─── ROOM 2 (완전 비비드 색감 + 원뿔 쐐기 구조 전면 개편) ───
+// ─── ROOM 2 ──────────────────────────────────────────────────
 function createRoom2Environment() {
   room2Tubes = [];
-  // 강렬하고 쨍한 포스터 고유의 완전 원색 비비드 컬러칩 추출 세팅
   let vividPosterColors = [
-    {bg: '#ff1a2b', cap: ['#ffffff', '#ff1a2b']}, // 울트라 레드
-    {bg: '#ffb300', cap: ['#1a335c', '#ffb300']}, // 브라이트 골드 옐로우
-    {bg: '#3aa6ff', cap: ['#0033cc', '#3aa6ff']}, // 네온 스카이블루
-    {bg: '#00cc44', cap: ['#003300', '#00cc44']}, // 비비드 그린
-    {bg: '#a64dff', cap: ['#330066', '#a64dff']}, // 일렉트릭 퍼플
-    {bg: '#ff4da6', cap: ['#1a1a1a', '#ff4da6']}, // 핫 핑크
-    {bg: '#0f2042', cap: ['#ffffff', '#0f2042']}  // 오리지널 다크네이비
+    {bg: '#ff1a2b', cap: ['#ffffff', '#ff1a2b']}, 
+    {bg: '#ffb300', cap: ['#1a335c', '#ffb300']}, 
+    {bg: '#3aa6ff', cap: ['#0033cc', '#3aa6ff']}, 
+    {bg: '#00cc44', cap: ['#003300', '#00cc44']}, 
+    {bg: '#a64dff', cap: ['#330066', '#a64dff']}, 
+    {bg: '#ff4da6', cap: ['#1a1a1a', '#ff4da6']}, 
+    {bg: '#0f2042', cap: ['#ffffff', '#0f2042']}  
   ];
 
   let numTubes = 38;
@@ -444,7 +445,7 @@ function createRoom2Environment() {
     room2Tubes.push({
       angle: angle,
       baseLength: random(250, 520), 
-      thick: random(25, 60), // 원뿔 기저면 두께 스케일업
+      thick: random(25, 60), 
       colorData: config,
       speedPhase: random(100)
     });
@@ -456,7 +457,6 @@ function drawRoom2Environment() {
   let cy = V_HEIGHT / 2;
 
   r2_burstT = lerp(r2_burstT, 0, 0.06);
-
   let bassPulse = map(bassEnergy, 0, 255, 0.95, 1.18);
   let midPulse = map(midEnergy, 0, 255, 0, 35);
 
@@ -465,11 +465,9 @@ function drawRoom2Environment() {
     let rhythm = sin(frameCount * 0.07 + t.speedPhase) * 18;
     let currentLen = (t.baseLength * bassPulse) + rhythm + (r2_burstT * 420);
     
-    // 외곽 원형 캡의 중심 좌표
     let endX = cx + cos(t.angle) * currentLen;
     let endY = cy + sin(t.angle) * currentLen;
 
-    // 양 꼭짓점 법선 벡터 계산 (중앙점에서는 폭이 0이 되고 바깥으로 갈수록 벌어지는 완전한 원뿔 구조)
     let perpAngle = t.angle + HALF_PI;
     let halfThick = t.thick * 0.5;
     
@@ -478,12 +476,10 @@ function drawRoom2Environment() {
     let x3 = endX - cos(perpAngle) * halfThick;
     let y3 = endY - sin(perpAngle) * halfThick;
 
-    // 중앙 꼭짓점(cx, cy) 하나로 완벽하게 수렴하는 삼각형 쐐기 렌더링
     noStroke();
     fill(t.colorData.bg);
     triangle(cx, cy, x2, y2, x3, y3);
 
-    // 원형 캡 그래픽 디테일 맵핑
     push();
     translate(endX, endY);
     rotate(t.angle);
@@ -494,7 +490,6 @@ function drawRoom2Environment() {
     pop();
   }
 
-  // 완벽한 한 점 집중을 위한 마감 미니 도트 코어
   fill(20);
   ellipse(cx, cy, 12, 12);
   pop();
@@ -556,7 +551,7 @@ function drawRoom3Tile(x, y, size, type) {
   pop();
 }
 
-// ─── ROOM 4 (스케일업 및 요소 확장) ───────────────────────────────
+// ─── ROOM 4 ──────────────────────────────────────────────────
 function createRoom4Environment() {
   room4Particles = []; let cols = 75, rows = 45; let sx = V_WIDTH / cols, sy = V_HEIGHT / rows;
   for (let i = 0; i < cols; i++) { 
@@ -580,7 +575,7 @@ function drawRoom4Environment() {
     let ang = atan2(dy, dx);
     p.x = lerp(p.x, p.homeX + cos(ang) * ps, 0.14); p.y = lerp(p.y, p.homeY + sin(ang) * ps, 0.14);
     fill(p.col); 
-    rect(p.x, p.y, 5, 5); // 사형의 피드백 반영: 입자 개별 픽셀 크기 업 스케일
+    rect(p.x, p.y, 5, 5); 
   }
   pop();
 }
@@ -592,16 +587,16 @@ function updateRoom4() {
   if (c4_state === 'COWER') { c4_timer--; if (c4_timer <= 0) c4_state = 'WANDER'; }
   let rx = c4_pos.x, ry = c4_pos.y; if (c4_state === 'COWER') { rx += random(-5, 5); ry += random(-5, 5); }
   fill(15); noStroke(); 
-  ellipse(rx, ry, 65, 65); // 사형의 피드백 반영: 중앙 에이전트 본체 크기 스케일업
+  ellipse(rx, ry, 65, 65); 
 }
 
-// ─── ROOM 5 (스케일업 및 요소 확장) ───────────────────────────────
+// ─── ROOM 5 ──────────────────────────────────────────────────
 function createRoom5Environment() {
   room5Bokeh = []; let palette = [color(200, 230, 50, 90), color(255, 220, 0, 90), color(50, 180, 150, 90)];
   for (let i = 0; i < 110; i++) { 
     room5Bokeh.push({ 
       x: random(V_WIDTH), y: random(V_HEIGHT), 
-      size: random(40, 110), // 사형의 피드백 반영: 부유 보케 입자 반경 확대
+      size: random(40, 110), 
       col: random(palette), seed: random(5000), speed: random(0.002, 0.006) 
     }); 
   }
@@ -625,38 +620,58 @@ function updateRoom5() {
   let my = (mouseY - offsetY) / renderScale;
   c5_pos.x = lerp(c5_pos.x, mx, 0.02); c5_pos.y = lerp(c5_pos.y, my, 0.02);
   push(); translate(c5_pos.x + sin(frameCount * 0.03) * 40, c5_pos.y + cos(frameCount * 0.025) * 30); noStroke(); 
-  fill(255, 230, 100, 180); ellipse(0, 0, 85, 85); // 사형의 피드백 반영: 메인 구체 비주얼 스케일업
+  fill(255, 230, 100, 180); ellipse(0, 0, 85, 85); 
   fill(255, 255, 255, 200); ellipse(0, 0, 40, 40); 
   pop();
 }
 
-// ─── WEB SERIAL API CONTROL ───────────────────────────────────
+// ─── WEB SERIAL API CONTROL (무한루프 에러 완전 우회 비동기 패치) ───────────────
 async function connectSerial() {
   try {
     serialPort = await navigator.serial.requestPort();
     await serialPort.open({ baudRate: 9600 });
     serialConnected = true;
-    readSerial();
+    
+    // [핵심 변경] while(true) 리더 대신 스트림 리더를 열어두고 청크가 들어올 때만 비동기 트리거
+    const textDecoder = new TextDecoderStream();
+    serialPort.readable.pipeTo(textDecoder.writable);
+    serialReader = textDecoder.readable.getReader();
+    
+    readSerialStream();
   } catch (e) {
     console.warn('Serial connection failed:', e);
   }
 }
 
-async function readSerial() {
-  const decoder = new TextDecoderStream();
-  serialPort.readable.pipeTo(decoder.writable);
-  serialReader = decoder.readable.getReader();
+// 루프 안전 모드에 걸리지 않는 스트림 전용 핸들러 (재귀 비동기 호출)
+async function readSerialStream() {
   try {
-    while (true) {
-      const { value, done } = await serialReader.read();
-      if (done) break;
+    if (!serialConnected) return;
+    const { value, done } = await serialReader.read();
+    if (done) return;
+    
+    if (value) {
       serialBuffer += value;
-      let lines = serialBuffer.split('\n');
-      serialBuffer = lines.pop();
-      for (let line of lines) { handleSerialLine(line.trim()); }
     }
+    // 루프를 돌리지 않고 다음 이벤트 청크가 올 때까지 제어권을 즉시 반환
+    setTimeout(readSerialStream, 2); 
   } catch (e) {
     console.warn('Serial read error:', e);
+  }
+}
+
+// p5.js의 draw() 함수 내부에서 매 프레임 안전하게 호출되어 버퍼를 분할 처리
+function checkSerialBuffer() {
+  if (!serialConnected || !serialBuffer.includes('\n')) return;
+  
+  let lines = serialBuffer.split('\n');
+  serialBuffer = lines.pop(); // 아직 덜 끝난 마지막 라인은 남겨두기
+  
+  for (let line of lines) {
+    let cleanLine = line.trim();
+    if (cleanLine.length > 0) {
+      handleSerialLine(cleanLine);
+    }
   }
 }
 
