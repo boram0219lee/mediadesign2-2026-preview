@@ -972,8 +972,10 @@ function makeBottomNav(direction, targetIndex, targetWork) {
       if (!merged) merged = "작품 화면을 천천히 탐색해보세요.";
       const hasSound = work.sound || (work.tags || []).includes("사운드");
       if (hasSound && !merged.includes("헤드셋")) merged = `헤드셋을 착용한 뒤, ${merged}`;
-      return merged.replace(/\s+/g, " ").trim();
-    }
+return merged
+  .replace(/[ \t]+/g, " ")
+  .replace(/\n\s+/g, "\n")
+  .trim();    }
 
   </script>
 </body>
