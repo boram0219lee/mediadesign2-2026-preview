@@ -705,3 +705,43 @@ const works = [
     "viewingGuide": "헤드셋을 착용한 뒤, 화면을 마우스로 클릭해보세요. 캐릭터가 반응하고 행동합니다"
   }
 ];
+const exhibitionOrder = [
+"정유민",
+"허유민",
+"이서현",
+"지성혁",
+"정혜윤",
+"안정원",
+"최예원",
+"배금비",
+"강다은",
+"김시우",
+"박서진",
+"임윤채",
+"신자운",
+"오성연",
+"성수연",
+"김윤아",
+"박예진",
+"최지수",
+"허찬우",
+"손혜원",
+"이다해",
+"김태리",
+"이하은",
+"이예림",
+"나이린아웅"
+];
+
+works.sort((a, b) => {
+const cleanName = (name) => String(name).replace("(24)", "").trim();
+
+const aIndex = exhibitionOrder.indexOf(cleanName(a.name));
+const bIndex = exhibitionOrder.indexOf(cleanName(b.name));
+
+const safeA = aIndex === -1 ? 999 : aIndex;
+const safeB = bIndex === -1 ? 999 : bIndex;
+
+return safeA - safeB;
+});
+
