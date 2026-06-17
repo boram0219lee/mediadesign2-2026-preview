@@ -76,17 +76,7 @@
     .home-btn:hover .home-icon {
       color: var(--accent);
     }
-.bottom-nav-label {
-  font-size: 11px;
-  line-height: 1.35;
-  color: var(--muted);
-  font-weight: 500;
-}
 
-.bottom-nav-btn:hover .bottom-nav-label {
-  color: var(--muted);
-  opacity: 0.82;
-}
 .nav-counter {
   margin-left: auto;
   font-size: 12px;
@@ -546,126 +536,84 @@
     .tag-chip::before {
       content: none !important;
     }
+/* final bottom navigation */
+.bottom-work-nav {
+  width: 100%;
+  max-width: 1280px;
+  margin: 14px auto 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 24px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  padding-top: 14px;
+}
 
+.bottom-nav-btn,
+.bottom-home-btn {
+  color: rgba(79, 79, 73, 0.72);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  transition: color 0.18s ease, opacity 0.18s ease;
+}
 
-    /* refined bottom navigation hover */
-    .bottom-nav-btn {
-      transition: color 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
-    }
+.bottom-nav-label {
+  font-size: 10px;
+  line-height: 1.3;
+  color: rgba(79, 79, 73, 0.52);
+  font-weight: 400;
+  margin-bottom: 4px;
+}
 
-    .bottom-nav-title,
-    .bottom-nav-name,
-    .bottom-nav-arrow {
-      transition: color 0.18s ease, opacity 0.18s ease, transform 0.18s ease;
-    }
+.bottom-nav-title {
+  font-size: 14px;
+  line-height: 1.35;
+  font-weight: 600;
+  color: #1A1A17;
+  word-break: keep-all;
+}
 
-    .bottom-nav-btn:hover {
-      color: inherit;
-      transform: translateY(-1px);
-    }
+.bottom-nav-name {
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(79, 79, 73, 0.56);
+}
 
-    .bottom-nav-btn:hover .bottom-nav-title {
-      color: var(--accent);
-    }
+.bottom-nav-arrow {
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(17, 17, 17, 0.58);
+  flex: 0 0 auto;
+}
 
-    .bottom-nav-btn:hover .bottom-nav-arrow {
-      color: var(--accent);
-      opacity: 0.72;
-    }
-
-    .bottom-nav-btn:hover .bottom-nav-name {
-      color: var(--muted);
-      opacity: 0.82;
-    }
-
-    .bottom-nav-btn:hover .bottom-nav-arrow:first-child {
-      transform: translateX(-2px);
-    }
-
-    .bottom-nav-btn.next:hover .bottom-nav-arrow,
-    .bottom-nav-btn[aria-label="다음 작품"]:hover .bottom-nav-arrow {
-      transform: translateX(2px);
-    }
-
-
-  
-    /* final tag pill style */
-    .viewer-meta {
-      min-height: 30px;
-      margin-bottom: 8px;
-    }
-
-    .meta-summary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: flex-end;
-      gap: 7px;
-      flex-wrap: wrap;
-      text-align: right;
-    }
-
-    .meta-tag {
-      display: inline-flex !important;
-      align-items: center;
-      justify-content: center;
-      min-height: 24px;
-      padding: 4px 11px 5px;
-      border: 1px solid rgba(116, 122, 126, 0.28);
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.76);
-      color: #5F666A;
-      font-size: 11px;
-      font-weight: 600;
-      line-height: 1;
-      letter-spacing: -0.015em;
-      white-space: nowrap;
-      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.025);
-    }
-
-    .meta-tag::before {
-      content: none !important;
-    }
-
-    /* final bottom hover: keep key color subtle */
-    .bottom-nav-btn:hover {
-      color: inherit !important;
-      transform: translateY(-1px);
-    }
-
-    .bottom-nav-btn:hover .bottom-nav-title {
-      color: var(--accent) !important;
-    }
-
-    .bottom-nav-btn:hover .bottom-nav-arrow {
-      color: var(--accent) !important;
-      opacity: 0.68;
-    }
-
-    .bottom-nav-btn:hover .bottom-nav-name {
-      color: var(--muted) !important;
-      opacity: 0.82;
-    }
-.bottom-nav-btn:hover {
-  color: inherit !important;
-  transform: translateY(-1px);
+.bottom-nav-btn:hover,
+.bottom-home-btn:hover {
+  color: #111111;
+  transform: none !important;
 }
 
 .bottom-nav-btn:hover .bottom-nav-label {
-  color: rgba(79, 79, 73, 0.78);
+  color: rgba(79, 79, 73, 0.66);
 }
 
 .bottom-nav-btn:hover .bottom-nav-title {
-  color: #111111 !important;
-}
-
-.bottom-nav-btn:hover .bottom-nav-arrow {
-  color: #111111 !important;
-  opacity: 0.78;
+  color: #111111;
 }
 
 .bottom-nav-btn:hover .bottom-nav-name {
-  color: rgba(79, 79, 73, 0.82) !important;
+  color: rgba(79, 79, 73, 0.72);
 }
+
+.bottom-nav-btn:hover .bottom-nav-arrow {
+  color: #111111;
+  opacity: 0.72;
+  transform: none !important;
+}
+
+    
   </style>
 </head>
 <body>
@@ -713,26 +661,8 @@
   <div class="work-nav" id="work-nav"></div>
 
 
-  <script src="data.js">
-    function getViewingGuide(work) {
-      let guide = String(work.viewingGuide || work.guide || work.interactionGuide || "").trim();
-      const reaction = String(work.reaction || work.outputGuide || "").trim();
-
-      if (reaction && !guide.includes(reaction)) {
-        guide = `${guide} ${reaction}`.trim();
-      }
-
-      if (!guide) guide = "작품 화면을 천천히 탐색해보세요.";
-
-      const hasSound = work.sound || (work.tags || []).includes("사운드");
-      if (hasSound && !guide.includes("헤드셋")) {
-        guide = `헤드셋을 착용한 뒤, ${guide}`;
-      }
-
-      return guide.replace(/\s+/g, " ").trim();
-    }
-
-  </script>
+ <script src="data.js"></script>
+  
   <script>
     const DEFAULT_CANVAS_W = 1280;
     const DEFAULT_CANVAS_H = 720;
