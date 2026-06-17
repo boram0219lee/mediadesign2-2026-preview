@@ -21,7 +21,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
-    "cropTop": 0,
+    "cropTop": 41,
     "tags": [
       "마우스",
       "키보드"
@@ -447,7 +447,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/ymhuh/full/xn4sWoA3N",
     "thumbnailOriginal": "https://drive.google.com/open?id=1kF8QFgm3aPrIpaqR5bEGiArTBzEtlTfJ",
-    "cropTop": 40,
+    "cropTop": 42,
     "tags": [
       "마우스"
     ],
