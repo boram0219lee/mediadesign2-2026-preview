@@ -21,7 +21,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/tellme95/full/PFO0bzr6T",
     "thumbnailOriginal": "https://drive.google.com/open?id=1sl4zoiPqqt6zrQmOnefLwWI_s4g088OC",
-    "cropTop": 41,
+    "cropTop": 42,
     "tags": [
       "마우스",
       "키보드"
@@ -558,7 +558,7 @@ const works = [
     "rawOutput": "",
     "p5Original": "https://editor.p5js.org/yewon1189/full/vGogxsuRU",
     "thumbnailOriginal": "https://drive.google.com/open?id=1piDtNLiSgTS32px2jul8OjRu6JDRHtGK",
-    "cropTop": 0,
+    "cropTop": 42,
     "tags": [
       "마우스"
     ],
@@ -697,7 +697,7 @@ const works = [
     "rawOutput": "사운드 있음",
     "p5Original": "https://editor.p5js.org/us157202/full/ugjGrkj89",
     "thumbnailOriginal": "https://drive.google.com/open?id=1aBPQDJtuyaXTn8gptOEVENW1CnZEKXKL",
-    "cropTop": 0,
+    "cropTop": 42,
     "tags": [
       "마우스",
       "사운드"
