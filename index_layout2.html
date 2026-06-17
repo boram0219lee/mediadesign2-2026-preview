@@ -33,21 +33,23 @@
       min-height: 100vh;
     }
 
-    header {
-      max-width: var(--page-width);
-      margin: 0 auto;
-      padding: 24px var(--page-padding) 18px;
-      border-bottom: 1px solid var(--line);
-      display: grid;
-      grid-template-columns: minmax(360px, 0.9fr) minmax(420px, 1.1fr);
-      column-gap: 56px;
-      align-items: end;
-      text-align: left;
-    }
-  .header-right {
+   header {
+  max-width: none;
+  margin: 0;
+  padding: 34px max(var(--page-padding), calc((100vw - var(--page-width)) / 2 + var(--page-padding))) 30px;
+  border-bottom: none;
+  background: #080808;
+  color: #F8F7F2;
+  display: grid;
+  grid-template-columns: 1fr 560px;
+  column-gap: 56px;
+  align-items: end;
+  text-align: left;
+}
+    
+.header-right {
   justify-self: end;
-  width: 100%;
-  max-width: 560px;
+  width: 560px;
 }
     .course-label {
       font-size: 11px;
@@ -89,12 +91,31 @@
       color: var(--muted);
       text-align: right;
     }
+    header h1 {
+  color: #F8F7F2;
+  font-weight: 700;
+}
 
-    main {
-      max-width: var(--page-width);
-      margin: 0 auto;
-      padding: 14px var(--page-padding) 30px;
-    }
+header .course-label {
+  color: rgba(248, 247, 242, 0.76);
+  font-weight: 500;
+}
+
+header .subtitle,
+header .description,
+header .credit {
+  color: rgba(248, 247, 242, 0.74);
+}
+
+header .credit {
+  text-align: right;
+}
+
+   main {
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding: 22px var(--page-padding) 30px;
+}
 
     .section-head {
       display: flex;
