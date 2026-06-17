@@ -263,6 +263,14 @@ function preload() {
 function setup() {
   let canvas = createCanvas(1280, 720, WEBGL);
   canvas.position(0, 0);
+
+  // ===== 저사양 최적화 =====
+  // 고DPI(레티나) 화면에서 내부 렌더 해상도를 1배로 고정 → 픽셀 수가 크게 줄어 FPS 상승.
+  // 풀스크린 셰이더라 보이는 룩의 차이는 거의 없음.
+  pixelDensity(1);
+  // 풀스크린 쿼드는 안티앨리어싱이 거의 필요 없음 → 끄면 약간 더 가벼워짐.
+  setAttributes('antialias', false);
+
   fluidShader = createShader(vertSrc, fragSrc);
   noStroke();
 
@@ -298,9 +306,10 @@ function setup() {
 function mousePressed() {
   if (!started) {
     userStartAudio().then(() => {
-      mic.start();
-      fft = new p5.FFT(0.8, 256);
-      fft.setInput(mic);
+      mic.start(function() {
+        fft = new p5.FFT(0.8, 256);
+        fft.setInput(mic);
+      });
       track1.loop(); track2.loop(); track3.loop(); track4.loop(); track5.loop();
       started = true;
     });
@@ -357,9 +366,19 @@ function syncKeyStates() {
   }
 }
 
+// 프레임레이트 독립용 보정 lerp (60fps 기준 rate를 dt에 맞게 환산)
+// dt = 1 이면 원래 lerp(current, target, rate)와 완전히 동일.
+function friLerp(current, target, rate, dt) {
+  return lerp(current, target, 1 - Math.pow(1 - rate, dt));
+}
+
 function draw() {
   syncKeyStates();
   let t = millis() / 1000.0;
+
+  // ===== 프레임레이트 보정 계수 =====
+  // 60fps(16.67ms)를 기준 1.0으로. FPS가 낮으면 dt가 커져서 같은 실시간 속도를 유지.
+  let dt = constrain(deltaTime / 16.6667, 0.25, 4.0);
 
   let energy = 0;
   if (started && fft) {
@@ -375,36 +394,36 @@ function draw() {
     energy = constrain(energy, 0, 255);
   }
 
-  smoothEnergy = lerp(smoothEnergy, energy, 0.25);
+  smoothEnergy = friLerp(smoothEnergy, energy, 0.25, dt);
 
   let delta = smoothEnergy - prevEnergy;
   if (delta > 2) {
     let newPunch = map(delta, 2, 40, 0.15, 1.0, true);
     punch = constrain(punch + newPunch, 0, 1);
   }
-  punch *= 0.94;
+  punch *= Math.pow(0.94, dt);
   let minPunch = map(smoothEnergy, 0, 100, 0, 0.3, true);
-  if (punch < minPunch) punch = lerp(punch, minPunch, 0.1);
+  if (punch < minPunch) punch = friLerp(punch, minPunch, 0.1, dt);
   prevEnergy = smoothEnergy;
 
   let normEnergy = smoothEnergy / 255.0;
   let normPunch = punch;
   let warpTarget = normPunch * 0.5 + normEnergy * 0.3;
-  let warpSpeed = warpTarget > smoothWarp ? 0.08 : 0.03;
-  smoothWarp = lerp(smoothWarp, warpTarget, warpSpeed);
+  let warpRate = warpTarget > smoothWarp ? 0.08 : 0.03;
+  smoothWarp = friLerp(smoothWarp, warpTarget, warpRate, dt);
 
   // ---- QWER 효과 부드럽게 전환 ----
-  let fadeSpeed = 0.04;
-  cloudFade = lerp(cloudFade, qPressed ? 1 : 0, fadeSpeed);
-  skyDark = lerp(skyDark, wPressed ? 1 : 0, fadeSpeed);
-  creatureFade = lerp(creatureFade, rPressed ? 1 : 0, fadeSpeed);
+  let fadeRate = 0.04;
+  cloudFade = friLerp(cloudFade, qPressed ? 1 : 0, fadeRate, dt);
+  skyDark = friLerp(skyDark, wPressed ? 1 : 0, fadeRate, dt);
+  creatureFade = friLerp(creatureFade, rPressed ? 1 : 0, fadeRate, dt);
 
   // E: 건물 이미지가 블러되며 페이드 아웃
-  let fadeSpeedE = 0.04;
+  let fadeRateE = 0.04;
   let targetOpacity = ePressed ? 0 : 0.8;
   let targetBlur = ePressed ? 18 : 0;
-  buildingOpacity = lerp(buildingOpacity, targetOpacity, fadeSpeedE);
-  buildingBlur = lerp(buildingBlur, targetBlur, fadeSpeedE);
+  buildingOpacity = friLerp(buildingOpacity, targetOpacity, fadeRateE, dt);
+  buildingBlur = friLerp(buildingBlur, targetBlur, fadeRateE, dt);
   if (imgEl) {
     imgEl.style('opacity', buildingOpacity.toString());
     imgEl.style('filter', `blur(${buildingBlur}px)`);
@@ -416,8 +435,8 @@ function draw() {
     let dy = noise(c.oy, c.x * 2, t * 0.04) - 0.5;
     let speedi = 0.003 + noise(c.ox + 500, t * 0.02) * 0.002;
     speedi += normPunch * 0.003;
-    c.x += dx * speedi;
-    c.y += dy * speedi;
+    c.x += dx * speedi * dt;
+    c.y += dy * speedi * dt;
 
     for (let j = 0; j < NUM; j++) {
       if (i === j) continue;
@@ -427,8 +446,8 @@ function draw() {
       let disti = sqrt(ddx * ddx + ddy * ddy);
       if (disti < 0.08 && disti > 0.001) {
         let force = (0.08 - disti) * 0.002;
-        c.x += (ddx / disti) * force;
-        c.y += (ddy / disti) * force;
+        c.x += (ddx / disti) * force * dt;
+        c.y += (ddy / disti) * force * dt;
       }
     }
 
