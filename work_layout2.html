@@ -703,7 +703,11 @@
 
     const CANVAS_W = work.canvasWidth || DEFAULT_CANVAS_W;
     const CANVAS_H = work.canvasHeight || DEFAULT_CANVAS_H;
+const viewerFrame = document.getElementById('viewer-frame');
+const bottomWorkNav = document.getElementById('bottom-work-nav');
 
+viewerFrame.style.maxWidth = `${CANVAS_W}px`;
+bottomWorkNav.style.maxWidth = `${CANVAS_W}px`;
     document.title = `${work.title} — Creatures of Sense`;
     document.getElementById('work-title').textContent = work.title || '';
     document.getElementById('artist-name').textContent = work.name || '';
