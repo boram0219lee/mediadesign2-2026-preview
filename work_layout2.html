@@ -197,17 +197,24 @@
       margin: 0 auto;
     }
 
-    .bottom-work-nav {
-      width: 100%;
-      max-width: 1280px;
-      margin: 18px auto 0;
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      column-gap: 24px;
-      border-top: 1px solid var(--line);
-      padding-top: 16px;
-    }
+ .bottom-work-nav {
+  width: 100%;
+  max-width: 1280px;
+  margin: 14px auto 0;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  column-gap: 24px;
+  border-top: 1px solid rgba(17, 17, 17, 0.08);
+  padding-top: 14px;
+}
+    .bottom-nav-label {
+  font-size: 11px;
+  line-height: 1.35;
+  color: rgba(79, 79, 73, 0.64);
+  font-weight: 500;
+  margin-bottom: 1px;
+}
 
     .bottom-nav-btn,
     .bottom-home-btn {
@@ -256,19 +263,19 @@
       max-width: 260px;
     }
 
-    .bottom-nav-title {
-      font-size: 13px;
-      line-height: 1.35;
-      font-weight: 600;
-      color: var(--text);
-      word-break: keep-all;
-    }
+  .bottom-nav-title {
+  font-size: 13px;
+  line-height: 1.35;
+  font-weight: 700;
+  color: #252522;
+  word-break: keep-all;
+}
 
-    .bottom-nav-name {
-      font-size: 12px;
-      line-height: 1.35;
-      color: var(--muted);
-    }
+.bottom-nav-name {
+  font-size: 12px;
+  line-height: 1.35;
+  color: rgba(79, 79, 73, 0.68);
+}
 
     .bottom-home-btn {
       justify-self: center;
@@ -468,10 +475,13 @@
       .bottom-nav-text {
         display: none;
       }
-
-      .bottom-nav-arrow {
-        font-size: 32px;
-      }
+.bottom-nav-arrow {
+  font-size: 26px;
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(79, 79, 73, 0.55);
+  flex: 0 0 auto;
+}
     }
 
   
@@ -635,7 +645,27 @@
       color: var(--muted) !important;
       opacity: 0.82;
     }
+.bottom-nav-btn:hover {
+  color: inherit !important;
+  transform: translateY(-1px);
+}
 
+.bottom-nav-btn:hover .bottom-nav-label {
+  color: rgba(79, 79, 73, 0.78);
+}
+
+.bottom-nav-btn:hover .bottom-nav-title {
+  color: #111111 !important;
+}
+
+.bottom-nav-btn:hover .bottom-nav-arrow {
+  color: #111111 !important;
+  opacity: 0.78;
+}
+
+.bottom-nav-btn:hover .bottom-nav-name {
+  color: rgba(79, 79, 73, 0.82) !important;
+}
   </style>
 </head>
 <body>
