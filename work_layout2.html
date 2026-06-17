@@ -814,7 +814,7 @@
         <div class="embed-wrap" id="embed-wrap">
           <iframe
             id="work-iframe"
-            src="${work.localLink || work.link}"
+            src="${work.link}"
             allow="autoplay; fullscreen; camera; microphone"
             allowfullscreen
             loading="lazy"
@@ -832,7 +832,9 @@
       embedWrap.style.aspectRatio = `${embedW} / ${embedH}`;
       embedWrap.style.overflow = 'hidden';
 
-      const cropTop = Number(work.cropTop || 0);
+      const hasCustomCropTop = Object.prototype.hasOwnProperty.call(work, 'cropTop');
+      const isP5FullLink = String(work.link || '').includes('editor.p5js.org') && String(work.link || '').includes('/full/');
+      const cropTop = hasCustomCropTop ? Number(work.cropTop) : (isP5FullLink ? 72 : 0);
       const scrollbarHide = Number(work.scrollbarHide || 32);
 
       iframe.setAttribute('scrolling', 'no');
