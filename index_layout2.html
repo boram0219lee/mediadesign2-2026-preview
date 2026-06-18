@@ -354,10 +354,10 @@ text-align: left;
 
 
   <main>
-    <div class="section-head">
-      <p class="section-title">Works</p>
-      <p class="work-count" id="work-count"></p>
-    </div>
+ <div class="section-head">
+  <p class="section-title">Works</p>
+</div>
+
     <div class="grid" id="grid"></div>
   </main>
 
@@ -370,8 +370,6 @@ text-align: left;
   <script>
     const grid = document.getElementById('grid');
     const workCount = document.getElementById('work-count');
-
-    workCount.textContent = `${works.length} works`;
 
     works.forEach((work, index) => {
       const item = document.createElement('div');
