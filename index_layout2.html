@@ -270,14 +270,29 @@ header .credit {
     }
 
     @media (max-width: 1200px) {
-      :root { --page-padding: 40px; }
-      header {
-        display: block;
-      }
-      .description {
-        margin-top: 22px;
-      }
-      .grid { grid-template-columns: repeat(4, 1fr); }
+:root { --page-padding: 40px; }
+
+header {
+display: block;
+}
+
+.header-right {
+width: 100%;
+margin-top: 24px;
+}
+
+.description {
+max-width: 720px;
+margin-bottom: 10px;
+}
+
+.course-meta {
+text-align: left;
+}
+
+.grid { grid-template-columns: repeat(4, 1fr); }
+}
+d-template-columns: repeat(4, 1fr); }
     }
 
     @media (max-width: 900px) {
